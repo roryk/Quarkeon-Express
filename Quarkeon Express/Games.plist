@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Games</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>U-235 Rush!</string>
+			<key>Difficulty</key>
+			<string>Hard</string>
+			<key>Start Planet ID</key>
+			<integer>0</integer>
+			<key>End Planet ID</key>
+			<integer>3</integer>
+			<key>Maze</key>
+			<array>
+				<dict>
+					<key>Planet ID</key>
+					<integer>0</integer>
+					<key>Connections</key>
+					<array>
+						<dict>
+							<key>Direction</key>
+							<string>North</string>
+							<key>Cost</key>
+							<integer>1</integer>
+							<key>Planet ID</key>
+							<integer>1</integer>
+						</dict>
+						<dict>
+							<key>Direction</key>
+							<string>East</string>
+							<key>Cost</key>
+							<integer>2</integer>
+							<key>Planet ID</key>
+							<integer>2</integer>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>Planet ID</key>
+					<integer>1</integer>
+					<key>Connections</key>
+					<array>
+						<dict>
+                            <key>Direction</key>
+							<string>South</string>
+							<key>Cost</key>
+							<integer>1</integer>
+							<key>Planet ID</key>
+							<integer>0</integer>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>Planet ID</key>
+					<integer>2</integer>
+					<key>Connections</key>
+					<array>
+						<dict>
+                            <key>Direction</key>
+							<string>West</string>
+							<key>Cost</key>
+							<integer>2</integer>
+							<key>Planet ID</key>
+							<integer>0</integer>
+						</dict>
+						<dict>
+                            <key>Direction</key>
+							<string>South</string>
+							<key>Cost</key>
+							<integer>4</integer>
+							<key>Planet ID</key>
+							<integer>3</integer>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>Planet ID</key>
+					<integer>3</integer>
+					<key>Connections</key>
+					<array>
+						<dict>
+                            <key>Direction</key>
+							<string>North</string>
+							<key>Cost</key>
+							<integer>4</integer>
+							<key>Planet ID</key>
+							<integer>2</integer>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

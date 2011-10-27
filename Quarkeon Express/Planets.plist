@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Planets</key>
+	<array>
+		<dict>
+			<key>Earn Rate</key>
+			<integer>1</integer>
+			<key>Cost</key>
+			<integer>2</integer>
+			<key>Name</key>
+			<string>Earth</string>
+			<key>Description</key>
+			<string>A small, polluted hell hole.</string>
+			<key>Picture</key>
+			<string></string>
+			<key>Type</key>
+			<string>Wasteland</string>
+		</dict>
+		<dict>
+            <key>Earn Rate</key>
+			<integer>2</integer>
+			<key>Cost</key>
+			<integer>8</integer>
+			<key>Name</key>
+			<string>Mars</string>
+			<key>Description</key>
+			<string>A red dump of a planet.</string>
+			<key>Picture</key>
+			<string></string>
+			<key>Type</key>
+			<string>Wasteland</string>
+		</dict>
+		<dict>
+            <key>Earn Rate</key>
+			<integer>3</integer>
+			<key>Cost</key>
+			<integer>27</integer>
+			<key>Name</key>
+			<string>Ars Planetus</string>
+			<key>Description</key>
+			<string>A gas giant. Rumor has it the core is pure Uranium!</string>
+			<key>Picture</key>
+			<string></string>
+			<key>Type</key>
+			<string>Gas</string>
+		</dict>
+		<dict>
+            <key>Earn Rate</key>
+			<integer>4</integer>
+			<key>Cost</key>
+			<integer>64</integer>
+			<key>Name</key>
+			<string>Perseus</string>
+			<key>Description</key>
+			<string>A tropical paradise.</string>
+			<key>Picture</key>
+			<string></string>
+			<key>Type</key>
+			<string>Jungle</string>
+		</dict>
+		<dict>
+            <key>Earn Rate</key>
+			<integer>5</integer>
+			<key>Cost</key>
+			<integer>125</integer>
+			<key>Name</key>
+			<string>X-31337</string>
+			<key>Description</key>
+			<string>A dead star made of worthless diamond.</string>
+			<key>Picture</key>
+			<string></string>
+			<key>Type</key>
+			<string>Diamond</string>
+		</dict>
+	</array>
+</dict>
+</plist>
