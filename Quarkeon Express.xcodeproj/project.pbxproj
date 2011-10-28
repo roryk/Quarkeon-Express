@@ -41,6 +41,19 @@
 		C377A638144E6F0B00663A2C /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A637144E6F0B00663A2C /* Enemy.m */; };
 		C377A641144E731D00663A2C /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A640144E731D00663A2C /* Planet.m */; };
 		C377A644144E733100663A2C /* SpaceLane.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A643144E733000663A2C /* SpaceLane.m */; };
+		C38E1465145B56CE00AF2E8F /* Cold World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E1464145B56CE00AF2E8F /* Cold World.jpg */; };
+		C38E1470145B5CDB00AF2E8F /* Global Warming.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E1468145B5CDB00AF2E8F /* Global Warming.jpg */; };
+		C38E1471145B5CDB00AF2E8F /* Dead World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E1469145B5CDB00AF2E8F /* Dead World.jpg */; };
+		C38E1472145B5CDB00AF2E8F /* High Winds.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146A145B5CDB00AF2E8F /* High Winds.jpg */; };
+		C38E1473145B5CDB00AF2E8F /* Ice Planet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146B145B5CDB00AF2E8F /* Ice Planet.jpg */; };
+		C38E1474145B5CDB00AF2E8F /* Mostly Harmless.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146C145B5CDB00AF2E8F /* Mostly Harmless.jpg */; };
+		C38E1475145B5CDB00AF2E8F /* Nu Earth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146D145B5CDB00AF2E8F /* Nu Earth.jpg */; };
+		C38E1476145B5CDB00AF2E8F /* Drye.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146E145B5CDB00AF2E8F /* Drye.jpg */; };
+		C38E1477145B5CDB00AF2E8F /* Pyrobora.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E146F145B5CDB00AF2E8F /* Pyrobora.jpg */; };
+		C38E147C145B5CF000AF2E8F /* Small Gas Giant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E1478145B5CF000AF2E8F /* Small Gas Giant.jpg */; };
+		C38E147D145B5CF000AF2E8F /* Waterless World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E1479145B5CF000AF2E8F /* Waterless World.jpg */; };
+		C38E147E145B5CF000AF2E8F /* Arid World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E147A145B5CF000AF2E8F /* Arid World.jpg */; };
+		C38E147F145B5CF000AF2E8F /* Caldonia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C38E147B145B5CF000AF2E8F /* Caldonia.jpg */; };
 		C38E49811453A86700F8DBEB /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = C38E49801453A86700F8DBEB /* Game.m */; };
 		C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E49871454D06E00F8DBEB /* Default@2x.png */; };
 		C38E498B1454D6D600F8DBEB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E498A1454D6D600F8DBEB /* Default.png */; };
@@ -104,6 +117,19 @@
 		C377A640144E731D00663A2C /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		C377A642144E733000663A2C /* SpaceLane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceLane.h; sourceTree = "<group>"; };
 		C377A643144E733000663A2C /* SpaceLane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceLane.m; sourceTree = "<group>"; };
+		C38E1464145B56CE00AF2E8F /* Cold World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cold World.jpg"; sourceTree = "<group>"; };
+		C38E1468145B5CDB00AF2E8F /* Global Warming.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Global Warming.jpg"; sourceTree = "<group>"; };
+		C38E1469145B5CDB00AF2E8F /* Dead World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dead World.jpg"; sourceTree = "<group>"; };
+		C38E146A145B5CDB00AF2E8F /* High Winds.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "High Winds.jpg"; sourceTree = "<group>"; };
+		C38E146B145B5CDB00AF2E8F /* Ice Planet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ice Planet.jpg"; sourceTree = "<group>"; };
+		C38E146C145B5CDB00AF2E8F /* Mostly Harmless.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mostly Harmless.jpg"; sourceTree = "<group>"; };
+		C38E146D145B5CDB00AF2E8F /* Nu Earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Nu Earth.jpg"; sourceTree = "<group>"; };
+		C38E146E145B5CDB00AF2E8F /* Drye.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drye.jpg; sourceTree = "<group>"; };
+		C38E146F145B5CDB00AF2E8F /* Pyrobora.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pyrobora.jpg; sourceTree = "<group>"; };
+		C38E1478145B5CF000AF2E8F /* Small Gas Giant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Small Gas Giant.jpg"; sourceTree = "<group>"; };
+		C38E1479145B5CF000AF2E8F /* Waterless World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Waterless World.jpg"; sourceTree = "<group>"; };
+		C38E147A145B5CF000AF2E8F /* Arid World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Arid World.jpg"; sourceTree = "<group>"; };
+		C38E147B145B5CF000AF2E8F /* Caldonia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Caldonia.jpg; sourceTree = "<group>"; };
 		C38E497F1453A86700F8DBEB /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		C38E49801453A86700F8DBEB /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		C38E49871454D06E00F8DBEB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -138,6 +164,7 @@
 		C377A5EA144E446C00663A2C = {
 			isa = PBXGroup;
 			children = (
+				C38E1467145B5CBD00AF2E8F /* PlanetPics */,
 				C38E498A1454D6D600F8DBEB /* Default.png */,
 				C38E49871454D06E00F8DBEB /* Default@2x.png */,
 				98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */,
@@ -240,6 +267,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C38E1467145B5CBD00AF2E8F /* PlanetPics */ = {
+			isa = PBXGroup;
+			children = (
+				C38E1478145B5CF000AF2E8F /* Small Gas Giant.jpg */,
+				C38E1479145B5CF000AF2E8F /* Waterless World.jpg */,
+				C38E147A145B5CF000AF2E8F /* Arid World.jpg */,
+				C38E147B145B5CF000AF2E8F /* Caldonia.jpg */,
+				C38E1468145B5CDB00AF2E8F /* Global Warming.jpg */,
+				C38E1469145B5CDB00AF2E8F /* Dead World.jpg */,
+				C38E146A145B5CDB00AF2E8F /* High Winds.jpg */,
+				C38E146B145B5CDB00AF2E8F /* Ice Planet.jpg */,
+				C38E146C145B5CDB00AF2E8F /* Mostly Harmless.jpg */,
+				C38E146D145B5CDB00AF2E8F /* Nu Earth.jpg */,
+				C38E146E145B5CDB00AF2E8F /* Drye.jpg */,
+				C38E146F145B5CDB00AF2E8F /* Pyrobora.jpg */,
+				C38E1464145B56CE00AF2E8F /* Cold World.jpg */,
+			);
+			name = PlanetPics;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +368,19 @@
 				C38E498B1454D6D600F8DBEB /* Default.png in Resources */,
 				98D16A5E14565F2500EA43E6 /* WinScreenVC.xib in Resources */,
 				98D16A63145664AA00EA43E6 /* PassGameVC.xib in Resources */,
+				C38E1465145B56CE00AF2E8F /* Cold World.jpg in Resources */,
+				C38E1470145B5CDB00AF2E8F /* Global Warming.jpg in Resources */,
+				C38E1471145B5CDB00AF2E8F /* Dead World.jpg in Resources */,
+				C38E1472145B5CDB00AF2E8F /* High Winds.jpg in Resources */,
+				C38E1473145B5CDB00AF2E8F /* Ice Planet.jpg in Resources */,
+				C38E1474145B5CDB00AF2E8F /* Mostly Harmless.jpg in Resources */,
+				C38E1475145B5CDB00AF2E8F /* Nu Earth.jpg in Resources */,
+				C38E1476145B5CDB00AF2E8F /* Drye.jpg in Resources */,
+				C38E1477145B5CDB00AF2E8F /* Pyrobora.jpg in Resources */,
+				C38E147C145B5CF000AF2E8F /* Small Gas Giant.jpg in Resources */,
+				C38E147D145B5CF000AF2E8F /* Waterless World.jpg in Resources */,
+				C38E147E145B5CF000AF2E8F /* Arid World.jpg in Resources */,
+				C38E147F145B5CF000AF2E8F /* Caldonia.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

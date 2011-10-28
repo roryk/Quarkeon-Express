@@ -19,6 +19,7 @@
 @synthesize owner, planetName, planetDescription, planetsCount, uraniumCount;
 @synthesize currPlayerName;
 @synthesize buyButton;
+@synthesize backgroundImageView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -118,7 +119,9 @@
         [self.buyButton setEnabled:true];
 
     }
-        
+    
+    [backgroundImageView setImage:gs.currPlanet.picture];
+    
    // redraw the screen with the new planet info, etc. 
 
 }

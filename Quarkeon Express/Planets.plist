@@ -14,12 +14,12 @@
 			<key>Description</key>
 			<string>A small, polluted hell hole.</string>
 			<key>Picture</key>
-			<string></string>
+			<string>Cold World.jpg</string>
 			<key>Type</key>
 			<string>Wasteland</string>
 		</dict>
 		<dict>
-            <key>Earn Rate</key>
+			<key>Earn Rate</key>
 			<integer>2</integer>
 			<key>Cost</key>
 			<integer>8</integer>
@@ -28,12 +28,12 @@
 			<key>Description</key>
 			<string>A red dump of a planet.</string>
 			<key>Picture</key>
-			<string></string>
+			<string>Drye.jpg</string>
 			<key>Type</key>
 			<string>Wasteland</string>
 		</dict>
 		<dict>
-            <key>Earn Rate</key>
+			<key>Earn Rate</key>
 			<integer>3</integer>
 			<key>Cost</key>
 			<integer>27</integer>
@@ -42,12 +42,12 @@
 			<key>Description</key>
 			<string>A gas giant. Rumor has it the core is pure Uranium!</string>
 			<key>Picture</key>
-			<string></string>
+			<string>Pyrobora.jpg</string>
 			<key>Type</key>
 			<string>Gas</string>
 		</dict>
 		<dict>
-            <key>Earn Rate</key>
+			<key>Earn Rate</key>
 			<integer>4</integer>
 			<key>Cost</key>
 			<integer>64</integer>
@@ -56,12 +56,12 @@
 			<key>Description</key>
 			<string>A tropical paradise.</string>
 			<key>Picture</key>
-			<string></string>
+			<string>Mostly Harmless.jpg</string>
 			<key>Type</key>
 			<string>Jungle</string>
 		</dict>
 		<dict>
-            <key>Earn Rate</key>
+			<key>Earn Rate</key>
 			<integer>5</integer>
 			<key>Cost</key>
 			<integer>125</integer>
@@ -70,7 +70,7 @@
 			<key>Description</key>
 			<string>A dead star made of worthless diamond.</string>
 			<key>Picture</key>
-			<string></string>
+			<string>Dead World.jpg</string>
 			<key>Type</key>
 			<string>Diamond</string>
 		</dict>

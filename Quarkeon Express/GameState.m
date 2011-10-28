@@ -80,7 +80,11 @@
         Planet *newPlanet = [[Planet alloc] init];
         newPlanet.name = [planetDict objectForKey:@"Name"];
         newPlanet.description = [planetDict objectForKey:@"Description"];
-        newPlanet.picture = [planetDict objectForKey:@"Picture"];
+        NSString *imagePath = [[NSString alloc] initWithString:[planetDict objectForKey:@"Picture"]];
+        if ([imagePath isEqualToString:@""]) {
+            imagePath = @"Nu Earth.jpg";
+        }
+        newPlanet.picture = [UIImage imageNamed:imagePath];
         newPlanet.type = [[planetDict objectForKey:@"Type"] intValue];
         newPlanet.earnRate = [[planetDict objectForKey:@"Earn Rate"] intValue];
         newPlanet.initialCost = [[planetDict objectForKey:@"Cost"] intValue];

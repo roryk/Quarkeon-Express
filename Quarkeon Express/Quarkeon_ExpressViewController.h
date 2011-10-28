@@ -28,7 +28,7 @@
     IBOutlet UILabel *uraniumCount;
     IBOutlet UILabel *planetsCount;
     IBOutlet UILabel *currPlayerName;
-
+    IBOutlet UIImageView *backgroundImageView;
 
 }
 
@@ -46,6 +46,7 @@
 @property (nonatomic, retain) UILabel *uraniumCount;
 @property (nonatomic, retain) UILabel *planetDescription;
 
+@property (nonatomic, retain) UIImageView *backgroundImageView;
 
 
 
