@@ -74,6 +74,62 @@
 			<key>Type</key>
 			<string>Diamond</string>
 		</dict>
+        <dict>
+			<key>Earn Rate</key>
+			<integer>6</integer>
+			<key>Cost</key>
+			<integer>150</integer>
+			<key>Name</key>
+			<string>Grahmasville</string>
+			<key>Description</key>
+			<string>Small and hot, like your mom.</string>
+			<key>Picture</key>
+			<string>Waterless World.jpg</string>
+			<key>Type</key>
+			<string>Desert</string>
+		</dict>
+        <dict>
+			<key>Earn Rate</key>
+			<integer>8</integer>
+			<key>Cost</key>
+			<integer>320</integer>
+			<key>Name</key>
+			<string>Hermes</string>
+			<key>Description</key>
+			<string>The former homeworld of Miss Universe.</string>
+			<key>Picture</key>
+			<string>Caldonia.jpg</string>
+			<key>Type</key>
+			<string>Waterworld</string>
+		</dict>
+        <dict>
+			<key>Earn Rate</key>
+			<integer>9</integer>
+			<key>Cost</key>
+			<integer>200</integer>
+			<key>Name</key>
+			<string>Slab</string>
+			<key>Description</key>
+			<string>A tiny gas giant.</string>
+			<key>Picture</key>
+			<string>Small Gas Giant.jpg</string>
+			<key>Type</key>
+			<string>Gas</string>
+		</dict>
+        <dict>
+			<key>Earn Rate</key>
+			<integer>10</integer>
+			<key>Cost</key>
+			<integer>500</integer>
+			<key>Name</key>
+			<string>Sweep</string>
+			<key>Description</key>
+			<string>The windy planet, filled with politicians.</string>
+			<key>Picture</key>
+			<string>High Winds.jpg</string>
+			<key>Type</key>
+			<string>Earthlike</string>
+		</dict>
 	</array>
 </dict>
 </plist>
