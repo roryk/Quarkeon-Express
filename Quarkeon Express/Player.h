@@ -21,8 +21,10 @@
     int clones;
     int bucks;
     int uranium;
+    int planetsOwned;
 }
 
+@property (readwrite, assign) int planetsOwned;
 @property (readwrite, assign) int xLocation;
 @property (readwrite, assign) int yLocation;
 @property (nonatomic, retain) NSString *name;

@@ -9,26 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Quarkeon Express/Quarkeon_ExpressViewController.m"
-         timestampString = "341530804.160046"
+         timestampString = "341600294.357906"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-updateGameScreen"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Quarkeon Express/GameState.m"
-         timestampString = "341531731.365974"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
-         landmarkName = "-loadPlanets"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.planets = [[NSMutableArray alloc] init];
+        self.planets = nil;
         self.players = [[NSMutableArray alloc] init];
         self.games = [[NSMutableArray alloc] init];
         self.turnQueue = [[NSMutableArray alloc] init];
@@ -69,14 +69,15 @@
 
 }
 
-- (bool)loadPlanets
+- (NSMutableArray *)loadPlanets
 {
-     
+    
     NSLog(@"loading planets....");
-    NSMutableArray *allPlanets = [self loadPlist:@"Planets.plist" rootKey:@"Planets"];
+    NSMutableArray *newPlanets = [[NSMutableArray alloc] init];
+    NSMutableArray *plistPlanets = [self loadPlist:@"Planets.plist" rootKey:@"Planets"];
     int planetID = 0; // XXX adamf: we should find a better way to assign these. GUIDs in the plist?
-
-    for (NSDictionary *planetDict in allPlanets) {    
+    
+    for (NSDictionary *planetDict in plistPlanets) {    
         Planet *newPlanet = [[Planet alloc] init];
         newPlanet.name = [planetDict objectForKey:@"Name"];
         newPlanet.description = [planetDict objectForKey:@"Description"];
@@ -90,16 +91,17 @@
         newPlanet.initialCost = [[planetDict objectForKey:@"Cost"] intValue];
         newPlanet.currentCost = newPlanet.initialCost;
         newPlanet.planetID = planetID;
-        [self.planets addObject:newPlanet];
+        [newPlanets addObject:newPlanet];
         NSLog(@"loaded planet: %@", newPlanet.name);
     }
     
-    return true;
+    return newPlanets;
 }
 
 - (bool) loadGames
 {
     NSLog(@"loading games....");
+    NSMutableArray *sourcePlanets = [self loadPlanets];
     NSMutableArray *allGames = [self loadPlist:@"Games.plist" rootKey:@"Games"];
     // XXX adamf: this has to load after we've loaded the planets, since we use the index into the planet
     // array. This is bad idea, but we do it anyways to get the game going.
@@ -117,7 +119,7 @@
         for (NSDictionary *planetsDict in maze) {
             int planetID = [[planetsDict objectForKey:@"Planet ID"] intValue];
             Planet *newPlanet = [[Planet alloc] init];
-            Planet *sourcePlanet = [self.planets objectAtIndex:planetID];
+            Planet *sourcePlanet = [sourcePlanets objectAtIndex:planetID];
             // XXX should implement NSCopying protocol on Planet, in case we need to copy it elsewhere
             newPlanet.type = sourcePlanet.type;
             newPlanet.name = sourcePlanet.name;
@@ -181,6 +183,7 @@
 {
     
     self.currentGame = game;
+    self.planets = game.maze;
     self.currPlanet = [self.currentGame getPlanetByID:self.currentGame.startPlanetID];
     // XXX we create two players here. 
     [self addPlayer:100 playerName:@"Foo"];
@@ -227,14 +230,7 @@
 }
 
 - (bool) didCurrentPlayerWin {
-    int owned = 0;
-    // XXX: this isn't working for some reasona
-    for(Planet *planet in self.planets) {
-        if(planet.owner == self.currPlayer) {
-            owned = owned + 1;
-        }
-    }
-    return (owned > ([self.planets count] / 2));
+    return (self.currPlayer.planetsOwned > ([self.planets count] / 2));
 }
 
 - (bool)canBuyCurrPlanet
@@ -249,9 +245,14 @@
 - (bool)buyCurrPlanet   
 {
     if ([self canBuyCurrPlanet]) {
+        if (self.currPlanet.owner != nil) {
+            self.currPlanet.owner.planetsOwned = self.currPlanet.owner.planetsOwned - 1;
+        }
         self.currPlayer.uranium = self.currPlayer.uranium - self.currPlanet.currentCost;
         self.currPlanet.owner = self.currPlayer;
         self.currPlayer.currLocation.currentCost = self.currPlayer.currLocation.currentCost * 1.5;
+        self.currPlayer.planetsOwned = self.currPlayer.planetsOwned + 1;
+        
         return true;
     }
     

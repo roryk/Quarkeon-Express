@@ -17,7 +17,7 @@
 @synthesize ship;
 @synthesize clones, bucks, uranium;
 @synthesize currLocation;
-
+@synthesize planetsOwned;
 
 - (id)init
 {
@@ -27,6 +27,7 @@
         self.currLocation = nil;
         self.name = nil;
         self.ship = nil;
+        self.planetsOwned = 0;
     }
     
     return self;

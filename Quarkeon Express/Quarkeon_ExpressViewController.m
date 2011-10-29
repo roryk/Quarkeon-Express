@@ -120,6 +120,9 @@
 
     }
     
+    
+    self.planetsCount.text = [NSString stringWithFormat:@"%d/%d", gs.currPlayer.planetsOwned, [gs.planets count]];
+    
     [backgroundImageView setImage:gs.currPlanet.picture];
     
    // redraw the screen with the new planet info, etc. 

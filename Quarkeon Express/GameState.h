@@ -41,8 +41,7 @@
 @property (nonatomic, retain) NSMutableArray *games;
 
 
-
-- (bool)loadPlanets;
+- (NSMutableArray *)loadPlanets;
 - (bool)loadGames;
 - (NSMutableArray *)loadPlist:(NSString *)fileName rootKey:(NSString *)rootKey;
 
@@ -54,5 +53,6 @@
 - (void)endTurn;
 - (void)startTurn;
 - (void)gameOverCleanup;
+
 
 @end

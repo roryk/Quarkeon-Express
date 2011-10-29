@@ -47,7 +47,7 @@
 					<object class="IBUIImageView" id="781029295">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{14, 0}, {480, 300}}</string>
+						<string key="NSFrameSize">{495, 300}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="424959473"/>
@@ -169,8 +169,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="73852279"/>
-							<reference ref="781029295"/>
 							<reference ref="424959473"/>
+							<reference ref="781029295"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
