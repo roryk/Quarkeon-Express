@@ -1,7 +1,7 @@
 TODO
 =====
-Figure out how to have the screen redraw centered on the new planet in the moveView method.
+Switch QE over to be using Cells instead of Planets as the base space
+to move into.
 
-FUTURE
-=======
-Implement hotseat multiplayer.
+Add in reading all the planets in the plist file to choose from for
+the initial planet seeding.
