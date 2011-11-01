@@ -12,6 +12,8 @@
 		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
 		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
 		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
+		98C6E92C145B0D150097267C /* MapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92B145B0D150097267C /* MapGenerator.m */; };
+		98C6E930145B0D600097267C /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92F145B0D600097267C /* Cell.m */; };
 		98D16A5D14565F2500EA43E6 /* WinScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A5B14565F2500EA43E6 /* WinScreenVC.m */; };
 		98D16A5E14565F2500EA43E6 /* WinScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */; };
 		98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A60145664A900EA43E6 /* PassGameVC.m */; };
@@ -77,6 +79,10 @@
 		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		986AF2B914525C8E0045A44C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		986AF2BC145278AE0045A44C /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		98C6E92A145B0D150097267C /* MapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGenerator.h; path = ../MapGenerator.h; sourceTree = "<group>"; };
+		98C6E92B145B0D150097267C /* MapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapGenerator.m; path = ../MapGenerator.m; sourceTree = "<group>"; };
+		98C6E92E145B0D600097267C /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		98C6E92F145B0D600097267C /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		98D16A5A14565F2400EA43E6 /* WinScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinScreenVC.h; path = ../WinScreenVC.h; sourceTree = "<group>"; };
 		98D16A5B14565F2500EA43E6 /* WinScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WinScreenVC.m; path = ../WinScreenVC.m; sourceTree = "<group>"; };
 		98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WinScreenVC.xib; path = ../WinScreenVC.xib; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 				C377A611144E446C00663A2C /* Quarkeon_ExpressViewController.xib */,
 				98D16A5A14565F2400EA43E6 /* WinScreenVC.h */,
 				98D16A5B14565F2500EA43E6 /* WinScreenVC.m */,
+				98C6E92A145B0D150097267C /* MapGenerator.h */,
+				98C6E92B145B0D150097267C /* MapGenerator.m */,
 				98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */,
 				98D16A5F145664A800EA43E6 /* PassGameVC.h */,
 				98D16A60145664A900EA43E6 /* PassGameVC.m */,
@@ -224,6 +232,8 @@
 				C377A637144E6F0B00663A2C /* Enemy.m */,
 				C377A63F144E731D00663A2C /* Planet.h */,
 				C377A640144E731D00663A2C /* Planet.m */,
+				98C6E92E145B0D600097267C /* Cell.h */,
+				98C6E92F145B0D600097267C /* Cell.m */,
 				C377A642144E733000663A2C /* SpaceLane.h */,
 				C377A643144E733000663A2C /* SpaceLane.m */,
 				986AF2B814525C8E0045A44C /* GameState.h */,
@@ -429,6 +439,8 @@
 				C38E49811453A86700F8DBEB /* Game.m in Sources */,
 				98D16A5D14565F2500EA43E6 /* WinScreenVC.m in Sources */,
 				98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */,
+				98C6E92C145B0D150097267C /* MapGenerator.m in Sources */,
+				98C6E930145B0D600097267C /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
