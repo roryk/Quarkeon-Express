@@ -4,7 +4,6 @@ xcuserdatad/
 *.xcuserdatad/
 *.swp
 *~.nib
-*.xcodeproj
 build/
 
 *.pbxuser

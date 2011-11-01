@@ -59,6 +59,8 @@
 		C38E49811453A86700F8DBEB /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = C38E49801453A86700F8DBEB /* Game.m */; };
 		C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E49871454D06E00F8DBEB /* Default@2x.png */; };
 		C38E498B1454D6D600F8DBEB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E498A1454D6D600F8DBEB /* Default.png */; };
+		C3FA0EE9145C949900C75768 /* WinScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FA0EE7145C949900C75768 /* WinScreenVC.m */; };
+		C3FA0EEA145C949900C75768 /* WinScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FA0EE8145C949900C75768 /* WinScreenVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,9 @@
 		C38E49801453A86700F8DBEB /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		C38E49871454D06E00F8DBEB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C38E498A1454D6D600F8DBEB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C3FA0EE6145C949900C75768 /* WinScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScreenVC.h; sourceTree = "<group>"; };
+		C3FA0EE7145C949900C75768 /* WinScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScreenVC.m; sourceTree = "<group>"; };
+		C3FA0EE8145C949900C75768 /* WinScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinScreenVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +228,9 @@
 				98C6E92B145B0D150097267C /* MapGenerator.m */,
 				98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */,
 				98D16A5F145664A800EA43E6 /* PassGameVC.h */,
+				C3FA0EE6145C949900C75768 /* WinScreenVC.h */,
+				C3FA0EE7145C949900C75768 /* WinScreenVC.m */,
+				C3FA0EE8145C949900C75768 /* WinScreenVC.xib */,
 				98D16A60145664A900EA43E6 /* PassGameVC.m */,
 				98D16A61145664A900EA43E6 /* PassGameVC.xib */,
 				C377A600144E446C00663A2C /* Supporting Files */,
@@ -376,7 +384,6 @@
 				986AF2BD145278AF0045A44C /* TODO in Resources */,
 				C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */,
 				C38E498B1454D6D600F8DBEB /* Default.png in Resources */,
-				98D16A5E14565F2500EA43E6 /* WinScreenVC.xib in Resources */,
 				98D16A63145664AA00EA43E6 /* PassGameVC.xib in Resources */,
 				C33C7072145C65BD0094534C /* Arid World.jpg in Resources */,
 				C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */,
@@ -391,6 +398,7 @@
 				C33C707C145C65BD0094534C /* Pyrobora.jpg in Resources */,
 				C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */,
 				C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */,
+				C3FA0EEA145C949900C75768 /* WinScreenVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
