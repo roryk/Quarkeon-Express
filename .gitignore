@@ -1,2 +1,12 @@
 .DS_Store
-.xcuserdatad
+xcuserdata
+xcuserdatad/
+*.xcuserdatad/
+*.swp
+*~.nib
+*.xcodeproj
+build/
+
+*.pbxuser
+*.perspective
+*.perspectivev3
