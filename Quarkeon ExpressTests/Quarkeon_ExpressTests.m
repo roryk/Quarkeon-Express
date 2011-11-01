@@ -37,4 +37,17 @@
     STAssertTrue([queue dequeue] == second, @"Queue failed at second dequeue.");
     STAssertTrue([queue dequeue] == nil, @"Queue failed at dequeuing empty queue.");
 }
+
+- (void)testMapGenerator {
+    // XXX implement the test
+    // generate a 4x4 map with 7 planets
+    // look at all of the cells make sure you hae 7 planets total
+    // make sure you can get to each planet
+    // do this by starting at a random planet and going to all 
+    // neighbors, recursively adding to a 'saw this planet' array
+    // after 15 iterations you should have visited every cell
+    // return true if all have been visited, false if not
+    
+
+}
 @end
