@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		98275D731451E999001D63A1 /* planet-glass-retina-57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 98275D721451E999001D63A1 /* planet-glass-retina-57-57.png */; };
+		98275D751451EA99001D63A1 /* planet-glass-retina-114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */; };
+		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
+		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
+		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
+<<<<<<< HEAD
+		98C6E92C145B0D150097267C /* MapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92B145B0D150097267C /* MapGenerator.m */; };
+		98C6E930145B0D600097267C /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92F145B0D600097267C /* Cell.m */; };
+		98D16A5D14565F2500EA43E6 /* WinScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A5B14565F2500EA43E6 /* WinScreenVC.m */; };
+		98D16A5E14565F2500EA43E6 /* WinScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */; };
+=======
+>>>>>>> 9eae44f3fce5d548aa13fcbddd2105a1404cf8c8
+		98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A60145664A900EA43E6 /* PassGameVC.m */; };
+		98D16A63145664AA00EA43E6 /* PassGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D16A61145664A900EA43E6 /* PassGameVC.xib */; };
+		C3131D641451AF010096F21A /* Games.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D611451AF010096F21A /* Games.plist */; };
+		C3131D651451AF010096F21A /* Objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D621451AF010096F21A /* Objects.plist */; };
+		C3131D661451AF010096F21A /* Planets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D631451AF010096F21A /* Planets.plist */; };
+		C3131D6B1451AF220096F21A /* planet-glass-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = C3131D681451AF220096F21A /* planet-glass-retina.png */; };
+		C3131D6C1451AF220096F21A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3131D6A1451AF220096F21A /* Queue.m */; };
+		C33C7072145C65BD0094534C /* Arid World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7065145C65BD0094534C /* Arid World.jpg */; };
+		C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7066145C65BD0094534C /* Caldonia.jpg */; };
+		C33C7074145C65BD0094534C /* Cold World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7067145C65BD0094534C /* Cold World.jpg */; };
+		C33C7075145C65BD0094534C /* Dead World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7068145C65BD0094534C /* Dead World.jpg */; };
+		C33C7076145C65BD0094534C /* Drye.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7069145C65BD0094534C /* Drye.jpg */; };
+		C33C7077145C65BD0094534C /* Global Warming.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706A145C65BD0094534C /* Global Warming.jpg */; };
+		C33C7078145C65BD0094534C /* High Winds.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706B145C65BD0094534C /* High Winds.jpg */; };
+		C33C7079145C65BD0094534C /* Ice Planet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706C145C65BD0094534C /* Ice Planet.jpg */; };
+		C33C707A145C65BD0094534C /* Mostly Harmless.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706D145C65BD0094534C /* Mostly Harmless.jpg */; };
+		C33C707B145C65BD0094534C /* Nu Earth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706E145C65BD0094534C /* Nu Earth.jpg */; };
+		C33C707C145C65BD0094534C /* Pyrobora.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706F145C65BD0094534C /* Pyrobora.jpg */; };
+		C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7070145C65BD0094534C /* Small Gas Giant.jpg */; };
+		C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7071145C65BD0094534C /* Waterless World.jpg */; };
+		C377A5FA144E446C00663A2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5F9144E446C00663A2C /* UIKit.framework */; };
+		C377A5FC144E446C00663A2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FB144E446C00663A2C /* Foundation.framework */; };
+		C377A5FE144E446C00663A2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FD144E446C00663A2C /* CoreGraphics.framework */; };
+		C377A604144E446C00663A2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C377A602144E446C00663A2C /* InfoPlist.strings */; };
+		C377A606144E446C00663A2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A605144E446C00663A2C /* main.m */; };
+		C377A60A144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A609144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m */; };
+		C377A60D144E446C00663A2C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C377A60B144E446C00663A2C /* MainWindow.xib */; };
+		C377A610144E446C00663A2C /* Quarkeon_ExpressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A60F144E446C00663A2C /* Quarkeon_ExpressViewController.m */; };
+		C377A613144E446C00663A2C /* Quarkeon_ExpressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C377A611144E446C00663A2C /* Quarkeon_ExpressViewController.xib */; };
+		C377A61B144E446C00663A2C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A61A144E446C00663A2C /* SenTestingKit.framework */; };
+		C377A61C144E446C00663A2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5F9144E446C00663A2C /* UIKit.framework */; };
+		C377A61D144E446C00663A2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FB144E446C00663A2C /* Foundation.framework */; };
+		C377A61E144E446C00663A2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FD144E446C00663A2C /* CoreGraphics.framework */; };
+		C377A626144E446C00663A2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C377A624144E446C00663A2C /* InfoPlist.strings */; };
+		C377A628144E446C00663A2C /* Quarkeon_ExpressTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C377A627144E446C00663A2C /* Quarkeon_ExpressTests.h */; };
+		C377A62A144E446C00663A2C /* Quarkeon_ExpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A629144E446C00663A2C /* Quarkeon_ExpressTests.m */; };
+		C377A635144E6D0D00663A2C /* SpaceShip.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A634144E6D0D00663A2C /* SpaceShip.m */; };
+		C377A638144E6F0B00663A2C /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A637144E6F0B00663A2C /* Enemy.m */; };
+		C377A641144E731D00663A2C /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A640144E731D00663A2C /* Planet.m */; };
+		C377A644144E733100663A2C /* SpaceLane.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A643144E733000663A2C /* SpaceLane.m */; };
+		C38E49811453A86700F8DBEB /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = C38E49801453A86700F8DBEB /* Game.m */; };
+		C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E49871454D06E00F8DBEB /* Default@2x.png */; };
+		C38E498B1454D6D600F8DBEB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E498A1454D6D600F8DBEB /* Default.png */; };
+		C3FA0EE9145C949900C75768 /* WinScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FA0EE7145C949900C75768 /* WinScreenVC.m */; };
+		C3FA0EEA145C949900C75768 /* WinScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FA0EE8145C949900C75768 /* WinScreenVC.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C377A61F144E446C00663A2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C377A5EC144E446C00663A2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C377A5F4144E446C00663A2C;
+			remoteInfo = "Quarkeon Express";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		98275D721451E999001D63A1 /* planet-glass-retina-57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina-57-57.png"; sourceTree = "<group>"; };
+		98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina-114-114.png"; sourceTree = "<group>"; };
+		986AF2A114524FCD0045A44C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		986AF2A214524FEC0045A44C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		986AF2B914525C8E0045A44C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
+		986AF2BC145278AE0045A44C /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		98C6E92A145B0D150097267C /* MapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGenerator.h; path = ../MapGenerator.h; sourceTree = "<group>"; };
+		98C6E92B145B0D150097267C /* MapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapGenerator.m; path = ../MapGenerator.m; sourceTree = "<group>"; };
+		98C6E92E145B0D600097267C /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		98C6E92F145B0D600097267C /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		98D16A5A14565F2400EA43E6 /* WinScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinScreenVC.h; path = ../WinScreenVC.h; sourceTree = "<group>"; };
+		98D16A5B14565F2500EA43E6 /* WinScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WinScreenVC.m; path = ../WinScreenVC.m; sourceTree = "<group>"; };
+		98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WinScreenVC.xib; path = ../WinScreenVC.xib; sourceTree = "<group>"; };
+=======
+>>>>>>> 9eae44f3fce5d548aa13fcbddd2105a1404cf8c8
+		98D16A5F145664A800EA43E6 /* PassGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassGameVC.h; sourceTree = "<group>"; };
+		98D16A60145664A900EA43E6 /* PassGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassGameVC.m; sourceTree = "<group>"; };
+		98D16A61145664A900EA43E6 /* PassGameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassGameVC.xib; sourceTree = "<group>"; };
+		C3131D611451AF010096F21A /* Games.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Games.plist; sourceTree = "<group>"; };
+		C3131D621451AF010096F21A /* Objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Objects.plist; sourceTree = "<group>"; };
+		C3131D631451AF010096F21A /* Planets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Planets.plist; sourceTree = "<group>"; };
+		C3131D681451AF220096F21A /* planet-glass-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina.png"; sourceTree = "<group>"; };
+		C3131D691451AF220096F21A /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		C3131D6A1451AF220096F21A /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		C33C7065145C65BD0094534C /* Arid World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Arid World.jpg"; path = "Game Images/Arid World.jpg"; sourceTree = "<group>"; };
+		C33C7066145C65BD0094534C /* Caldonia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Caldonia.jpg; path = "Game Images/Caldonia.jpg"; sourceTree = "<group>"; };
+		C33C7067145C65BD0094534C /* Cold World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Cold World.jpg"; path = "Game Images/Cold World.jpg"; sourceTree = "<group>"; };
+		C33C7068145C65BD0094534C /* Dead World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Dead World.jpg"; path = "Game Images/Dead World.jpg"; sourceTree = "<group>"; };
+		C33C7069145C65BD0094534C /* Drye.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Drye.jpg; path = "Game Images/Drye.jpg"; sourceTree = "<group>"; };
+		C33C706A145C65BD0094534C /* Global Warming.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Global Warming.jpg"; path = "Game Images/Global Warming.jpg"; sourceTree = "<group>"; };
+		C33C706B145C65BD0094534C /* High Winds.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "High Winds.jpg"; path = "Game Images/High Winds.jpg"; sourceTree = "<group>"; };
+		C33C706C145C65BD0094534C /* Ice Planet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Ice Planet.jpg"; path = "Game Images/Ice Planet.jpg"; sourceTree = "<group>"; };
+		C33C706D145C65BD0094534C /* Mostly Harmless.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mostly Harmless.jpg"; path = "Game Images/Mostly Harmless.jpg"; sourceTree = "<group>"; };
+		C33C706E145C65BD0094534C /* Nu Earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Nu Earth.jpg"; path = "Game Images/Nu Earth.jpg"; sourceTree = "<group>"; };
+		C33C706F145C65BD0094534C /* Pyrobora.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Pyrobora.jpg; path = "Game Images/Pyrobora.jpg"; sourceTree = "<group>"; };
+		C33C7070145C65BD0094534C /* Small Gas Giant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Small Gas Giant.jpg"; path = "Game Images/Small Gas Giant.jpg"; sourceTree = "<group>"; };
+		C33C7071145C65BD0094534C /* Waterless World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Waterless World.jpg"; path = "Game Images/Waterless World.jpg"; sourceTree = "<group>"; };
+		C377A5F5144E446C00663A2C /* Quarkeon Express.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quarkeon Express.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C377A5F9144E446C00663A2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C377A5FB144E446C00663A2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C377A5FD144E446C00663A2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C377A601144E446C00663A2C /* Quarkeon Express-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quarkeon Express-Info.plist"; sourceTree = "<group>"; };
+		C377A603144E446C00663A2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C377A605144E446C00663A2C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C377A607144E446C00663A2C /* Quarkeon Express-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quarkeon Express-Prefix.pch"; sourceTree = "<group>"; };
+		C377A608144E446C00663A2C /* Quarkeon_ExpressAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quarkeon_ExpressAppDelegate.h; sourceTree = "<group>"; };
+		C377A609144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quarkeon_ExpressAppDelegate.m; sourceTree = "<group>"; };
+		C377A60C144E446C00663A2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		C377A60E144E446C00663A2C /* Quarkeon_ExpressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quarkeon_ExpressViewController.h; sourceTree = "<group>"; };
+		C377A60F144E446C00663A2C /* Quarkeon_ExpressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quarkeon_ExpressViewController.m; sourceTree = "<group>"; };
+		C377A612144E446C00663A2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Quarkeon_ExpressViewController.xib; sourceTree = "<group>"; };
+		C377A619144E446C00663A2C /* Quarkeon ExpressTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quarkeon ExpressTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C377A61A144E446C00663A2C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C377A623144E446C00663A2C /* Quarkeon ExpressTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quarkeon ExpressTests-Info.plist"; sourceTree = "<group>"; };
+		C377A625144E446C00663A2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C377A627144E446C00663A2C /* Quarkeon_ExpressTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quarkeon_ExpressTests.h; sourceTree = "<group>"; };
+		C377A629144E446C00663A2C /* Quarkeon_ExpressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quarkeon_ExpressTests.m; sourceTree = "<group>"; };
+		C377A633144E6D0D00663A2C /* SpaceShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceShip.h; sourceTree = "<group>"; };
+		C377A634144E6D0D00663A2C /* SpaceShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceShip.m; sourceTree = "<group>"; };
+		C377A636144E6F0B00663A2C /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		C377A637144E6F0B00663A2C /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		C377A63F144E731D00663A2C /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
+		C377A640144E731D00663A2C /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
+		C377A642144E733000663A2C /* SpaceLane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceLane.h; sourceTree = "<group>"; };
+		C377A643144E733000663A2C /* SpaceLane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceLane.m; sourceTree = "<group>"; };
+		C38E497F1453A86700F8DBEB /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		C38E49801453A86700F8DBEB /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		C38E49871454D06E00F8DBEB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C38E498A1454D6D600F8DBEB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C3FA0EE6145C949900C75768 /* WinScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScreenVC.h; sourceTree = "<group>"; };
+		C3FA0EE7145C949900C75768 /* WinScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScreenVC.m; sourceTree = "<group>"; };
+		C3FA0EE8145C949900C75768 /* WinScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinScreenVC.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C377A5F2144E446C00663A2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A5FA144E446C00663A2C /* UIKit.framework in Frameworks */,
+				C377A5FC144E446C00663A2C /* Foundation.framework in Frameworks */,
+				C377A5FE144E446C00663A2C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C377A615144E446C00663A2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A61B144E446C00663A2C /* SenTestingKit.framework in Frameworks */,
+				C377A61C144E446C00663A2C /* UIKit.framework in Frameworks */,
+				C377A61D144E446C00663A2C /* Foundation.framework in Frameworks */,
+				C377A61E144E446C00663A2C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C377A5EA144E446C00663A2C = {
+			isa = PBXGroup;
+			children = (
+				C38E1467145B5CBD00AF2E8F /* PlanetPics */,
+				C38E498A1454D6D600F8DBEB /* Default.png */,
+				C38E49871454D06E00F8DBEB /* Default@2x.png */,
+				98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */,
+				98275D721451E999001D63A1 /* planet-glass-retina-57-57.png */,
+				C377A5FF144E446C00663A2C /* Quarkeon Express */,
+				C377A621144E446C00663A2C /* Quarkeon ExpressTests */,
+				C377A5F8144E446C00663A2C /* Frameworks */,
+				C377A5F6144E446C00663A2C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C377A5F6144E446C00663A2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C377A5F5144E446C00663A2C /* Quarkeon Express.app */,
+				C377A619144E446C00663A2C /* Quarkeon ExpressTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C377A5F8144E446C00663A2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C377A5F9144E446C00663A2C /* UIKit.framework */,
+				C377A5FB144E446C00663A2C /* Foundation.framework */,
+				C377A5FD144E446C00663A2C /* CoreGraphics.framework */,
+				C377A61A144E446C00663A2C /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C377A5FF144E446C00663A2C /* Quarkeon Express */ = {
+			isa = PBXGroup;
+			children = (
+				986AF2BC145278AE0045A44C /* TODO */,
+				C3131D681451AF220096F21A /* planet-glass-retina.png */,
+				986AF2A114524FCD0045A44C /* Player.h */,
+				986AF2A214524FEC0045A44C /* Player.m */,
+				C3131D691451AF220096F21A /* Queue.h */,
+				C3131D6A1451AF220096F21A /* Queue.m */,
+				C377A608144E446C00663A2C /* Quarkeon_ExpressAppDelegate.h */,
+				C377A609144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m */,
+				C377A60B144E446C00663A2C /* MainWindow.xib */,
+				C377A60E144E446C00663A2C /* Quarkeon_ExpressViewController.h */,
+				C377A60F144E446C00663A2C /* Quarkeon_ExpressViewController.m */,
+				C377A611144E446C00663A2C /* Quarkeon_ExpressViewController.xib */,
+<<<<<<< HEAD
+				98D16A5A14565F2400EA43E6 /* WinScreenVC.h */,
+				98D16A5B14565F2500EA43E6 /* WinScreenVC.m */,
+				98C6E92A145B0D150097267C /* MapGenerator.h */,
+				98C6E92B145B0D150097267C /* MapGenerator.m */,
+				98D16A5C14565F2500EA43E6 /* WinScreenVC.xib */,
+=======
+>>>>>>> 9eae44f3fce5d548aa13fcbddd2105a1404cf8c8
+				98D16A5F145664A800EA43E6 /* PassGameVC.h */,
+				C3FA0EE6145C949900C75768 /* WinScreenVC.h */,
+				C3FA0EE7145C949900C75768 /* WinScreenVC.m */,
+				C3FA0EE8145C949900C75768 /* WinScreenVC.xib */,
+				98D16A60145664A900EA43E6 /* PassGameVC.m */,
+				98D16A61145664A900EA43E6 /* PassGameVC.xib */,
+				C377A600144E446C00663A2C /* Supporting Files */,
+				C377A633144E6D0D00663A2C /* SpaceShip.h */,
+				C377A634144E6D0D00663A2C /* SpaceShip.m */,
+				C377A636144E6F0B00663A2C /* Enemy.h */,
+				C377A637144E6F0B00663A2C /* Enemy.m */,
+				C377A63F144E731D00663A2C /* Planet.h */,
+				C377A640144E731D00663A2C /* Planet.m */,
+				98C6E92E145B0D600097267C /* Cell.h */,
+				98C6E92F145B0D600097267C /* Cell.m */,
+				C377A642144E733000663A2C /* SpaceLane.h */,
+				C377A643144E733000663A2C /* SpaceLane.m */,
+				986AF2B814525C8E0045A44C /* GameState.h */,
+				986AF2B914525C8E0045A44C /* GameState.m */,
+				C38E497F1453A86700F8DBEB /* Game.h */,
+				C38E49801453A86700F8DBEB /* Game.m */,
+			);
+			path = "Quarkeon Express";
+			sourceTree = "<group>";
+		};
+		C377A600144E446C00663A2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3131D621451AF010096F21A /* Objects.plist */,
+				C3131D611451AF010096F21A /* Games.plist */,
+				C3131D631451AF010096F21A /* Planets.plist */,
+				C377A601144E446C00663A2C /* Quarkeon Express-Info.plist */,
+				C377A602144E446C00663A2C /* InfoPlist.strings */,
+				C377A605144E446C00663A2C /* main.m */,
+				C377A607144E446C00663A2C /* Quarkeon Express-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C377A621144E446C00663A2C /* Quarkeon ExpressTests */ = {
+			isa = PBXGroup;
+			children = (
+				C377A627144E446C00663A2C /* Quarkeon_ExpressTests.h */,
+				C377A629144E446C00663A2C /* Quarkeon_ExpressTests.m */,
+				C377A622144E446C00663A2C /* Supporting Files */,
+			);
+			path = "Quarkeon ExpressTests";
+			sourceTree = "<group>";
+		};
+		C377A622144E446C00663A2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C377A623144E446C00663A2C /* Quarkeon ExpressTests-Info.plist */,
+				C377A624144E446C00663A2C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C38E1467145B5CBD00AF2E8F /* PlanetPics */ = {
+			isa = PBXGroup;
+			children = (
+				C33C7065145C65BD0094534C /* Arid World.jpg */,
+				C33C7066145C65BD0094534C /* Caldonia.jpg */,
+				C33C7067145C65BD0094534C /* Cold World.jpg */,
+				C33C7068145C65BD0094534C /* Dead World.jpg */,
+				C33C7069145C65BD0094534C /* Drye.jpg */,
+				C33C706A145C65BD0094534C /* Global Warming.jpg */,
+				C33C706B145C65BD0094534C /* High Winds.jpg */,
+				C33C706C145C65BD0094534C /* Ice Planet.jpg */,
+				C33C706D145C65BD0094534C /* Mostly Harmless.jpg */,
+				C33C706E145C65BD0094534C /* Nu Earth.jpg */,
+				C33C706F145C65BD0094534C /* Pyrobora.jpg */,
+				C33C7070145C65BD0094534C /* Small Gas Giant.jpg */,
+				C33C7071145C65BD0094534C /* Waterless World.jpg */,
+			);
+			name = PlanetPics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C377A5F4144E446C00663A2C /* Quarkeon Express */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C377A62D144E446C00663A2C /* Build configuration list for PBXNativeTarget "Quarkeon Express" */;
+			buildPhases = (
+				C377A5F1144E446C00663A2C /* Sources */,
+				C377A5F2144E446C00663A2C /* Frameworks */,
+				C377A5F3144E446C00663A2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quarkeon Express";
+			productName = "Quarkeon Express";
+			productReference = C377A5F5144E446C00663A2C /* Quarkeon Express.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C377A618144E446C00663A2C /* Quarkeon ExpressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C377A630144E446C00663A2C /* Build configuration list for PBXNativeTarget "Quarkeon ExpressTests" */;
+			buildPhases = (
+				C377A614144E446C00663A2C /* Sources */,
+				C377A615144E446C00663A2C /* Frameworks */,
+				C377A616144E446C00663A2C /* Resources */,
+				C377A617144E446C00663A2C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C377A620144E446C00663A2C /* PBXTargetDependency */,
+			);
+			name = "Quarkeon ExpressTests";
+			productName = "Quarkeon ExpressTests";
+			productReference = C377A619144E446C00663A2C /* Quarkeon ExpressTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C377A5EC144E446C00663A2C /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C377A5EF144E446C00663A2C /* Build configuration list for PBXProject "Quarkeon Express" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C377A5EA144E446C00663A2C;
+			productRefGroup = C377A5F6144E446C00663A2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C377A5F4144E446C00663A2C /* Quarkeon Express */,
+				C377A618144E446C00663A2C /* Quarkeon ExpressTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C377A5F3144E446C00663A2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A604144E446C00663A2C /* InfoPlist.strings in Resources */,
+				C377A60D144E446C00663A2C /* MainWindow.xib in Resources */,
+				C377A613144E446C00663A2C /* Quarkeon_ExpressViewController.xib in Resources */,
+				C3131D641451AF010096F21A /* Games.plist in Resources */,
+				C3131D651451AF010096F21A /* Objects.plist in Resources */,
+				C3131D661451AF010096F21A /* Planets.plist in Resources */,
+				C3131D6B1451AF220096F21A /* planet-glass-retina.png in Resources */,
+				98275D731451E999001D63A1 /* planet-glass-retina-57-57.png in Resources */,
+				98275D751451EA99001D63A1 /* planet-glass-retina-114-114.png in Resources */,
+				986AF2BD145278AF0045A44C /* TODO in Resources */,
+				C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */,
+				C38E498B1454D6D600F8DBEB /* Default.png in Resources */,
+				98D16A63145664AA00EA43E6 /* PassGameVC.xib in Resources */,
+				C33C7072145C65BD0094534C /* Arid World.jpg in Resources */,
+				C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */,
+				C33C7074145C65BD0094534C /* Cold World.jpg in Resources */,
+				C33C7075145C65BD0094534C /* Dead World.jpg in Resources */,
+				C33C7076145C65BD0094534C /* Drye.jpg in Resources */,
+				C33C7077145C65BD0094534C /* Global Warming.jpg in Resources */,
+				C33C7078145C65BD0094534C /* High Winds.jpg in Resources */,
+				C33C7079145C65BD0094534C /* Ice Planet.jpg in Resources */,
+				C33C707A145C65BD0094534C /* Mostly Harmless.jpg in Resources */,
+				C33C707B145C65BD0094534C /* Nu Earth.jpg in Resources */,
+				C33C707C145C65BD0094534C /* Pyrobora.jpg in Resources */,
+				C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */,
+				C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */,
+				C3FA0EEA145C949900C75768 /* WinScreenVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C377A616144E446C00663A2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A626144E446C00663A2C /* InfoPlist.strings in Resources */,
+				C377A628144E446C00663A2C /* Quarkeon_ExpressTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C377A617144E446C00663A2C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C377A5F1144E446C00663A2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A606144E446C00663A2C /* main.m in Sources */,
+				C377A60A144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m in Sources */,
+				C377A610144E446C00663A2C /* Quarkeon_ExpressViewController.m in Sources */,
+				C377A635144E6D0D00663A2C /* SpaceShip.m in Sources */,
+				C377A638144E6F0B00663A2C /* Enemy.m in Sources */,
+				C377A641144E731D00663A2C /* Planet.m in Sources */,
+				C377A644144E733100663A2C /* SpaceLane.m in Sources */,
+				C3131D6C1451AF220096F21A /* Queue.m in Sources */,
+				986AF2A314524FEC0045A44C /* Player.m in Sources */,
+				986AF2BA14525C8F0045A44C /* GameState.m in Sources */,
+				C38E49811453A86700F8DBEB /* Game.m in Sources */,
+				98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */,
+<<<<<<< HEAD
+				98C6E92C145B0D150097267C /* MapGenerator.m in Sources */,
+				98C6E930145B0D600097267C /* Cell.m in Sources */,
+=======
+				C3FA0EE9145C949900C75768 /* WinScreenVC.m in Sources */,
+>>>>>>> 9eae44f3fce5d548aa13fcbddd2105a1404cf8c8
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C377A614144E446C00663A2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C377A62A144E446C00663A2C /* Quarkeon_ExpressTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C377A620144E446C00663A2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C377A5F4144E446C00663A2C /* Quarkeon Express */;
+			targetProxy = C377A61F144E446C00663A2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C377A602144E446C00663A2C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C377A603144E446C00663A2C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C377A60B144E446C00663A2C /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C377A60C144E446C00663A2C /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		C377A611144E446C00663A2C /* Quarkeon_ExpressViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C377A612144E446C00663A2C /* en */,
+			);
+			name = Quarkeon_ExpressViewController.xib;
+			sourceTree = "<group>";
+		};
+		C377A624144E446C00663A2C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C377A625144E446C00663A2C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C377A62B144E446C00663A2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C377A62C144E446C00663A2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C377A62E144E446C00663A2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quarkeon Express/Quarkeon Express-Prefix.pch";
+				INFOPLIST_FILE = "Quarkeon Express/Quarkeon Express-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C377A62F144E446C00663A2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quarkeon Express/Quarkeon Express-Prefix.pch";
+				INFOPLIST_FILE = "Quarkeon Express/Quarkeon Express-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C377A631144E446C00663A2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Quarkeon Express.app/Quarkeon Express";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quarkeon Express/Quarkeon Express-Prefix.pch";
+				INFOPLIST_FILE = "Quarkeon ExpressTests/Quarkeon ExpressTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C377A632144E446C00663A2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Quarkeon Express.app/Quarkeon Express";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quarkeon Express/Quarkeon Express-Prefix.pch";
+				INFOPLIST_FILE = "Quarkeon ExpressTests/Quarkeon ExpressTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C377A5EF144E446C00663A2C /* Build configuration list for PBXProject "Quarkeon Express" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C377A62B144E446C00663A2C /* Debug */,
+				C377A62C144E446C00663A2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C377A62D144E446C00663A2C /* Build configuration list for PBXNativeTarget "Quarkeon Express" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C377A62E144E446C00663A2C /* Debug */,
+				C377A62F144E446C00663A2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C377A630144E446C00663A2C /* Build configuration list for PBXNativeTarget "Quarkeon ExpressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C377A631144E446C00663A2C /* Debug */,
+				C377A632144E446C00663A2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C377A5EC144E446C00663A2C /* Project object */;
+}
