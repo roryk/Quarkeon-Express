@@ -71,7 +71,6 @@
     int vplanets = 0;
     [tovisit addObject:cell];
     vplanets = [self visitNeighbors:vplanets visited:visited tovisit:tovisit];
-    NSLog([NSString stringWithFormat:@"%d", vplanets]);
     STAssertTrue(vplanets == max_planets, @"was not able to visit all of the planets.");
     [mg release];
 }
