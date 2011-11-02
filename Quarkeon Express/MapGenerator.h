@@ -13,6 +13,8 @@
     int rows;
     int cols;
     int ncells;
+    NSMutableDictionary *oppositeDirectionName;
+    NSMutableArray *exitNames;
 }
 
 - (void)setSize:(int)x y:(int)y;
@@ -21,13 +23,16 @@
 @property (readwrite, assign) int rows;
 @property (readwrite, assign) int cols;
 @property (readwrite, assign) int ncells;
+@property (nonatomic, retain) NSMutableDictionary *oppositeDirectionName;
+@property (nonatomic, retain) NSMutableArray *exitNames;
 
 - (int)getSouth:(int) x;
 - (int)getNorth:(int) x;
 - (int)getEast:(int) x;
 - (int)getWest:(int) x;
-- (NSString *)getRandomDirection;
-- (int)getDirection:(int) x dir:(NSString *)dir;
-- (NSString *)getOppositeDirection:(NSString *)dir;
+- (NSString *)getRandomDirectionName;
+- (int)getIndexInDirection:(int) x dir:(NSString *)dir;
+- (bool)checkAndMove:(int) x planets:(int)planets max_planets:(int)max_planets;
+- (NSMutableArray *)buildMap:(int) max_planets;
 
 @end

@@ -30,9 +30,9 @@
     if (self) {
         // Initialization code here.
         self.planets = nil;
-        self.players = [[NSMutableArray alloc] init];
-        self.games = [[NSMutableArray alloc] init];
-        self.turnQueue = [[NSMutableArray alloc] init];
+        self.players = [NSMutableArray array];
+        self.games = [NSMutableArray array];
+        self.turnQueue = [NSMutableArray array];
         self.currPlayer = nil;
         self.currentGame = nil;
         self.currPlanet = nil;
@@ -73,7 +73,7 @@
 {
     
     NSLog(@"loading planets....");
-    NSMutableArray *newPlanets = [[NSMutableArray alloc] init];
+    NSMutableArray *newPlanets = [NSMutableArray array];
     NSMutableArray *plistPlanets = [self loadPlist:@"Planets.plist" rootKey:@"Planets"];
     int planetID = 0; // XXX adamf: we should find a better way to assign these. GUIDs in the plist?
     
@@ -81,7 +81,7 @@
         Planet *newPlanet = [[Planet alloc] init];
         newPlanet.name = [planetDict objectForKey:@"Name"];
         newPlanet.description = [planetDict objectForKey:@"Description"];
-        NSString *imagePath = [[NSString alloc] initWithString:[planetDict objectForKey:@"Picture"]];
+        NSString *imagePath = [NSString stringWithString:[planetDict objectForKey:@"Picture"]];
         if ([imagePath isEqualToString:@""]) {
             imagePath = @"Nu Earth.jpg";
         }
@@ -93,6 +93,7 @@
         newPlanet.planetID = planetID;
         [newPlanets addObject:newPlanet];
         NSLog(@"loaded planet: %@", newPlanet.name);
+        [newPlanet release];
     }
     
     return newPlanets;
@@ -130,6 +131,7 @@
             newPlanet.currentCost = sourcePlanet.currentCost;
             newPlanet.earnRate = sourcePlanet.earnRate;
             [newGame.maze addObject:newPlanet];
+            [newPlanet release];
         }
         
         for (NSDictionary *planetsDict in maze) {
@@ -158,10 +160,11 @@
                 } else if ([dir isEqualToString:@"West"]) {
                     srcPlanet.west = newLane;
                 }
-                
+                [newLane release];
             }
         }
         [self.games addObject:newGame];
+        [newGame release];
     }
     
     return true;
@@ -175,7 +178,8 @@
     newPlayer.name = playerName;
     int planetID = (arc4random() % [self.planets count]);
     newPlayer.currLocation = [self.currentGame getPlanetByID:planetID];
-    [self.players addObject:newPlayer];    
+    [self.players addObject:newPlayer];
+    [newPlayer release];
     
 }
 

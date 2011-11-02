@@ -24,7 +24,7 @@
         // Initialization code here.
         self.beenTraveled = false;
         self.challenge = nil;
-        self.planets = [[NSMutableArray alloc] init];
+        self.planets = [NSMutableArray array];
         self.distance = 0;
         
     }

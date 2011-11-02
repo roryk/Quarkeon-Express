@@ -69,7 +69,7 @@
         //[appDelegate.window makeKeyAndVisible];
         //[UIWindow addSubview:self.viewController];
         [appDelegate.passGameVC.view removeFromSuperview];
-        [appDelegate.passGameVC release];
+        //[appDelegate.passGameVC release];
         [appDelegate.viewController updateGameScreen];
         [appDelegate.window addSubview:appDelegate.viewController.view];
 //        [appDelegate.viewController updateGameScreen];

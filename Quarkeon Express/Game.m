@@ -23,7 +23,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.maze = [[NSMutableArray alloc] init];
+        self.maze = [NSMutableArray array];
     }
     
     return self;

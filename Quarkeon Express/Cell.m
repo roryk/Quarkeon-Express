@@ -18,16 +18,19 @@
 {
     self = [super init];
     if (self) {
-        self.exits = [[NSMutableDictionary alloc] init];
-        [self.exits setObject:nil forKey:@"north"];
-        [self.exits setObject:nil forKey:@"south"];
-        [self.exits setObject:nil forKey:@"east"];
-        [self.exits setObject:nil forKey:@"west"];
+        self.exits = [NSMutableDictionary dictionary];
+        [self.exits setObject:[NSNull null] forKey:@"north"];
+        [self.exits setObject:[NSNull null] forKey:@"south"];
+        [self.exits setObject:[NSNull null] forKey:@"east"];
+        [self.exits setObject:[NSNull null] forKey:@"west"];
         self.planet = nil;
-        self.players = [[NSMutableArray alloc] init];
+        self.players = [NSMutableArray array];
     }
     
     return self;
 }
 
+- (void) dealloc {
+    [super dealloc];
+}
 @end

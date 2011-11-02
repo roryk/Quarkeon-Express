@@ -42,6 +42,7 @@
     // Override point for customization after application launch.
     GameState *_gState = [[GameState alloc] init];
     self.gameState = _gState;
+    [_gState release];
 
     if (![self.gameState loadPlanets]) {
         // blow up

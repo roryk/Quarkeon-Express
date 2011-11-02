@@ -38,7 +38,7 @@
         self.initialCost = -1;
         // XXX SET THIS FOR TESTING UNSET AFTER
         self.earnRate = 20; // don't want -1 here as a default
-        self.visitedBy = [[NSMutableArray alloc] init];
+        self.visitedBy = [NSMutableArray array];
         // Initialization code here.
     }
     

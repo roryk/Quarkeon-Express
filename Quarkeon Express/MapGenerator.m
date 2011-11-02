@@ -1,4 +1,4 @@
-//
+    //
 //  MapGenerator.m
 //  Quarkeon Express
 //
@@ -18,6 +18,8 @@
 @synthesize rows;
 @synthesize cols;
 @synthesize ncells;
+@synthesize oppositeDirectionName;
+@synthesize exitNames;
 
 - (id)init
 {
@@ -26,7 +28,14 @@
         self.rows = 0;
         self.cols = 0;
         self.ncells = 0;
-        self.cells = [[NSMutableArray alloc] init];
+        self.cells = [NSMutableArray array];
+        self.oppositeDirectionName = [NSMutableDictionary dictionary];
+        self.exitNames = [NSMutableArray array];
+        [self.oppositeDirectionName setObject:@"south" forKey:@"north"];
+        [self.oppositeDirectionName setObject:@"north" forKey:@"south"];
+        [self.oppositeDirectionName setObject:@"east" forKey:@"west"];
+        [self.oppositeDirectionName setObject:@"west" forKey:@"east"];
+        self.exitNames = [NSMutableArray arrayWithObjects:@"north", @"south", @"east", @"west", nil]; 
     }    
     return self;
 }
@@ -37,9 +46,16 @@
     self.cols = y;
     self.ncells = x * y;
     for(int i = 0; i < self.ncells; i++) {
-        Cell *c = [Cell init];
+        Cell *c = [[Cell alloc] init];
         [self.cells addObject:c];
+        [c release];
     }
+}
+
+- (NSMutableArray *) buildMap:(int) max_planets {
+    int n = arc4random() % self.ncells;
+    [self checkAndMove:n planets:0 max_planets:max_planets];
+    return(self.cells);
 }
 
 - (bool) checkAndMove:(int) x planets:(int)planets max_planets:(int)max_planets {
@@ -53,17 +69,18 @@
             // this will be true with P(max_planets / ncells) might want to change this
             // XXX right now doesn't read in a planet config from anywhere so
             // XXX just put a blank planet
-            Planet *planet = [Planet init];
+            Planet *planet = [[Planet alloc] init];
             cell.planet = planet;
-            planets += planets;
-        }
+            [planet release];
+            planets++;
+        }    
     }
     // keep checking directions until we find one that is on the grid
     int d = -1;
-    NSString *dir;
+    NSString *dir = [self getRandomDirectionName];
     while(d == -1) {
-        NSString *dir = [self getRandomDirection];
-        d = [self getDirection:x dir:dir];
+        NSString *dir = [self getRandomDirectionName];
+        d = [self getIndexInDirection:x dir:dir];
     }
 
     // set the exit we are leaving to be a pointer to the location of the 
@@ -71,39 +88,30 @@
     // are going to where we were
     Cell *newcell = [cells objectAtIndex:d];
     [cell.exits setObject:newcell forKey:dir];
-    [newcell.exits setObject:cell forKey:[self getOppositeDirection:dir]];
+    [newcell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:dir]];
     [self checkAndMove:d planets:planets max_planets:max_planets];
-    
     return false;
 }
 
-- (NSString *) getOppositeDirection:(NSString *)dir {
-    NSMutableDictionary *opp;
-    [opp setObject:@"south" forKey:@"north"];
-    [opp setObject:@"north" forKey:@"south"];
-    [opp setObject:@"east" forKey:@"west"];
-    [opp setObject:@"west" forKey:@"east"];
-    return([opp objectForKey:dir]);
-}
-- (int) getDirection:(int) x dir:(NSString *)dir {
-    if(dir == @"north") {
+- (int) getIndexInDirection:(int) x dir:(NSString *)dir {
+    if([dir isEqualToString:@"north"]) {
         return [self getNorth:x];
     }
-    if(dir == @"south") {
+    if([dir isEqualToString:@"south"]) {
         return [self getSouth:x];
     }
-    if(dir == @"east") {
+    if([dir isEqualToString:@"east"]) {
         return [self getEast:x];
     }
-    if(dir == @"west") {
+    if([dir isEqualToString:@"west"]) {
         return [self getWest:x];
     }
     else return(-1);
 }
-- (NSString *) getRandomDirection {
-    NSMutableArray *exits = [NSMutableArray arrayWithObjects:@"north", @"south", @"east", @"west", nil]; 
-    int n = arc4random() % [exits count];
-    return([exits objectAtIndex:n]);
+
+- (NSString *) getRandomDirectionName {
+    int n = arc4random() % [self.exitNames count];
+    return([self.exitNames objectAtIndex:n]);
 }
 
 - (int) getEast:(int) x {
@@ -134,7 +142,7 @@
 }
 
 - (int) getSouth:(int) x {
-    if ((x + self.cols) >= self.cols) {
+    if ((x + self.cols) >= self.ncells) {
         return -1;
     }
     else {

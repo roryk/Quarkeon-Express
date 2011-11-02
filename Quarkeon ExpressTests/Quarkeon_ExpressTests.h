@@ -10,4 +10,5 @@
 
 @interface Quarkeon_ExpressTests : SenTestCase
 
+- (int) visitNeighbors:(int)vplanets visited:(NSMutableArray *)visited tovisit:(NSMutableArray *)tovisit;
 @end
