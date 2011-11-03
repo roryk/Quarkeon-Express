@@ -72,8 +72,6 @@
         int n = arc4random() % self.ncells;
         if(n < max_planets) {
             // this will be true with P(max_planets / ncells) might want to change this
-            // XXX right now doesn't read in a planet config from anywhere so
-            // XXX just put a blank planet
             int p = arc4random() % [self.loadedPlanets count];
             cell.planet = [self.loadedPlanets objectAtIndex:p];
             [self.usedPlanets addObject:[self.loadedPlanets objectAtIndex:p]];
@@ -82,12 +80,11 @@
     }
     // keep checking directions until we find one that is on the grid
     int d = -1;
-    NSString *dir = [self getRandomDirectionName];
+    NSString *dir;
     while(d == -1) {
-        NSString *dir = [self getRandomDirectionName];
+        dir = [self getRandomDirectionName];
         d = [self getIndexInDirection:x dir:dir];
     }
-
     // set the exit we are leaving to be a pointer to the location of the 
     // cell we are going to and the opposite direction in the new cell we
     // are going to where we were
