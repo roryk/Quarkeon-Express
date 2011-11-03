@@ -132,6 +132,7 @@
     }
     // select the first player
     self.gamestate.currPlayer = [self.gamestate.turnQueue dequeue];
+    self.gamestate.currCell = self.gamestate.currPlayer.currLocation;
 }
 
 @end
