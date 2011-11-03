@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cell.h"
 
 @class Spaceship;
 @class Planet;
 
 @interface Player : NSObject {
     NSString *name;
-    Planet *currLocation;
+    Cell *currLocation;
     int xLocation;
     int yLocation;
     UIImage *picture;
@@ -29,8 +30,8 @@
 @property (readwrite, assign) int yLocation;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) UIImage *picture;
-@property (readwrite, assign) Spaceship *ship;
-@property (readwrite, assign) Planet *currLocation;
+@property (readwrite, retain) Spaceship *ship;
+@property (readwrite, retain) Cell *currLocation;
 
 @property (readwrite, assign) int clones;
 @property (readwrite, assign) int bucks;

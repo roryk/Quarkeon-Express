@@ -26,36 +26,23 @@
      checks to see if a player can move in a direction. if so, subtracts the uranium from their cache
      and updates the current planet on the gamestate and the current planet on the player. 
      **/
-    Planet *planet = gameState.currPlanet;
-    SpaceLane *lane = [planet getLane:dir];
+    Cell *cell = gameState.currCell;
+    Cell *newcell = [cell.exits objectForKey:dir];
     Player *player = gameState.currPlayer;
-    if(lane != nil && (player.uranium >= lane.distance)) {
-        player.uranium -= lane.distance;
-        gameState.currPlanet = [lane getNextPlanet:planet];
-        player.currLocation = gameState.currPlanet;
-        [gameState.currPlanet.visitedBy addObject:(Player *)player];
+    if([cell hasLane:dir] && (player.uranium > 0)) {
+        player.uranium -= 1;
+        gameState.currCell = newcell;
+        player.currLocation = gameState.currCell;
+        [gameState.currCell.visitedBy addObject:(Player *)player];
     }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    GameState *_gState = [[GameState alloc] init];
-    self.gameState = _gState;
-    [_gState release];
-
-    if (![self.gameState loadPlanets]) {
-        // blow up
-        exit(EXIT_FAILURE);
-    }
-    if (![self.gameState loadGames]) {
-        // blow up
-        exit(EXIT_FAILURE);
-    }
-    
-    // and go!
-    [self.gameState startGame:[self.gameState.games objectAtIndex:0]];
-    
+    GameCreator *gc = [[GameCreator alloc] init];
+    [gc startSampleGame];
+    self.gameState = gc.gamestate;
     
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

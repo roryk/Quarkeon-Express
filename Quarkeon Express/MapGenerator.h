@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface MapGenerator : NSObject {
+    NSMutableArray *loadedPlanets;
     NSMutableArray *cells;
     int rows;
     int cols;
     int ncells;
     NSMutableDictionary *oppositeDirectionName;
     NSMutableArray *exitNames;
+    NSMutableArray *usedPlanets;
 }
 
 - (void)setSize:(int)x y:(int)y;
@@ -25,6 +27,8 @@
 @property (readwrite, assign) int ncells;
 @property (nonatomic, retain) NSMutableDictionary *oppositeDirectionName;
 @property (nonatomic, retain) NSMutableArray *exitNames;
+@property (nonatomic, retain) NSMutableArray *loadedPlanets;
+@property (nonatomic, retain) NSMutableArray *usedPlanets;
 
 - (int)getSouth:(int) x;
 - (int)getNorth:(int) x;

@@ -16,89 +16,28 @@
 
 @implementation GameState
 
-@synthesize currPlanet;
-@synthesize planets;
-@synthesize games;
-@synthesize currentGame;
 @synthesize currPlayer;
 @synthesize players;
 @synthesize turnQueue;
+@synthesize cells;
+@synthesize currCell;
+@synthesize planets;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
-        self.planets = nil;
         self.players = [NSMutableArray array];
-        self.games = [NSMutableArray array];
         self.turnQueue = [NSMutableArray array];
+        self.cells = [NSMutableArray array];
         self.currPlayer = nil;
-        self.currentGame = nil;
-        self.currPlanet = nil;
-
+        self.currCell = nil;
+        self.planets = [NSMutableArray array];
     }
 
     return self;
 }
-
-- (NSMutableArray *)loadPlist:(NSString *)fileName rootKey:(NSString *)rootKey
-{
-    
-    NSString *errorDesc = nil;
-    NSPropertyListFormat format;
-    NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                              NSUserDomainMask, YES) objectAtIndex:0];
-    plistPath = [rootPath stringByAppendingPathComponent:fileName];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-        plistPath = [[NSBundle mainBundle] pathForResource:rootKey ofType:@"plist"];
-    }
-    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
-                                          propertyListFromData:plistXML
-                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                          format:&format
-                                          errorDescription:&errorDesc];
-    if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-        return nil;
-    }
-    NSMutableArray *plistData = [NSMutableArray arrayWithArray:[temp objectForKey:rootKey]];
-    return plistData;
-
-}
-
-- (NSMutableArray *)loadPlanets
-{
-    
-    NSLog(@"loading planets....");
-    NSMutableArray *newPlanets = [NSMutableArray array];
-    NSMutableArray *plistPlanets = [self loadPlist:@"Planets.plist" rootKey:@"Planets"];
-    int planetID = 0; // XXX adamf: we should find a better way to assign these. GUIDs in the plist?
-    
-    for (NSDictionary *planetDict in plistPlanets) {    
-        Planet *newPlanet = [[Planet alloc] init];
-        newPlanet.name = [planetDict objectForKey:@"Name"];
-        newPlanet.description = [planetDict objectForKey:@"Description"];
-        NSString *imagePath = [NSString stringWithString:[planetDict objectForKey:@"Picture"]];
-        if ([imagePath isEqualToString:@""]) {
-            imagePath = @"Nu Earth.jpg";
-        }
-        newPlanet.picture = [UIImage imageNamed:imagePath];
-        newPlanet.type = [[planetDict objectForKey:@"Type"] intValue];
-        newPlanet.earnRate = [[planetDict objectForKey:@"Earn Rate"] intValue];
-        newPlanet.initialCost = [[planetDict objectForKey:@"Cost"] intValue];
-        newPlanet.currentCost = newPlanet.initialCost;
-        newPlanet.planetID = planetID;
-        [newPlanets addObject:newPlanet];
-        NSLog(@"loaded planet: %@", newPlanet.name);
-        [newPlanet release];
-    }
-    
-    return newPlanets;
-}
-
+/**
 - (bool) loadGames
 {
     NSLog(@"loading games....");
@@ -169,45 +108,7 @@
     
     return true;
 }
-
-
-- (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName
-{
-    Player *newPlayer = [[Player alloc] init];
-    newPlayer.uranium = startingUranium;
-    newPlayer.name = playerName;
-    int planetID = (arc4random() % [self.planets count]);
-    newPlayer.currLocation = [self.currentGame getPlanetByID:planetID];
-    [self.players addObject:newPlayer];
-    [newPlayer release];
-    
-}
-
-- (void)startGame:(Game *)game
-{
-    
-    self.currentGame = game;
-    self.planets = game.maze;
-    self.currPlanet = [self.currentGame getPlanetByID:self.currentGame.startPlanetID];
-    // XXX we create two players here. 
-    [self addPlayer:100 playerName:@"Foo"];
-    [self addPlayer:100 playerName:@"Bar"];
-
-    // shuffle the player array
-    int playerCount = [self.players count];
-    for(int i = 0; i < playerCount; i++) {
-        int elements = playerCount - i;
-        int n = (arc4random() % elements) + i;
-        [self.players exchangeObjectAtIndex:i withObjectAtIndex:n];
-    }
-    // load the queue up
-    for(player in self.players) {
-        [self.turnQueue enqueue:player];
-    }
-    // select the first player
-    self.currPlayer = [self.turnQueue dequeue];
-
-}
+**/
 
 - (void)endTurn {
     /**
@@ -220,7 +121,7 @@
 
 - (void)startTurn {
     self.currPlayer = [self.turnQueue dequeue];
-    self.currPlanet = self.currPlayer.currLocation;
+    self.currCell = self.currPlayer.currLocation;
     // XXX: accrue the uranium this isn't working for some reason
     for(Planet *planet in self.planets) {
         NSLog(@"planet: %@", planet);
@@ -239,7 +140,10 @@
 
 - (bool)canBuyCurrPlanet
 {
-    if (self.currPlayer.currLocation.currentCost <= self.currPlayer.uranium) {
+    if(self.currPlayer.currLocation.planet == nil) {
+        return false;
+    }
+    if (self.currPlayer.currLocation.planet.currentCost <= self.currPlayer.uranium) {
         return true;
     }
     return false;
@@ -248,13 +152,17 @@
 
 - (bool)buyCurrPlanet   
 {
+    if(self.currCell.planet == nil) {
+        return false;
+    }
     if ([self canBuyCurrPlanet]) {
-        if (self.currPlanet.owner != nil) {
-            self.currPlanet.owner.planetsOwned = self.currPlanet.owner.planetsOwned - 1;
+        Planet *planet = self.currCell.planet;
+        if (planet.owner != nil) {
+            planet.owner.planetsOwned = planet.owner.planetsOwned - 1;
         }
-        self.currPlayer.uranium = self.currPlayer.uranium - self.currPlanet.currentCost;
-        self.currPlanet.owner = self.currPlayer;
-        self.currPlayer.currLocation.currentCost = self.currPlayer.currLocation.currentCost * 1.5;
+        self.currPlayer.uranium = self.currPlayer.uranium - planet.currentCost;
+        planet.owner = self.currPlayer;
+        planet.currentCost = planet.currentCost * 1.5;
         self.currPlayer.planetsOwned = self.currPlayer.planetsOwned + 1;
         
         return true;

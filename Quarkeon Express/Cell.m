@@ -13,6 +13,8 @@
 @synthesize planet;
 @synthesize players;
 @synthesize exits;
+@synthesize ongrid;
+@synthesize visitedBy;
 
 - (id)init
 {
@@ -25,6 +27,8 @@
         [self.exits setObject:[NSNull null] forKey:@"west"];
         self.planet = nil;
         self.players = [NSMutableArray array];
+        self.ongrid = false;
+        self.visitedBy = [NSMutableArray array];
     }
     
     return self;
@@ -32,5 +36,9 @@
 
 - (void) dealloc {
     [super dealloc];
+}
+
+- (bool) hasLane:(NSString *)dir {
+    return(!([self.exits objectForKey:dir] == [NSNull null]));
 }
 @end

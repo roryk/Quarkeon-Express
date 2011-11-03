@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "GameCreator.h"
 
 
 @class Quarkeon_ExpressViewController;

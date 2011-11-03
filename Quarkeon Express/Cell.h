@@ -17,8 +17,11 @@
 }
 
 
-@property (readwrite, assign) Planet *planet;
+@property (readwrite, retain) Planet *planet;
 @property (nonatomic, retain) NSMutableArray *players;
 @property (nonatomic, retain) NSMutableDictionary *exits;
+@property (readwrite, assign) bool ongrid;
+@property (nonatomic, retain) NSMutableArray *visitedBy;
 
+- (bool) hasLane:(NSString *)dir;
 @end

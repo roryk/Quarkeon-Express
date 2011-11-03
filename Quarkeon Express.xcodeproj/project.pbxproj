@@ -12,6 +12,7 @@
 		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
 		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
 		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
+		98B1226E1461D6A700581981 /* GameCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B1226D1461D6A700581981 /* GameCreator.m */; };
 		98C6E930145B0D600097267C /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92F145B0D600097267C /* Cell.m */; };
 		98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A60145664A900EA43E6 /* PassGameVC.m */; };
 		98D16A63145664AA00EA43E6 /* PassGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D16A61145664A900EA43E6 /* PassGameVC.xib */; };
@@ -79,6 +80,8 @@
 		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		986AF2B914525C8E0045A44C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		986AF2BC145278AE0045A44C /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		98B1226C1461D6A700581981 /* GameCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCreator.h; path = ../GameCreator.h; sourceTree = "<group>"; };
+		98B1226D1461D6A700581981 /* GameCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCreator.m; path = ../GameCreator.m; sourceTree = "<group>"; };
 		98C6E92E145B0D600097267C /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		98C6E92F145B0D600097267C /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		98D16A5F145664A800EA43E6 /* PassGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassGameVC.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				98C6E92F145B0D600097267C /* Cell.m */,
 				C377A642144E733000663A2C /* SpaceLane.h */,
 				C377A643144E733000663A2C /* SpaceLane.m */,
+				98B1226C1461D6A700581981 /* GameCreator.h */,
+				98B1226D1461D6A700581981 /* GameCreator.m */,
 				986AF2B814525C8E0045A44C /* GameState.h */,
 				986AF2B914525C8E0045A44C /* GameState.m */,
 				C38E497F1453A86700F8DBEB /* Game.h */,
@@ -441,6 +446,7 @@
 				98C6E930145B0D600097267C /* Cell.m in Sources */,
 				98EF7AF314607702005E3365 /* MapGenerator.m in Sources */,
 				98EF7AF814607732005E3365 /* WinScreenVC.m in Sources */,
+				98B1226E1461D6A700581981 /* GameCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

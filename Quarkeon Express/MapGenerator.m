@@ -20,6 +20,8 @@
 @synthesize ncells;
 @synthesize oppositeDirectionName;
 @synthesize exitNames;
+@synthesize loadedPlanets;
+@synthesize usedPlanets;
 
 - (id)init
 {
@@ -36,6 +38,8 @@
         [self.oppositeDirectionName setObject:@"east" forKey:@"west"];
         [self.oppositeDirectionName setObject:@"west" forKey:@"east"];
         self.exitNames = [NSMutableArray arrayWithObjects:@"north", @"south", @"east", @"west", nil]; 
+        self.loadedPlanets = [NSMutableArray array];
+        self.usedPlanets = [NSMutableArray array];
     }    
     return self;
 }
@@ -62,16 +66,17 @@
     if(planets >= max_planets) {
         return true;
     }
-    Cell *cell = [cells objectAtIndex:x];
+    Cell *cell = [self.cells objectAtIndex:x];
+    cell.ongrid = true;
     if(cell.planet == nil) {
         int n = arc4random() % self.ncells;
         if(n < max_planets) {
             // this will be true with P(max_planets / ncells) might want to change this
             // XXX right now doesn't read in a planet config from anywhere so
             // XXX just put a blank planet
-            Planet *planet = [[Planet alloc] init];
-            cell.planet = planet;
-            [planet release];
+            int p = arc4random() % [self.loadedPlanets count];
+            cell.planet = [self.loadedPlanets objectAtIndex:p];
+            [self.usedPlanets addObject:[self.loadedPlanets objectAtIndex:p]];
             planets++;
         }    
     }
@@ -86,7 +91,7 @@
     // set the exit we are leaving to be a pointer to the location of the 
     // cell we are going to and the opposite direction in the new cell we
     // are going to where we were
-    Cell *newcell = [cells objectAtIndex:d];
+    Cell *newcell = [self.cells objectAtIndex:d];
     [cell.exits setObject:newcell forKey:dir];
     [newcell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:dir]];
     [self checkAndMove:d planets:planets max_planets:max_planets];
@@ -124,7 +129,7 @@
 }
 
 - (int) getWest:(int) x {
-    if ((x - 1) % self.cols == (self.cols -1)) {
+    if ((x % self.cols) == 0) {
         return -1;
     }
     else {

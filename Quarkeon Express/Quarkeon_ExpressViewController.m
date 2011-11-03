@@ -65,88 +65,91 @@
 - (void)updateGameScreen {
     GameState *gs = appDelegate.gameState;
     Player *currPlayer = gs.currPlayer;
-    Planet *currPlanet = gs.currPlanet;
+    Cell *currCell = gs.currCell;
     
-    if ([currPlanet hasLane:@"n"]) {
-        NSString *title = [[NSNumber numberWithInt:gs.currPlanet.north.distance] stringValue];
-        [self updateButton:northButton buttonText:title];
+    if ([currCell hasLane:@"north"]) {
+        [northButton setEnabled:true];
+        northButton.hidden=NO;
     } else {
         [northButton setEnabled:false];
         northButton.hidden=YES;
     }
-    if ([currPlanet hasLane:@"s"]) {
-        NSString *title = [[NSNumber numberWithInt:gs.currPlanet.south.distance] stringValue];
-        [self updateButton:southButton buttonText:title];
+    if ([currCell hasLane:@"south"]) {
+        [southButton setEnabled:true];
+        southButton.hidden=NO;
     } else {
         [southButton setEnabled:false];
         southButton.hidden=YES;
     }
-    if ([currPlanet hasLane:@"e"]) {
-        NSString *title = [[NSNumber numberWithInt:gs.currPlanet.east.distance] stringValue];
-        [self updateButton:eastButton buttonText:title];
+    if ([currCell hasLane:@"east"]) {
+        [eastButton setEnabled:true];
+        eastButton.hidden=NO;
     } else {
         [eastButton setEnabled:false];
         eastButton.hidden=YES;
     }
-    if ([currPlanet hasLane:@"w"]) {
-        NSString *title = [[NSNumber numberWithInt:gs.currPlanet.west.distance] stringValue];
-        [self updateButton:westButton buttonText:title];
+    if ([currCell hasLane:@"west"]) {
+        [westButton setEnabled:true];
+        westButton.hidden=NO;
     } else {
         [westButton setEnabled:false];
         westButton.hidden=YES;
     }
 
-    self.planetName.text = currPlanet.name;
-    self.planetDescription.text = currPlanet.description;
-    if (currPlanet.owner != nil) {
-        self.owner.text = currPlanet.owner.name;
-    } else {
-        self.owner.text = @"Unowned";
+    if(currCell.planet != nil) {
+        self.planetName.hidden = NO;
+        self.planetName.text = currCell.planet.name;
+        self.planetDescription.hidden = NO;
+        self.planetDescription.text = currCell.planet.description;
+        self.owner.hidden = NO;
+        if(currCell.planet.owner != nil) {
+            self.owner.text = currCell.planet.owner.name;
+        }
+        else {
+            self.owner.text = @"Unowned";
+        }
+        NSString *title = [NSString stringWithFormat:@"Buy For %@U", 
+                           [[NSNumber numberWithInt:currCell.planet.currentCost] stringValue]];
+        [self updateButton:self.buyButton buttonText:title];
+        if ([gs canBuyCurrPlanet]) {
+            [self.buyButton setEnabled:true];
+        }
+        else {
+            [self.buyButton setEnabled:false];
+        }
+        [backgroundImageView setImage:currCell.planet.picture];
     }
-    
+    else {
+        self.planetName.hidden = YES;
+        self.planetDescription.hidden = YES;
+        self.owner.hidden = YES;
+        self.buyButton.hidden = YES;
+    }
     
     self.currPlayerName.text = currPlayer.name;
     self.uraniumCount.text = [[NSNumber numberWithInt:currPlayer.uranium] stringValue];
-    
-    NSString *title = [NSString stringWithFormat:@"Buy For %@U", 
-                    [[NSNumber numberWithInt:gs.currPlanet.currentCost] stringValue]];
-    
-    [self updateButton:self.buyButton buttonText:title];
-    
-    if ([gs canBuyCurrPlanet]) {
-        [self.buyButton setEnabled:true];
-    } else {
-        [self.buyButton setEnabled:true];
-
-    }
-    
-    
     self.planetsCount.text = [NSString stringWithFormat:@"%d/%d", gs.currPlayer.planetsOwned, [gs.planets count]];
     
-    [backgroundImageView setImage:gs.currPlanet.picture];
-    
-   // redraw the screen with the new planet info, etc. 
-
 }
 - (IBAction)goNorth:(id)sender {
-    [appDelegate movePlayer:@"n"];
+    [appDelegate movePlayer:@"north"];
     [self updateGameScreen];
 }
 
 - (IBAction)goSouth:(id)sender {
-    [appDelegate movePlayer:@"s"];
+    [appDelegate movePlayer:@"south"];
     [self updateGameScreen];
 
 }
 
 - (IBAction)goEast:(id)sender {
-    [appDelegate movePlayer:@"e"];
+    [appDelegate movePlayer:@"east"];
     [self updateGameScreen];
 
 }
 
 - (IBAction)goWest:(id)sender {
-    [appDelegate movePlayer:@"w"];
+    [appDelegate movePlayer:@"west"];
     [self updateGameScreen];
 
 }

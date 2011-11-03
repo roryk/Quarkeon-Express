@@ -10,6 +10,7 @@
 #import "Queue.h"
 #import "MapGenerator.h"
 #import "Cell.h"
+#import "GameCreator.h"
 
 @implementation Quarkeon_ExpressTests
 
@@ -51,6 +52,8 @@
     // return true if all have been visited, false if not
     MapGenerator *mg = [[MapGenerator alloc] init];
     [mg setSize:4 y:4];
+    GameCreator *gc = [[GameCreator alloc] init];
+    mg.loadedPlanets = [gc loadPlanets];
     int max_planets = 6;
     [mg buildMap:max_planets];
     NSLog(@"Successfully built a 4x4 map with 6 planets.");
@@ -73,6 +76,7 @@
     vplanets = [self visitNeighbors:vplanets visited:visited tovisit:tovisit];
     STAssertTrue(vplanets == max_planets, @"was not able to visit all of the planets.");
     [mg release];
+    [gc release];
 }
 
 // XXX this is messed up somehow, it doesnt return the right number of planets visited
