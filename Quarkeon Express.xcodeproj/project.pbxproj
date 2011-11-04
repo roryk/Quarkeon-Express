@@ -12,6 +12,12 @@
 		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
 		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
 		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
+		98A93D63146372C500493A97 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A93D61146372C500493A97 /* GameSetup.m */; };
+		98A93D64146372C500493A97 /* GameSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A93D62146372C500493A97 /* GameSetup.xib */; };
+		98A93D69146372FA00493A97 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A93D67146372FA00493A97 /* MainMenu.m */; };
+		98A93D6A146372FA00493A97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A93D68146372FA00493A97 /* MainMenu.xib */; };
+		98A93D6E146378FA00493A97 /* SetupPlayerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A93D6C146378FA00493A97 /* SetupPlayerScreen.m */; };
+		98A93D6F146378FA00493A97 /* SetupPlayerScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A93D6D146378FA00493A97 /* SetupPlayerScreen.xib */; };
 		98B1226E1461D6A700581981 /* GameCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B1226D1461D6A700581981 /* GameCreator.m */; };
 		98C6E930145B0D600097267C /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C6E92F145B0D600097267C /* Cell.m */; };
 		98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D16A60145664A900EA43E6 /* PassGameVC.m */; };
@@ -80,6 +86,15 @@
 		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		986AF2B914525C8E0045A44C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		986AF2BC145278AE0045A44C /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		98A93D60146372C500493A97 /* GameSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetup.h; sourceTree = "<group>"; };
+		98A93D61146372C500493A97 /* GameSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetup.m; sourceTree = "<group>"; };
+		98A93D62146372C500493A97 /* GameSetup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameSetup.xib; sourceTree = "<group>"; };
+		98A93D66146372FA00493A97 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		98A93D67146372FA00493A97 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		98A93D68146372FA00493A97 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		98A93D6B146378FA00493A97 /* SetupPlayerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupPlayerScreen.h; sourceTree = "<group>"; };
+		98A93D6C146378FA00493A97 /* SetupPlayerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupPlayerScreen.m; sourceTree = "<group>"; };
+		98A93D6D146378FA00493A97 /* SetupPlayerScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetupPlayerScreen.xib; sourceTree = "<group>"; };
 		98B1226C1461D6A700581981 /* GameCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCreator.h; path = ../GameCreator.h; sourceTree = "<group>"; };
 		98B1226D1461D6A700581981 /* GameCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCreator.m; path = ../GameCreator.m; sourceTree = "<group>"; };
 		98C6E92E145B0D600097267C /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
@@ -245,6 +260,15 @@
 				986AF2B914525C8E0045A44C /* GameState.m */,
 				C38E497F1453A86700F8DBEB /* Game.h */,
 				C38E49801453A86700F8DBEB /* Game.m */,
+				98A93D60146372C500493A97 /* GameSetup.h */,
+				98A93D61146372C500493A97 /* GameSetup.m */,
+				98A93D62146372C500493A97 /* GameSetup.xib */,
+				98A93D6B146378FA00493A97 /* SetupPlayerScreen.h */,
+				98A93D6C146378FA00493A97 /* SetupPlayerScreen.m */,
+				98A93D6D146378FA00493A97 /* SetupPlayerScreen.xib */,
+				98A93D66146372FA00493A97 /* MainMenu.h */,
+				98A93D67146372FA00493A97 /* MainMenu.m */,
+				98A93D68146372FA00493A97 /* MainMenu.xib */,
 			);
 			path = "Quarkeon Express";
 			sourceTree = "<group>";
@@ -396,6 +420,9 @@
 				C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */,
 				C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */,
 				98EF7AF914607732005E3365 /* WinScreenVC.xib in Resources */,
+				98A93D64146372C500493A97 /* GameSetup.xib in Resources */,
+				98A93D6A146372FA00493A97 /* MainMenu.xib in Resources */,
+				98A93D6F146378FA00493A97 /* SetupPlayerScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +474,9 @@
 				98EF7AF314607702005E3365 /* MapGenerator.m in Sources */,
 				98EF7AF814607732005E3365 /* WinScreenVC.m in Sources */,
 				98B1226E1461D6A700581981 /* GameCreator.m in Sources */,
+				98A93D63146372C500493A97 /* GameSetup.m in Sources */,
+				98A93D69146372FA00493A97 /* MainMenu.m in Sources */,
+				98A93D6E146378FA00493A97 /* SetupPlayerScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
