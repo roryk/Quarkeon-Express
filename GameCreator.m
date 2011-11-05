@@ -28,14 +28,14 @@
         
         self.defaultUranium = 100;
         
-        self.largeMapSize = 100;
+        self.largeMapSize = 10;
         self.largeMapMaxPlanets = 50;
         
-        self.mediumMapSize = 50;
+        self.mediumMapSize = 7;
         self.mediumMapMaxPlanets = 25;
         
-        self.smallMapSize = 25;
-        self.smallMapMaxPlanets = 15;
+        self.smallMapSize = 4;
+        self.smallMapMaxPlanets = 7;
         
         self.mg = [[MapGenerator alloc] init];
         self.mg.loadedPlanets = [self loadPlanets];
