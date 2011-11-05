@@ -73,10 +73,34 @@
 
 - (IBAction)startGame:(id)sender
 {
+
+    [appDelegate addPlayerToGame:player1Name.text];
+    [appDelegate addPlayerToGame:player2Name.text];
+
+    if (appDelegate.gameState.numPlayers == 3) {
+        [appDelegate addPlayerToGame:player3Name.text];
+    }
+
+    if (appDelegate.gameState.numPlayers == 4) {
+        [appDelegate addPlayerToGame:player3Name.text];
+        [appDelegate addPlayerToGame:player4Name.text];
+
+    }
+    
+    [appDelegate startGame];
+
+    
     // XXX gather up all the game state data and pass it to the startGame in the delegateß
     [appDelegate.playerSetupVC.view removeFromSuperview];
     [appDelegate.window addSubview:appDelegate.playGameVC.view];
     
 }
+
+
+- (IBAction)textFieldDoneEditing:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
 
 @end

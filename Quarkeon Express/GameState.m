@@ -40,6 +40,26 @@
 
     return self;
 }
+
+- (void)setupTurnOrder 
+{
+    // shuffle the player array
+    int playerCount = [self.players count];
+    for(int i = 0; i < playerCount; i++) {
+        int elements = playerCount - i;
+        int n = (arc4random() % elements) + i;
+        [self.players exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+    // load the queue up
+    for(Player *player in self.players) {
+        [self.turnQueue enqueue:player];
+    }
+    // select the first player
+    self.currPlayer = [self.turnQueue dequeue];
+    self.currCell = self.currPlayer.currLocation;
+}
+
+
 /**
 - (bool) loadGames
 {

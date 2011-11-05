@@ -9,6 +9,7 @@
 #import "Quarkeon_ExpressAppDelegate.h"
 #import "Quarkeon_ExpressViewController.h"
 #import "GameState.h"
+#import "GameCreator.h"
 #import "Planet.h"
 #import "Spacelane.h"
 #import "PlayerSetupScreen.h"
@@ -22,6 +23,7 @@
 @synthesize passGameVC = passGameVC;
 @synthesize winScreenVC = winScreenVC;
 @synthesize gameState;
+@synthesize gameCreator;
 @synthesize gameSetupVC = gameSetupVC;
 @synthesize mainMenuVC = mainMenuVC;
 @synthesize playerSetupVC = playerSetupVC;
@@ -43,12 +45,41 @@
     }
 }
 
+- (void) generateMap
+{
+    
+    GameCreator *gc = self.gameCreator;
+    
+    if ([self.gameState.mapSize isEqualToString:@"Small"]) {
+        [gc makeRandomMap:gc.smallMapSize y:gc.smallMapSize max_planets:gc.smallMapMaxPlanets];
+    } else if ([self.gameState.mapSize isEqualToString:@"Medium"]) {
+        [gc makeRandomMap:gc.mediumMapSize y:gc.mediumMapSize max_planets:gc.mediumMapMaxPlanets];
+    } else {
+        [gc makeRandomMap:gc.largeMapSize y:gc.largeMapSize max_planets:gc.largeMapMaxPlanets];        
+    }
+    
+}
+
+- (void) startGame
+{
+
+  
+    [self.gameState setupTurnOrder];
+
+}
+
+- (void) addPlayerToGame:(NSString *)playerName
+{
+    [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    GameCreator *gc = [[GameCreator alloc] init];
-    [gc startSampleGame];
-    self.gameState = gc.gamestate;
+    self.gameState = [[GameState alloc] init];
+    self.gameCreator = [[GameCreator alloc] initWithGameState:self.gameState];
+
     
     self.playGameVC = [[Quarkeon_ExpressViewController alloc] init];
     self.gameSetupVC = [[GameSetupScreen alloc] init];

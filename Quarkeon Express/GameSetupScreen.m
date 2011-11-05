@@ -111,6 +111,7 @@
 
 - (IBAction)nextScreen:(id)sender
 {
+    [appDelegate generateMap];
     [appDelegate.gameSetupVC.view removeFromSuperview];
     [appDelegate.window addSubview:appDelegate.playerSetupVC.view];
 

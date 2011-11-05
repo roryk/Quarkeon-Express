@@ -17,13 +17,17 @@
 @class MainMenu;
 @class PlayerSetupScreen;
 @class GameSetupScreen;
+@class GameCreator;
 
 @interface Quarkeon_ExpressAppDelegate : NSObject <UIApplicationDelegate> {
     GameState *gameState;
+    GameCreator *gameCreator;
+    
     UINavigationController *navController;
 }
 
 @property (nonatomic, retain) GameState *gameState;
+@property (nonatomic, retain) GameCreator *gameCreator;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
@@ -42,5 +46,10 @@
 
 
 - (void) movePlayer: (NSString *)dir;
+
+- (void) addPlayerToGame:(NSString *)playerName;
+- (void) startGame;
+- (void) generateMap;
+
 
 @end

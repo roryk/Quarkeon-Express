@@ -11,15 +11,36 @@
 @implementation GameCreator
 
 @synthesize cells;
-@synthesize gamestate;
+@synthesize gameState;
+@synthesize mg;
+@synthesize defaultUranium;
+@synthesize largeMapSize, mediumMapSize, smallMapSize;
+@synthesize largeMapMaxPlanets, mediumMapMaxPlanets, smallMapMaxPlanets;
 
-- (id)init
+
+- (id) initWithGameState:(GameState *)gs
 {
     self = [super init];
     if (self) {
-        self.gamestate = [[GameState alloc] init];
+        self.gameState = gs;
         self.cells = [NSMutableArray array];
         // Initialization code here.
+        
+        self.defaultUranium = 100;
+        
+        self.largeMapSize = 100;
+        self.largeMapMaxPlanets = 50;
+        
+        self.mediumMapSize = 50;
+        self.mediumMapMaxPlanets = 25;
+        
+        self.smallMapSize = 25;
+        self.smallMapMaxPlanets = 15;
+        
+        self.mg = [[MapGenerator alloc] init];
+        self.mg.loadedPlanets = [self loadPlanets];
+
+
     }
     
     return self;
@@ -83,29 +104,27 @@
 }
 
 - (void)makeRandomMap:(int)x y:(int)y max_planets:(int)max_planets {
-    MapGenerator *mg = [[MapGenerator alloc] init];
-    mg.loadedPlanets = [self loadPlanets];
-    [mg setSize:x y:y];
-    [mg buildMap:max_planets];
-    self.gamestate.cells = mg.cells;
-    self.gamestate.planets = mg.usedPlanets;
-    [mg release];
+    [self.mg setSize:x y:y];
+    [self.mg buildMap:max_planets];
+    self.gameState.cells = self.mg.cells;
+    self.gameState.planets = self.mg.usedPlanets;
 }
 
 - (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName
 {
     Player *newPlayer = [[Player alloc] init];
     newPlayer.uranium = startingUranium;
+    // XXX adamf i think we need to copy this string...
     newPlayer.name = playerName;
     // set the current location to be a random 
-    int cellID = (arc4random() % [self.gamestate.cells count]);
-    Cell *startCell = [self.gamestate.cells objectAtIndex:cellID];
+    int cellID = (arc4random() % [self.gameState.cells count]);
+    Cell *startCell = [self.gameState.cells objectAtIndex:cellID];
     while(!startCell.ongrid) {
-        cellID = (arc4random() % [self.gamestate.cells count]);
-        startCell = [self.gamestate.cells objectAtIndex:cellID];
+        cellID = (arc4random() % [self.gameState.cells count]);
+        startCell = [self.gameState.cells objectAtIndex:cellID];
     }
     newPlayer.currLocation = startCell;
-    [self.gamestate.players addObject:newPlayer];
+    [self.gameState.players addObject:newPlayer];
     [newPlayer release];
     
 }
@@ -119,20 +138,7 @@
     [self addPlayer:100 playerName:@"Foo"];
     [self addPlayer:100 playerName:@"Bar"];
     
-    // shuffle the player array
-    int playerCount = [self.gamestate.players count];
-    for(int i = 0; i < playerCount; i++) {
-        int elements = playerCount - i;
-        int n = (arc4random() % elements) + i;
-        [self.gamestate.players exchangeObjectAtIndex:i withObjectAtIndex:n];
-    }
-    // load the queue up
-    for(Player *player in self.gamestate.players) {
-        [self.gamestate.turnQueue enqueue:player];
-    }
-    // select the first player
-    self.gamestate.currPlayer = [self.gamestate.turnQueue dequeue];
-    self.gamestate.currCell = self.gamestate.currPlayer.currLocation;
+    [self.gameState setupTurnOrder];
 }
 
 @end

@@ -40,6 +40,6 @@
 - (void)endTurn;
 - (void)startTurn;
 - (void)gameOverCleanup;
-
+- (void)setupTurnOrder;
 
 @end

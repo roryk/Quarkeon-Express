@@ -34,6 +34,8 @@
 - (IBAction)backToGameSetup:(id)sender;
 - (IBAction)startGame:(id)sender;
 
+- (IBAction)textFieldDoneEditing:(id)sender;
+
 
 
 @end
