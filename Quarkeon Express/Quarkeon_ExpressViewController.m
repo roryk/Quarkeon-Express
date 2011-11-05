@@ -126,7 +126,6 @@
         else {
             [self.buyButton setEnabled:false];
         }
-        [backgroundImageView setImage:currCell.planet.picture];
     }
     else {
         self.planetName.hidden = YES;
@@ -135,6 +134,7 @@
         self.buyButton.hidden = YES;
     }
     
+    [backgroundImageView setImage:currCell.picture];
     self.currPlayerName.text = currPlayer.name;
     self.uraniumCount.text = [[NSNumber numberWithInt:currPlayer.uranium] stringValue];
     self.planetsCount.text = [NSString stringWithFormat:@"%d/%d", gs.currPlayer.planetsOwned, [gs.planets count]];

@@ -14,6 +14,8 @@
     Planet *planet;
     NSMutableArray *players;
     NSMutableDictionary *exits;
+    UIImage *picture;
+    UIImage *defaultpicture;
 }
 
 
@@ -22,6 +24,10 @@
 @property (nonatomic, retain) NSMutableDictionary *exits;
 @property (readwrite, assign) bool ongrid;
 @property (nonatomic, retain) NSMutableArray *visitedBy;
+@property (readwrite, retain) UIImage *picture;
+@property (readwrite, retain) UIImage *defaultpicture;
 
 - (bool) hasLane:(NSString *)dir;
+- (void) addPlanet:(Planet *)newplanet;
+- (void) delPlanet;
 @end

@@ -36,6 +36,7 @@
         self.planetID = -1;
         self.currentCost = -1;
         self.initialCost = -1;
+        self.picture = nil;
         // XXX SET THIS FOR TESTING UNSET AFTER
         self.earnRate = 20; // don't want -1 here as a default
         self.visitedBy = [NSMutableArray array];

@@ -15,6 +15,8 @@
 @synthesize exits;
 @synthesize ongrid;
 @synthesize visitedBy;
+@synthesize picture;
+@synthesize defaultpicture;
 
 - (id)init
 {
@@ -29,6 +31,8 @@
         self.players = [NSMutableArray array];
         self.ongrid = false;
         self.visitedBy = [NSMutableArray array];
+        self.picture = nil;
+        self.defaultpicture = nil;
     }
     
     return self;
@@ -40,5 +44,21 @@
 
 - (bool) hasLane:(NSString *)dir {
     return(!([self.exits objectForKey:dir] == [NSNull null]));
+}
+
+- (void) addPlanet:(Planet *)newplanet {
+    if(!self.planet) {
+        self.planet = newplanet;
+        self.picture = planet.picture;
+    }
+}
+
+- (void) delPlanet {
+    if(self.planet) {
+        [self.planet release];
+        [self.picture release];
+        self.planet = nil;
+        self.picture = self.defaultpicture;
+    }
 }
 @end

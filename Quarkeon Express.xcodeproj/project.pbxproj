@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		98275D731451E999001D63A1 /* planet-glass-retina-57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 98275D721451E999001D63A1 /* planet-glass-retina-57-57.png */; };
 		98275D751451EA99001D63A1 /* planet-glass-retina-114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */; };
+		9838DB071465EFA2006BFACA /* stars5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9838DB051465EFA1006BFACA /* stars5.png */; };
+		9838DB081465EFA2006BFACA /* stars6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9838DB061465EFA1006BFACA /* stars6.png */; };
 		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
 		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
 		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
@@ -31,11 +33,9 @@
 		C30234661465A6EF00A0ED4D /* panel3Ring-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234611465A6EF00A0ED4D /* panel3Ring-spritesheet.png */; };
 		C30234671465A6EF00A0ED4D /* singleRing-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234621465A6EF00A0ED4D /* singleRing-spritesheet.png */; };
 		C30234681465A6EF00A0ED4D /* unmanned-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234631465A6EF00A0ED4D /* unmanned-spritesheet.png */; };
-		C302346F1465AAAC00A0ED4D /* starfield_bright_retina_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */; };
-		C30234701465AAAC00A0ED4D /* starfield_bright_retina_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */; };
-		C30234711465AAAC00A0ED4D /* starfield_bright_retina_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */; };
-		C30234721465AAAC00A0ED4D /* starfield_empty_retina_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */; };
-		C30234731465AAAC00A0ED4D /* starfield_retina_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */; };
+		C302346F1465AAAC00A0ED4D /* stars1.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346A1465AAAC00A0ED4D /* stars1.png */; };
+		C30234701465AAAC00A0ED4D /* stars2.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346B1465AAAC00A0ED4D /* stars2.png */; };
+		C30234711465AAAC00A0ED4D /* stars3.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346C1465AAAC00A0ED4D /* stars3.png */; };
 		C3131D641451AF010096F21A /* Games.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D611451AF010096F21A /* Games.plist */; };
 		C3131D651451AF010096F21A /* Objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D621451AF010096F21A /* Objects.plist */; };
 		C3131D661451AF010096F21A /* Planets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D631451AF010096F21A /* Planets.plist */; };
@@ -92,6 +92,8 @@
 /* Begin PBXFileReference section */
 		98275D721451E999001D63A1 /* planet-glass-retina-57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina-57-57.png"; sourceTree = "<group>"; };
 		98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina-114-114.png"; sourceTree = "<group>"; };
+		9838DB051465EFA1006BFACA /* stars5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars5.png; path = "Game Images/stars5.png"; sourceTree = "<group>"; };
+		9838DB061465EFA1006BFACA /* stars6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars6.png; path = "Game Images/stars6.png"; sourceTree = "<group>"; };
 		986AF2A114524FCD0045A44C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		986AF2A214524FEC0045A44C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
@@ -124,11 +126,9 @@
 		C30234611465A6EF00A0ED4D /* panel3Ring-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel3Ring-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/panel3Ring-spritesheet.png"; sourceTree = "<group>"; };
 		C30234621465A6EF00A0ED4D /* singleRing-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "singleRing-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/singleRing-spritesheet.png"; sourceTree = "<group>"; };
 		C30234631465A6EF00A0ED4D /* unmanned-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unmanned-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/unmanned-spritesheet.png"; sourceTree = "<group>"; };
-		C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_1.png; path = "Game Images/starfield_bright_retina_1.png"; sourceTree = "<group>"; };
-		C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_2.png; path = "Game Images/starfield_bright_retina_2.png"; sourceTree = "<group>"; };
-		C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_3.png; path = "Game Images/starfield_bright_retina_3.png"; sourceTree = "<group>"; };
-		C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = starfield_empty_retina_1.jpg; path = "Game Images/starfield_empty_retina_1.jpg"; sourceTree = "<group>"; };
-		C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = starfield_retina_1.jpg; path = "Game Images/starfield_retina_1.jpg"; sourceTree = "<group>"; };
+		C302346A1465AAAC00A0ED4D /* stars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars1.png; path = "Game Images/stars1.png"; sourceTree = "<group>"; };
+		C302346B1465AAAC00A0ED4D /* stars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars2.png; path = "Game Images/stars2.png"; sourceTree = "<group>"; };
+		C302346C1465AAAC00A0ED4D /* stars3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars3.png; path = "Game Images/stars3.png"; sourceTree = "<group>"; };
 		C3131D611451AF010096F21A /* Games.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Games.plist; sourceTree = "<group>"; };
 		C3131D621451AF010096F21A /* Objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Objects.plist; sourceTree = "<group>"; };
 		C3131D631451AF010096F21A /* Planets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Planets.plist; sourceTree = "<group>"; };
@@ -222,11 +222,11 @@
 		C30234691465AA4900A0ED4D /* Star Fields */ = {
 			isa = PBXGroup;
 			children = (
-				C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */,
-				C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */,
-				C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */,
-				C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */,
-				C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */,
+				C302346A1465AAAC00A0ED4D /* stars1.png */,
+				C302346B1465AAAC00A0ED4D /* stars2.png */,
+				C302346C1465AAAC00A0ED4D /* stars3.png */,
+				9838DB051465EFA1006BFACA /* stars5.png */,
+				9838DB061465EFA1006BFACA /* stars6.png */,
 			);
 			name = "Star Fields";
 			sourceTree = "<group>";
@@ -478,11 +478,11 @@
 				C30234661465A6EF00A0ED4D /* panel3Ring-spritesheet.png in Resources */,
 				C30234671465A6EF00A0ED4D /* singleRing-spritesheet.png in Resources */,
 				C30234681465A6EF00A0ED4D /* unmanned-spritesheet.png in Resources */,
-				C302346F1465AAAC00A0ED4D /* starfield_bright_retina_1.png in Resources */,
-				C30234701465AAAC00A0ED4D /* starfield_bright_retina_2.png in Resources */,
-				C30234711465AAAC00A0ED4D /* starfield_bright_retina_3.png in Resources */,
-				C30234721465AAAC00A0ED4D /* starfield_empty_retina_1.jpg in Resources */,
-				C30234731465AAAC00A0ED4D /* starfield_retina_1.jpg in Resources */,
+				C302346F1465AAAC00A0ED4D /* stars1.png in Resources */,
+				C30234701465AAAC00A0ED4D /* stars2.png in Resources */,
+				C30234711465AAAC00A0ED4D /* stars3.png in Resources */,
+				9838DB071465EFA2006BFACA /* stars5.png in Resources */,
+				9838DB081465EFA2006BFACA /* stars6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

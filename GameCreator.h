@@ -29,14 +29,9 @@
     int largeMapMaxPlanets;
     int mediumMapMaxPlanets;
     int smallMapMaxPlanets;
-    
     int defaultUranium; 
-    
-    
     MapGenerator *mg;
 
-    
-    
 }
 
 @property (readwrite, assign) int largeMapSize;
@@ -59,11 +54,9 @@
 - (NSMutableArray *)loadPlist:(NSString *)fileName rootKey:(NSString *)rootKey;
 - (void)makeRandomMap:(int)x y:(int)y max_planets:(int)max_planets;
 - (void)startSampleGame;
-
 - (id)initWithGameState:(GameState *)gs;
 
 - (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName;
-
-
+- (NSArray *)loadBackgrounds;
 
 @end

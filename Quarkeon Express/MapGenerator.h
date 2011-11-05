@@ -17,9 +17,8 @@
     NSMutableDictionary *oppositeDirectionName;
     NSMutableArray *exitNames;
     NSMutableArray *usedPlanets;
+    NSArray *backgroundImages;
 }
-
-- (void)setSize:(int)x y:(int)y;
 
 @property (nonatomic, retain) NSMutableArray *cells;
 @property (readwrite, assign) int rows;
@@ -29,6 +28,7 @@
 @property (nonatomic, retain) NSMutableArray *exitNames;
 @property (nonatomic, retain) NSMutableArray *loadedPlanets;
 @property (nonatomic, retain) NSMutableArray *usedPlanets;
+@property (nonatomic, retain) NSArray *backgroundImages;
 
 - (int)getSouth:(int) x;
 - (int)getNorth:(int) x;
@@ -38,5 +38,7 @@
 - (int)getIndexInDirection:(int) x dir:(NSString *)dir;
 - (bool)checkAndMove:(int) x planets:(int)planets max_planets:(int)max_planets;
 - (NSMutableArray *)buildMap:(int) max_planets;
+- (void)setSize:(int)x y:(int)y;
+- (void)initCells;
 
 @end

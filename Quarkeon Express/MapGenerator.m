@@ -22,6 +22,7 @@
 @synthesize exitNames;
 @synthesize loadedPlanets;
 @synthesize usedPlanets;
+@synthesize backgroundImages;
 
 - (id)init
 {
@@ -40,6 +41,7 @@
         self.exitNames = [NSMutableArray arrayWithObjects:@"north", @"south", @"east", @"west", nil]; 
         self.loadedPlanets = [NSMutableArray array];
         self.usedPlanets = [NSMutableArray array];
+        self.backgroundImages = [NSArray array];
     }    
     return self;
 }
@@ -49,8 +51,15 @@
     self.rows = x;
     self.cols = y;
     self.ncells = x * y;
+}
+
+- (void) initCells {
+    int n;
     for(int i = 0; i < self.ncells; i++) {
         Cell *c = [[Cell alloc] init];
+        n = arc4random() % [self.backgroundImages count];
+        c.defaultpicture = [self.backgroundImages objectAtIndex:n];
+        c.picture = c.defaultpicture;
         [self.cells addObject:c];
         [c release];
     }
@@ -73,7 +82,7 @@
         if(n < max_planets) {
             // this will be true with P(max_planets / ncells) might want to change this
             int p = arc4random() % [self.loadedPlanets count];
-            cell.planet = [self.loadedPlanets objectAtIndex:p];
+            [cell addPlanet:[self.loadedPlanets objectAtIndex:p]];
             [self.usedPlanets addObject:[self.loadedPlanets objectAtIndex:p]];
             planets++;
         }    

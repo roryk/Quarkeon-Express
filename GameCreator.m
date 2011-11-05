@@ -17,7 +17,6 @@
 @synthesize largeMapSize, mediumMapSize, smallMapSize;
 @synthesize largeMapMaxPlanets, mediumMapMaxPlanets, smallMapMaxPlanets;
 
-
 - (id) initWithGameState:(GameState *)gs
 {
     self = [super init];
@@ -105,6 +104,8 @@
 
 - (void)makeRandomMap:(int)x y:(int)y max_planets:(int)max_planets {
     [self.mg setSize:x y:y];
+    self.mg.backgroundImages = [self loadBackgrounds];
+    [self.mg initCells];
     [self.mg buildMap:max_planets];
     self.gameState.cells = self.mg.cells;
     self.gameState.planets = self.mg.usedPlanets;
@@ -139,6 +140,22 @@
     [self addPlayer:100 playerName:@"Bar"];
     
     [self.gameState setupTurnOrder];
+}
+
+- (NSArray *)loadBackgrounds {
+    UIImage *image;
+    NSMutableArray *backgroundImages = [NSMutableArray array];
+    NSString *bundleRoot = [[NSBundle mainBundle] bundlePath];
+    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRoot error:nil];
+    
+    NSArray *backgroundFiles = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.png' AND self CONTAINS 'stars'"]];
+    
+    for(NSString *file in backgroundFiles) {
+        image = [UIImage imageNamed:file];
+        [backgroundImages addObject:image];
+        [image release];
+    }
+    return(backgroundImages);
 }
 
 @end
