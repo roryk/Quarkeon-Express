@@ -19,8 +19,12 @@
     Player *currPlayer;
     NSMutableArray *players;
     NSMutableArray *turnQueue;
+    int numPlayers;
+    NSString *mapSize;
     
 }
+@property (readwrite, assign) int numPlayers;
+@property (nonatomic, retain) NSString *mapSize;
 
 @property (nonatomic, retain) Cell *currCell;
 @property (nonatomic, retain) Player *currPlayer;

@@ -11,15 +11,21 @@
 #import "GameState.h"
 #import "Planet.h"
 #import "Spacelane.h"
+#import "PlayerSetupScreen.h"
+#import "GameSetupScreen.h"
+#import "MainMenu.h"
 
 
 @implementation Quarkeon_ExpressAppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
 @synthesize passGameVC = passGameVC;
 @synthesize winScreenVC = winScreenVC;
 @synthesize gameState;
+@synthesize gameSetupVC = gameSetupVC;
+@synthesize mainMenuVC = mainMenuVC;
+@synthesize playerSetupVC = playerSetupVC;
+@synthesize playGameVC = playGameVC;
 
 - (void) movePlayer:(NSString *)dir {
     /**
@@ -44,7 +50,11 @@
     [gc startSampleGame];
     self.gameState = gc.gamestate;
     
-    self.window.rootViewController = self.viewController;
+    self.playGameVC = [[Quarkeon_ExpressViewController alloc] init];
+    self.gameSetupVC = [[GameSetupScreen alloc] init];
+    self.playerSetupVC = [[PlayerSetupScreen alloc] init];
+    
+    self.window.rootViewController = self.mainMenuVC;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -91,7 +101,6 @@
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
     [super dealloc];
 }
 

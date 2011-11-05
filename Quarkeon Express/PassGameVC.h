@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Quarkeon_ExpressAppDelegate.h"
+
+@class Quarkeon_ExpressAppDelegate;
 
 @interface PassGameVC : UIViewController {
     Quarkeon_ExpressAppDelegate *appDelegate;

@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class Quarkeon_ExpressAppDelegate;
+
 @interface MainMenu : UIViewController
+{
+    IBOutlet UIButton *newGameButton;
+    IBOutlet UIButton *loadGameButton;
+    IBOutlet UIButton *helpButton;
+    
+    Quarkeon_ExpressAppDelegate *appDelegate;
+
+    
+}
+
+@property (nonatomic, retain) UIButton *newGameButton;
+@property (nonatomic, retain) UIButton *loadGameButton;
+@property (nonatomic, retain) UIButton *helpButton;
+
+
+- (IBAction)newGame:(id)sender;
+
 
 @end

@@ -29,6 +29,15 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 #pragma mark - View lifecycle
 
 
@@ -166,7 +175,7 @@
     [gs endTurn];
     // switch views to the pass the game screen
     appDelegate.passGameVC = [[PassGameVC alloc] init];
-    [appDelegate.viewController.view removeFromSuperview];
+    [appDelegate.playGameVC.view removeFromSuperview];
     //[appDelegate.viewController release];
     [appDelegate.window addSubview:appDelegate.passGameVC.view];
 

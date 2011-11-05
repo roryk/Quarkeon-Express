@@ -25,6 +25,17 @@
 		98EF7AF314607702005E3365 /* MapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EF7AF214607702005E3365 /* MapGenerator.m */; };
 		98EF7AF814607732005E3365 /* WinScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EF7AF614607732005E3365 /* WinScreenVC.m */; };
 		98EF7AF914607732005E3365 /* WinScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EF7AF714607732005E3365 /* WinScreenVC.xib */; };
+		C302345C1465A3F900A0ED4D /* quarkeon-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C302345B1465A3F900A0ED4D /* quarkeon-logo.png */; };
+		C30234641465A6EF00A0ED4D /* doubleRing-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C302345F1465A6EF00A0ED4D /* doubleRing-spritesheet.png */; };
+		C30234651465A6EF00A0ED4D /* medical-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234601465A6EF00A0ED4D /* medical-spritesheet.png */; };
+		C30234661465A6EF00A0ED4D /* panel3Ring-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234611465A6EF00A0ED4D /* panel3Ring-spritesheet.png */; };
+		C30234671465A6EF00A0ED4D /* singleRing-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234621465A6EF00A0ED4D /* singleRing-spritesheet.png */; };
+		C30234681465A6EF00A0ED4D /* unmanned-spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = C30234631465A6EF00A0ED4D /* unmanned-spritesheet.png */; };
+		C302346F1465AAAC00A0ED4D /* starfield_bright_retina_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */; };
+		C30234701465AAAC00A0ED4D /* starfield_bright_retina_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */; };
+		C30234711465AAAC00A0ED4D /* starfield_bright_retina_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */; };
+		C30234721465AAAC00A0ED4D /* starfield_empty_retina_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */; };
+		C30234731465AAAC00A0ED4D /* starfield_retina_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */; };
 		C3131D641451AF010096F21A /* Games.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D611451AF010096F21A /* Games.plist */; };
 		C3131D651451AF010096F21A /* Objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D621451AF010096F21A /* Objects.plist */; };
 		C3131D661451AF010096F21A /* Planets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D631451AF010096F21A /* Planets.plist */; };
@@ -107,6 +118,17 @@
 		98EF7AF514607732005E3365 /* WinScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScreenVC.h; sourceTree = "<group>"; };
 		98EF7AF614607732005E3365 /* WinScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScreenVC.m; sourceTree = "<group>"; };
 		98EF7AF714607732005E3365 /* WinScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinScreenVC.xib; sourceTree = "<group>"; };
+		C302345B1465A3F900A0ED4D /* quarkeon-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quarkeon-logo.png"; sourceTree = "<group>"; };
+		C302345F1465A6EF00A0ED4D /* doubleRing-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "doubleRing-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/doubleRing-spritesheet.png"; sourceTree = "<group>"; };
+		C30234601465A6EF00A0ED4D /* medical-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "medical-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/medical-spritesheet.png"; sourceTree = "<group>"; };
+		C30234611465A6EF00A0ED4D /* panel3Ring-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel3Ring-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/panel3Ring-spritesheet.png"; sourceTree = "<group>"; };
+		C30234621465A6EF00A0ED4D /* singleRing-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "singleRing-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/singleRing-spritesheet.png"; sourceTree = "<group>"; };
+		C30234631465A6EF00A0ED4D /* unmanned-spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unmanned-spritesheet.png"; path = "Source Images/Onyx/stellars/stations/unmanned-spritesheet.png"; sourceTree = "<group>"; };
+		C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_1.png; path = "Game Images/starfield_bright_retina_1.png"; sourceTree = "<group>"; };
+		C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_2.png; path = "Game Images/starfield_bright_retina_2.png"; sourceTree = "<group>"; };
+		C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = starfield_bright_retina_3.png; path = "Game Images/starfield_bright_retina_3.png"; sourceTree = "<group>"; };
+		C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = starfield_empty_retina_1.jpg; path = "Game Images/starfield_empty_retina_1.jpg"; sourceTree = "<group>"; };
+		C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = starfield_retina_1.jpg; path = "Game Images/starfield_retina_1.jpg"; sourceTree = "<group>"; };
 		C3131D611451AF010096F21A /* Games.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Games.plist; sourceTree = "<group>"; };
 		C3131D621451AF010096F21A /* Objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Objects.plist; sourceTree = "<group>"; };
 		C3131D631451AF010096F21A /* Planets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Planets.plist; sourceTree = "<group>"; };
@@ -185,9 +207,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C302345E1465A6D700A0ED4D /* Space Stations */ = {
+			isa = PBXGroup;
+			children = (
+				C302345F1465A6EF00A0ED4D /* doubleRing-spritesheet.png */,
+				C30234601465A6EF00A0ED4D /* medical-spritesheet.png */,
+				C30234611465A6EF00A0ED4D /* panel3Ring-spritesheet.png */,
+				C30234621465A6EF00A0ED4D /* singleRing-spritesheet.png */,
+				C30234631465A6EF00A0ED4D /* unmanned-spritesheet.png */,
+			);
+			name = "Space Stations";
+			sourceTree = "<group>";
+		};
+		C30234691465AA4900A0ED4D /* Star Fields */ = {
+			isa = PBXGroup;
+			children = (
+				C302346A1465AAAC00A0ED4D /* starfield_bright_retina_1.png */,
+				C302346B1465AAAC00A0ED4D /* starfield_bright_retina_2.png */,
+				C302346C1465AAAC00A0ED4D /* starfield_bright_retina_3.png */,
+				C302346D1465AAAC00A0ED4D /* starfield_empty_retina_1.jpg */,
+				C302346E1465AAAC00A0ED4D /* starfield_retina_1.jpg */,
+			);
+			name = "Star Fields";
+			sourceTree = "<group>";
+		};
 		C377A5EA144E446C00663A2C = {
 			isa = PBXGroup;
 			children = (
+				C30234691465AA4900A0ED4D /* Star Fields */,
+				C302345E1465A6D700A0ED4D /* Space Stations */,
 				C38E1467145B5CBD00AF2E8F /* PlanetPics */,
 				C38E498A1454D6D600F8DBEB /* Default.png */,
 				C38E49871454D06E00F8DBEB /* Default@2x.png */,
@@ -234,6 +282,7 @@
 				986AF2A214524FEC0045A44C /* Player.m */,
 				C3131D691451AF220096F21A /* Queue.h */,
 				C3131D6A1451AF220096F21A /* Queue.m */,
+				C302345B1465A3F900A0ED4D /* quarkeon-logo.png */,
 				C377A608144E446C00663A2C /* Quarkeon_ExpressAppDelegate.h */,
 				C377A609144E446C00663A2C /* Quarkeon_ExpressAppDelegate.m */,
 				C377A60B144E446C00663A2C /* MainWindow.xib */,
@@ -423,6 +472,17 @@
 				98A93D64146372C500493A97 /* GameSetupScreen.xib in Resources */,
 				98A93D6A146372FA00493A97 /* MainMenu.xib in Resources */,
 				98A93D6F146378FA00493A97 /* PlayerSetupScreen.xib in Resources */,
+				C302345C1465A3F900A0ED4D /* quarkeon-logo.png in Resources */,
+				C30234641465A6EF00A0ED4D /* doubleRing-spritesheet.png in Resources */,
+				C30234651465A6EF00A0ED4D /* medical-spritesheet.png in Resources */,
+				C30234661465A6EF00A0ED4D /* panel3Ring-spritesheet.png in Resources */,
+				C30234671465A6EF00A0ED4D /* singleRing-spritesheet.png in Resources */,
+				C30234681465A6EF00A0ED4D /* unmanned-spritesheet.png in Resources */,
+				C302346F1465AAAC00A0ED4D /* starfield_bright_retina_1.png in Resources */,
+				C30234701465AAAC00A0ED4D /* starfield_bright_retina_2.png in Resources */,
+				C30234711465AAAC00A0ED4D /* starfield_bright_retina_3.png in Resources */,
+				C30234721465AAAC00A0ED4D /* starfield_empty_retina_1.jpg in Resources */,
+				C30234731465AAAC00A0ED4D /* starfield_retina_1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

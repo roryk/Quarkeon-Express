@@ -7,8 +7,12 @@
 //
 
 #import "MainMenu.h"
+#import "Quarkeon_ExpressAppDelegate.h"
+#import "GameSetupScreen.h"
 
 @implementation MainMenu
+
+@synthesize newGameButton, helpButton, loadGameButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    appDelegate = (Quarkeon_ExpressAppDelegate *)[[UIApplication sharedApplication] delegate];
+
 }
 
 - (void)viewDidUnload
@@ -46,6 +52,12 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+- (IBAction)newGame:(id)sender
+{
+    [appDelegate.mainMenuVC.view removeFromSuperview];
+    [appDelegate.window addSubview:appDelegate.gameSetupVC.view];
 }
 
 @end

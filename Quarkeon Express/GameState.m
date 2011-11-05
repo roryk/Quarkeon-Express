@@ -22,6 +22,8 @@
 @synthesize cells;
 @synthesize currCell;
 @synthesize planets;
+@synthesize numPlayers;
+@synthesize mapSize;
 
 - (id)init
 {
@@ -32,6 +34,7 @@
         self.cells = [NSMutableArray array];
         self.currPlayer = nil;
         self.currCell = nil;
+        self.mapSize = [[NSString alloc] init];
         self.planets = [NSMutableArray array];
     }
 
