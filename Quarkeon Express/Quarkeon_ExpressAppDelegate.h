@@ -45,8 +45,6 @@
 
 
 
-- (void) movePlayer: (NSString *)dir;
-
 - (void) addPlayerToGame:(NSString *)playerName;
 - (void) startGame;
 - (void) generateMap;

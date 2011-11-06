@@ -34,8 +34,6 @@
 
 @property (nonatomic, retain) NSMutableArray *players;
 
-- (bool)buyCurrPlanet;
-- (bool)canBuyCurrPlanet;
 - (bool)didCurrentPlayerWin;
 - (void)endTurn;
 - (void)startTurn;

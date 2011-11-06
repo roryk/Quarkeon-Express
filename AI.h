@@ -7,13 +7,12 @@
 //
 
 #import "Player.h"
-#import "Quarkeon_ExpressAppDelegate.h"
 
 @interface AI : Player {
-    Quarkeon_ExpressAppDelegate *appDelegate;
 }
 
--(void) move:(NSString *)dir;
+-(NSString *)chooseRandomDir;
+
 @end
 
 
@@ -22,4 +21,7 @@
  **/
 @interface DumbAI : AI {
 }
+
+-(void)playTurn;
+
 @end

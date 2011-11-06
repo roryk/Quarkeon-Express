@@ -14,6 +14,8 @@
 #import "Player.h"
 #import "Queue.h"
 
+@class GameState;
+
 
 @interface GameCreator : NSObject {
     NSMutableArray *cells;

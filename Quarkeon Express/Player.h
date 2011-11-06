@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Cell.h"
+#import "Quarkeon_ExpressAppDelegate.h"
 
 @class Spaceship;
 @class Planet;
+@class Quarkeon_ExpressAppDelegate;
 
 @interface Player : NSObject {
+    Quarkeon_ExpressAppDelegate *appDelegate;
     NSString *name;
     Cell *currLocation;
     int xLocation;
@@ -36,5 +39,12 @@
 @property (readwrite, assign) int clones;
 @property (readwrite, assign) int bucks;
 @property (readwrite, assign) int uranium;
+
+- (void)startTurn;
+- (void)endTurn;
+- (bool)buyCurrPlanet;
+- (bool)canBuyCurrPlanet;
+- (bool)canMoveInDirection:(NSString *)dir;
+- (void)movePlayerInDirection:(NSString *)dir;
 
 @end

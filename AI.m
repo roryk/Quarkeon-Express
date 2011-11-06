@@ -14,20 +14,10 @@
 {
     self = [super init];
     if (self) {
-        appDelegate = (Quarkeon_ExpressAppDelegate *)[[UIApplication sharedApplication] delegate];    
     }
     
     return self;
     
-}
-
-- (void) move:(NSString *)dir {
-    /**
-     invoke the app delegate to move us in the direction dir, if possible
-     **/
-    if([appDelegate.gameState canMove:dir]) {
-        [appDelegate movePlayer:dir];
-    }
 }
 
 - (NSString *) chooseRandomDir {
@@ -44,6 +34,7 @@
     }
     return(dir);
 }
+
 @end
 
 
@@ -56,6 +47,25 @@
     }
     
     return self;
+}
+
+-(void)startTurn {
+    [self playTurn];
+}
+
+-(void) playTurn {
+    NSString *dir;
+    Planet *planet;
+    while(self.uranium > 0) {
+        dir = [self chooseRandomDir];
+        [self movePlayerInDirection:dir];
+        planet = self.currLocation.planet;
+        if(planet != nil && (planet.owner != self)) {
+            if([self canBuyCurrPlanet]) {
+                [self buyCurrPlanet];
+            }
+        }
+    }
 }
 
 @end

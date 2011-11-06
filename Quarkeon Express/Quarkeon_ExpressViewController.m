@@ -120,7 +120,7 @@
         NSString *title = [NSString stringWithFormat:@"Buy For %@U", 
                            [[NSNumber numberWithInt:currCell.planet.currentCost] stringValue]];
         [self updateButton:self.buyButton buttonText:title];
-        if ([gs canBuyCurrPlanet]) {
+        if ([currPlayer canBuyCurrPlanet]) {
             [self.buyButton setEnabled:true];
         }
         else {
@@ -141,31 +141,35 @@
     
 }
 - (IBAction)goNorth:(id)sender {
-    [appDelegate movePlayer:@"north"];
+    Player *player = appDelegate.gameState.currPlayer;
+    [player movePlayerInDirection:@"north"];
     [self updateGameScreen];
 }
 
 - (IBAction)goSouth:(id)sender {
-    [appDelegate movePlayer:@"south"];
+    Player *player = appDelegate.gameState.currPlayer;
+    [player movePlayerInDirection:@"south"];
     [self updateGameScreen];
 
 }
 
 - (IBAction)goEast:(id)sender {
-    [appDelegate movePlayer:@"east"];
+    Player *player = appDelegate.gameState.currPlayer;
+    [player movePlayerInDirection:@"east"];
     [self updateGameScreen];
 
 }
 
 - (IBAction)goWest:(id)sender {
-    [appDelegate movePlayer:@"west"];
+    Player *player = appDelegate.gameState.currPlayer;
+    [player movePlayerInDirection:@"west"];
     [self updateGameScreen];
 
 }
 
 - (IBAction)buyPlanet:(id)sender {
-    GameState *gs = appDelegate.gameState;
-    [gs buyCurrPlanet];
+    Player *player = appDelegate.gameState.currPlayer;
+    [player buyCurrPlanet];
     [self updateGameScreen];
 }
 

@@ -138,13 +138,14 @@
      XXX: should transition to a "pass game to XXX, so no spoilers regarding location"
      **/
     [self.turnQueue enqueue:self.currPlayer];
+    [self.currPlayer endTurn];
     // XXX: add go to the no-spoiler screen
 }
 
 - (void)startTurn {
     self.currPlayer = [self.turnQueue dequeue];
     self.currCell = self.currPlayer.currLocation;
-    // XXX: accrue the uranium this isn't working for some reason
+    [self.currPlayer startTurn];
     for(Planet *planet in self.planets) {
         NSLog(@"planet: %@", planet);
         NSLog(@"owner: %@", planet.owner);
@@ -158,39 +159,6 @@
 
 - (bool) didCurrentPlayerWin {
     return (self.currPlayer.planetsOwned > ([self.planets count] / 2));
-}
-
-- (bool)canBuyCurrPlanet
-{
-    if(self.currPlayer.currLocation.planet == nil) {
-        return false;
-    }
-    if (self.currPlayer.currLocation.planet.currentCost <= self.currPlayer.uranium) {
-        return true;
-    }
-    return false;
-    
-}
-
-- (bool)buyCurrPlanet   
-{
-    if(self.currCell.planet == nil) {
-        return false;
-    }
-    if ([self canBuyCurrPlanet]) {
-        Planet *planet = self.currCell.planet;
-        if (planet.owner != nil) {
-            planet.owner.planetsOwned = planet.owner.planetsOwned - 1;
-        }
-        self.currPlayer.uranium = self.currPlayer.uranium - planet.currentCost;
-        planet.owner = self.currPlayer;
-        planet.currentCost = planet.currentCost * 1.5;
-        self.currPlayer.planetsOwned = self.currPlayer.planetsOwned + 1;
-        
-        return true;
-    }
-    
-    return false;
 }
 
 - (void)gameOverCleanup {

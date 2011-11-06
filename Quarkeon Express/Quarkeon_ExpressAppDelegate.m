@@ -29,22 +29,6 @@
 @synthesize playerSetupVC = playerSetupVC;
 @synthesize playGameVC = playGameVC;
 
-- (void) movePlayer:(NSString *)dir {
-    /**
-     checks to see if a player can move in a direction. if so, subtracts the uranium from their cache
-     and updates the current planet on the gamestate and the current planet on the player. 
-     **/
-    Cell *cell = gameState.currCell;
-    Cell *newcell = [cell.exits objectForKey:dir];
-    Player *player = gameState.currPlayer;
-    if([cell hasLane:dir] && (player.uranium > 0)) {
-        player.uranium -= 1;
-        gameState.currCell = newcell;
-        player.currLocation = gameState.currCell;
-        [gameState.currCell.visitedBy addObject:(Player *)player];
-    }
-}
-
 - (void) generateMap
 {
     
