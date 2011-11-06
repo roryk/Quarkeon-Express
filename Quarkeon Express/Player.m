@@ -8,6 +8,8 @@
 
 #import "Player.h"
 #import "Planet.h"
+#import "Quarkeon_ExpressAppDelegate.h"
+
 
 @implementation Player
 

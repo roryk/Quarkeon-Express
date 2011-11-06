@@ -111,9 +111,21 @@
     self.gameState.planets = self.mg.usedPlanets;
 }
 
-- (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName
+- (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName isAI:(bool)isAI
 {
-    Player *newPlayer = [[Player alloc] init];
+    /**
+     XXX we should break up this function into pieces since we are now going to be
+     adding different types of players (different AI types, possibly network players,
+     etc
+     **/
+    Player *newPlayer;
+    
+    if(isAI) {
+        newPlayer = [[DumbAI alloc] init];
+    }
+    else {
+        newPlayer = [[Player alloc] init];
+    }
     newPlayer.uranium = startingUranium;
     // XXX adamf i think we need to copy this string...
     newPlayer.name = playerName;
@@ -136,8 +148,8 @@
 {
     [self makeRandomMap:4 y:4 max_planets:7];
     // XXX we create two players here. 
-    [self addPlayer:100 playerName:@"Foo"];
-    [self addPlayer:100 playerName:@"Bar"];
+    [self addPlayer:100 playerName:@"Foo" isAI:false];
+    [self addPlayer:100 playerName:@"Bar" isAI:false];
     
     [self.gameState setupTurnOrder];
 }

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Cell.h"
-#import "Quarkeon_ExpressAppDelegate.h"
 
 @class Spaceship;
 @class Planet;

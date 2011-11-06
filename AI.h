@@ -6,7 +6,6 @@
 //  Copyright 2011 MIT. All rights reserved.
 //
 
-#import "Player.h"
 
 @interface AI : Player {
 }

@@ -45,7 +45,7 @@
 
 
 
-- (void) addPlayerToGame:(NSString *)playerName;
+- (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI;
 - (void) startGame;
 - (void) generateMap;
 

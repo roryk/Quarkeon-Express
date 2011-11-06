@@ -52,9 +52,9 @@
 
 }
 
-- (void) addPlayerToGame:(NSString *)playerName
+- (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
 {
-    [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName];
+    [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
 }
 
 

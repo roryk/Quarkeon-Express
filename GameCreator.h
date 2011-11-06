@@ -13,6 +13,7 @@
 #import "Cell.h"
 #import "Player.h"
 #import "Queue.h"
+#import "AI.h"
 
 @class GameState;
 
@@ -58,7 +59,7 @@
 - (void)startSampleGame;
 - (id)initWithGameState:(GameState *)gs;
 
-- (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName;
+- (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName isAI:(bool)isAI;
 - (NSArray *)loadBackgrounds;
 
 @end
