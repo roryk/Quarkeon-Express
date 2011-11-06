@@ -74,7 +74,6 @@
 		C377A638144E6F0B00663A2C /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A637144E6F0B00663A2C /* Enemy.m */; };
 		C377A641144E731D00663A2C /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A640144E731D00663A2C /* Planet.m */; };
 		C377A644144E733100663A2C /* SpaceLane.m in Sources */ = {isa = PBXBuildFile; fileRef = C377A643144E733000663A2C /* SpaceLane.m */; };
-		C38E49811453A86700F8DBEB /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = C38E49801453A86700F8DBEB /* Game.m */; };
 		C38E49881454D06E00F8DBEB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E49871454D06E00F8DBEB /* Default@2x.png */; };
 		C38E498B1454D6D600F8DBEB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E498A1454D6D600F8DBEB /* Default.png */; };
 /* End PBXBuildFile section */
@@ -176,8 +175,6 @@
 		C377A640144E731D00663A2C /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		C377A642144E733000663A2C /* SpaceLane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceLane.h; sourceTree = "<group>"; };
 		C377A643144E733000663A2C /* SpaceLane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceLane.m; sourceTree = "<group>"; };
-		C38E497F1453A86700F8DBEB /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		C38E49801453A86700F8DBEB /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		C38E49871454D06E00F8DBEB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C38E498A1454D6D600F8DBEB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,8 +304,6 @@
 				98B1226D1461D6A700581981 /* GameCreator.m */,
 				986AF2B814525C8E0045A44C /* GameState.h */,
 				986AF2B914525C8E0045A44C /* GameState.m */,
-				C38E497F1453A86700F8DBEB /* Game.h */,
-				C38E49801453A86700F8DBEB /* Game.m */,
 				98A93D60146372C500493A97 /* GameSetupScreen.h */,
 				98A93D61146372C500493A97 /* GameSetupScreen.m */,
 				98A93D62146372C500493A97 /* GameSetupScreen.xib */,
@@ -528,7 +523,6 @@
 				C3131D6C1451AF220096F21A /* Queue.m in Sources */,
 				986AF2A314524FEC0045A44C /* Player.m in Sources */,
 				986AF2BA14525C8F0045A44C /* GameState.m in Sources */,
-				C38E49811453A86700F8DBEB /* Game.m in Sources */,
 				98D16A62145664AA00EA43E6 /* PassGameVC.m in Sources */,
 				98C6E930145B0D600097267C /* Cell.m in Sources */,
 				98EF7AF314607702005E3365 /* MapGenerator.m in Sources */,

@@ -72,6 +72,7 @@
 }
 
 - (bool) checkAndMove:(int) x planets:(int)planets max_planets:(int)max_planets {
+    Planet *planet;
     if(planets >= max_planets) {
         return true;
     }
@@ -82,7 +83,9 @@
         if(n < max_planets) {
             // this will be true with P(max_planets / ncells) might want to change this
             int p = arc4random() % [self.loadedPlanets count];
-            [cell addPlanet:[self.loadedPlanets objectAtIndex:p]];
+            planet = [self.loadedPlanets objectAtIndex:p];
+            [cell addPlanet:[planet copy]];
+            //[cell addPlanet:[self.loadedPlanets objectAtIndex:p]];
             [self.usedPlanets addObject:[self.loadedPlanets objectAtIndex:p]];
             planets++;
         }    

@@ -13,8 +13,6 @@
 @implementation Planet
 
 @synthesize name;
-@synthesize challenge;
-@synthesize north, south, east, west;
 @synthesize visitedBy;
 @synthesize type;
 @synthesize picture;
@@ -27,16 +25,13 @@
 {
     self = [super init];
     if (self) {
-        self.challenge = nil;
-        self.north = nil;
-        self.south = nil;
-        self.east = nil;
-        self.west = nil;
         self.owner = nil;
         self.planetID = -1;
         self.currentCost = -1;
         self.initialCost = -1;
         self.picture = nil;
+        self.name = [NSString string];
+        self.description = [NSString string];
         // XXX SET THIS FOR TESTING UNSET AFTER
         self.earnRate = 20; // don't want -1 here as a default
         self.visitedBy = [NSMutableArray array];
@@ -46,28 +41,21 @@
     return self;
 }
 
-- (SpaceLane *)getLane:(NSString *)lane {
-    if ([lane isEqualToString:@"n"]) {
-        return north;
-    }
-    if([lane isEqualToString:@"s"]) {
-        return south;
-    }
-    if([lane isEqualToString:@"e"]) {
-        return east;
-    }
-    if([lane isEqualToString:@"w"]) {
-        return west;
-    }
-    else return nil;
+- (Planet *)copy {
+    Planet *newPlanet = [[Planet alloc] autorelease];
+    newPlanet.planetID = self.planetID;
+    newPlanet.owner = nil;
+    newPlanet.initialCost = self.initialCost;
+    newPlanet.currentCost = self.currentCost;
+    newPlanet.picture = self.picture;
+    newPlanet.earnRate = self.earnRate;
+    newPlanet.description = self.description;
+    newPlanet.name = self.name;
+    newPlanet.picture = self.picture;
+    newPlanet.type = self.type;
+    return(newPlanet);
 }
 
-- (bool)hasLane:(NSString *)lane {
-    if ([self getLane:lane] == nil) {
-        return FALSE;
-    }
-    else return TRUE;
-}
 
 - (bool) hasVisited:(Player *)player {
     return [self.visitedBy indexOfObject:player];

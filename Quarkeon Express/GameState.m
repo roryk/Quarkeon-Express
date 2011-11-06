@@ -8,7 +8,6 @@
 
 #import "GameState.h"
 #import "Planet.h"
-#import "Game.h"
 #import "SpaceLane.h"
 #import "Player.h"
 #import "Queue.h"
