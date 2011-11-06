@@ -11,6 +11,7 @@
 #import "Planet.h"
 
 @interface Cell : NSObject {
+    NSMutableArray *exitnames;
     Planet *planet;
     NSMutableArray *players;
     NSMutableDictionary *exits;
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) NSMutableArray *visitedBy;
 @property (readwrite, retain) UIImage *picture;
 @property (readwrite, retain) UIImage *defaultpicture;
+@property (nonatomic, retain) NSMutableArray *exitnames;
 
 - (bool) hasLane:(NSString *)dir;
 - (void) addPlanet:(Planet *)newplanet;

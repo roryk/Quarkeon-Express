@@ -11,6 +11,7 @@
 		98275D751451EA99001D63A1 /* planet-glass-retina-114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */; };
 		9838DB071465EFA2006BFACA /* stars5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9838DB051465EFA1006BFACA /* stars5.png */; };
 		9838DB081465EFA2006BFACA /* stars6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9838DB061465EFA1006BFACA /* stars6.png */; };
+		9838DB0F14660A35006BFACA /* AI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9838DB0E14660A35006BFACA /* AI.m */; };
 		986AF2A314524FEC0045A44C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2A214524FEC0045A44C /* Player.m */; };
 		986AF2BA14525C8F0045A44C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AF2B914525C8E0045A44C /* GameState.m */; };
 		986AF2BD145278AF0045A44C /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 986AF2BC145278AE0045A44C /* TODO */; };
@@ -93,6 +94,8 @@
 		98275D741451EA99001D63A1 /* planet-glass-retina-114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina-114-114.png"; sourceTree = "<group>"; };
 		9838DB051465EFA1006BFACA /* stars5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars5.png; path = "Game Images/stars5.png"; sourceTree = "<group>"; };
 		9838DB061465EFA1006BFACA /* stars6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars6.png; path = "Game Images/stars6.png"; sourceTree = "<group>"; };
+		9838DB0D14660A35006BFACA /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AI.h; path = ../AI.h; sourceTree = "<group>"; };
+		9838DB0E14660A35006BFACA /* AI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AI.m; path = ../AI.m; sourceTree = "<group>"; };
 		986AF2A114524FCD0045A44C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		986AF2A214524FEC0045A44C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		986AF2B814525C8E0045A44C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				986AF2BC145278AE0045A44C /* TODO */,
+				9838DB0D14660A35006BFACA /* AI.h */,
+				9838DB0E14660A35006BFACA /* AI.m */,
 				98EF7AF514607732005E3365 /* WinScreenVC.h */,
 				98EF7AF614607732005E3365 /* WinScreenVC.m */,
 				98EF7AF714607732005E3365 /* WinScreenVC.xib */,
@@ -531,6 +536,7 @@
 				98A93D63146372C500493A97 /* GameSetupScreen.m in Sources */,
 				98A93D69146372FA00493A97 /* MainMenu.m in Sources */,
 				98A93D6E146378FA00493A97 /* PlayerSetupScreen.m in Sources */,
+				9838DB0F14660A35006BFACA /* AI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

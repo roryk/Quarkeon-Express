@@ -17,6 +17,7 @@
 @synthesize visitedBy;
 @synthesize picture;
 @synthesize defaultpicture;
+@synthesize exitnames;
 
 - (id)init
 {
@@ -33,6 +34,10 @@
         self.visitedBy = [NSMutableArray array];
         self.picture = nil;
         self.defaultpicture = nil;
+        self.exitnames = [NSMutableArray array];
+        for(NSString *key in exits) {
+            [exitnames addObject:key];
+        }
     }
     
     return self;

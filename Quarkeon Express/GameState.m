@@ -197,4 +197,10 @@
     // XXX TO BE IMPLEMENTE
 }
 
+- (bool)canMove:(NSString *)dir {
+    /**
+     can the current player move in the direction 'dir'?
+     **/
+    return([currPlayer.currLocation hasLane:dir]);
+}
 @end
