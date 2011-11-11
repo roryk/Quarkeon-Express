@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		253072C9146DA26C0048A727 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253072C8146DA26C0048A727 /* test.jpg */; };
 		254418901469539300634A3C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2544188F1469539300634A3C /* QuartzCore.framework */; };
 		254418921469539300634A3C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254418911469539300634A3C /* OpenGLES.framework */; };
 		254418941469539300634A3C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254418931469539300634A3C /* OpenAL.framework */; };
@@ -116,6 +115,9 @@
 		254419F31469539500634A3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 254419F21469539500634A3C /* AppDelegate.m */; };
 		254419F61469539500634A3C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254419F51469539500634A3C /* RootViewController.m */; };
 		254419F91469539500634A3C /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 254419F81469539500634A3C /* HelloWorldLayer.m */; };
+		25B4FAB3146DC5910032FE37 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25B4FAB2146DC5910032FE37 /* test.jpg */; };
+		25B4FAB7146DC59C0032FE37 /* testSat.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B4FAB6146DC59C0032FE37 /* testSat.png */; };
+		25B4FAC2146DDD0B0032FE37 /* ship.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B4FAC1146DDD0B0032FE37 /* ship.m */; };
 		25BE7120146D1A52005AF25E /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BE711F146D1A52005AF25E /* ColoredCircleSprite.m */; };
 		25BE7124146D1A5D005AF25E /* SneakyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BE7123146D1A5D005AF25E /* SneakyButton.m */; };
 		25BE7127146D1A66005AF25E /* SneakyButtonSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BE7126146D1A66005AF25E /* SneakyButtonSkinnedBase.m */; };
@@ -133,7 +135,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		253072C8146DA26C0048A727 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		2544188B1469539300634A3C /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2544188F1469539300634A3C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		254418911469539300634A3C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -362,6 +363,10 @@
 		254419F71469539500634A3C /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		254419F81469539500634A3C /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		254419FA1469539500634A3C /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		25B4FAB2146DC5910032FE37 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = SpaceGame/Resources/planets/test.jpg; sourceTree = SOURCE_ROOT; };
+		25B4FAB6146DC59C0032FE37 /* testSat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testSat.png; sourceTree = "<group>"; };
+		25B4FAC0146DDD0B0032FE37 /* ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ship.h; sourceTree = "<group>"; };
+		25B4FAC1146DDD0B0032FE37 /* ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ship.m; sourceTree = "<group>"; };
 		25BE711E146D1A52005AF25E /* ColoredCircleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColoredCircleSprite.h; path = SpaceGame/Classes/ColoredCircleSprite.h; sourceTree = SOURCE_ROOT; };
 		25BE711F146D1A52005AF25E /* ColoredCircleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColoredCircleSprite.m; path = SpaceGame/Classes/ColoredCircleSprite.m; sourceTree = SOURCE_ROOT; };
 		25BE7122146D1A5D005AF25E /* SneakyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SneakyButton.h; path = SpaceGame/Classes/SneakyButton/SneakyButton.h; sourceTree = SOURCE_ROOT; };
@@ -405,7 +410,7 @@
 		253072C6146DA24C0048A727 /* planets */ = {
 			isa = PBXGroup;
 			children = (
-				253072C8146DA26C0048A727 /* test.jpg */,
+				25B4FAB2146DC5910032FE37 /* test.jpg */,
 			);
 			path = planets;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 		254418A01469539300634A3C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25B4FAB5146DC59C0032FE37 /* stations */,
 				253072C6146DA24C0048A727 /* planets */,
 				25BF3941146D1DCE00702DDF /* Default.png */,
 				25BF3942146D1DCE00702DDF /* Default@2x.png */,
@@ -476,6 +482,8 @@
 				254418A31469539300634A3C /* fps_images.png */,
 				254418B11469539300634A3C /* Info.plist */,
 				254418B21469539300634A3C /* iTunesArtwork */,
+				25B4FAC0146DDD0B0032FE37 /* ship.h */,
+				25B4FAC1146DDD0B0032FE37 /* ship.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -791,6 +799,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		25B4FAB5146DC59C0032FE37 /* stations */ = {
+			isa = PBXGroup;
+			children = (
+				25B4FAB6146DC59C0032FE37 /* testSat.png */,
+			);
+			name = stations;
+			path = Resources/stations;
+			sourceTree = "<group>";
+		};
 		25C799E4146CBA67003B2E49 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,7 +929,8 @@
 				25BF394E146D1DCE00702DDF /* Icon-Small@2x.png in Resources */,
 				25BF394F146D1DCE00702DDF /* Icon.png in Resources */,
 				25BF3950146D1DCE00702DDF /* Icon@2x.png in Resources */,
-				253072C9146DA26C0048A727 /* test.jpg in Resources */,
+				25B4FAB3146DC5910032FE37 /* test.jpg in Resources */,
+				25B4FAB7146DC59C0032FE37 /* testSat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1044,7 @@
 				25BE7127146D1A66005AF25E /* SneakyButtonSkinnedBase.m in Sources */,
 				25BE712A146D1A75005AF25E /* SneakyJoystickSkinnedBase.m in Sources */,
 				25BE712D146D1A7F005AF25E /* SneakyJoystick.m in Sources */,
+				25B4FAC2146DDD0B0032FE37 /* ship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

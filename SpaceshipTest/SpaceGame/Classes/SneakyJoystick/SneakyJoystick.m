@@ -35,7 +35,8 @@ hasDeadzone,
 numberOfDirections,
 joystickRadius,
 thumbRadius,
-deadRadius;
+deadRadius,
+isActive;//http://www.cocos2d-iphone.org/forum/topic/8156
 
 - (void) dealloc
 {
@@ -57,7 +58,8 @@ deadRadius;
 		self.joystickRadius = rect.size.width/2;
 		self.thumbRadius = 32.0f;
 		self.deadRadius = 0.0f;
-		
+		self.isActive = FALSE;//http://www.cocos2d-iphone.org/forum/topic/8156
+        
 		//Cocos node stuff
 		position_ = rect.origin;
 }
@@ -164,6 +166,7 @@ deadRadius;
 		float dSq = location.x*location.x + location.y*location.y;
 		if(joystickRadiusSq > dSq){
 			[self updateVelocity:location];
+            self.isActive=TRUE;//http://www.cocos2d-iphone.org/forum/topic/8156
 			return YES;
 		}
 	}
@@ -179,6 +182,7 @@ deadRadius;
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    self.isActive=FALSE;//http://www.cocos2d-iphone.org/forum/topic/8156
 	CGPoint location = CGPointZero;
 	if(!autoCenter){
 		CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];

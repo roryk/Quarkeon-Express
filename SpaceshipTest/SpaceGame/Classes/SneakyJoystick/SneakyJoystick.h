@@ -35,6 +35,7 @@
 	float joystickRadiusSq;
 	float thumbRadiusSq;
 	float deadRadiusSq;
+    BOOL isActive;//http://www.cocos2d-iphone.org/forum/topic/8156
 }
 
 @property (nonatomic, readonly) CGPoint stickPosition;
@@ -48,6 +49,7 @@
 @property (nonatomic, assign) float joystickRadius;
 @property (nonatomic, assign) float thumbRadius;
 @property (nonatomic, assign) float deadRadius;
+@property (readwrite, assign, nonatomic) BOOL isActive;//http://www.cocos2d-iphone.org/forum/topic/8156
 
 -(id)initWithRect:(CGRect)rect;
 

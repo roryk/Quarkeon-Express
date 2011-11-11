@@ -46,9 +46,19 @@
 
 -(void)update:(ccTime)deltaTime{
     CGPoint scaledVelocity=ccpMult(leftJoystick.velocity, 240);
-    CGPoint newPosition=ccp(theShipSprite.position.x+scaledVelocity.x*deltaTime, theShipSprite.position.y+scaledVelocity.y*deltaTime);
-    //theShipSprite.rotation=-leftJoystick.degrees;
-    int whichShipFrame;
+    //I need to make a player class, I think
+    //that has a "speed" property
+    //so I can get inertia.
+    //if (leftJoystick.isActive) {
+    //    theShipSprite.userData=
+    //}
+    //NSLog(@"%i", leftJoystick.velocity);
+    //CGPoint newPosition=ccp(theShipSprite.position.x+scaledVelocity.x*deltaTime, theShipSprite.position.y+scaledVelocity.y*deltaTime);
+    if (leftJoystick.isActive){
+        playerShip.velocity=scaledVelocity;
+    }
+    CGPoint newPosition=ccp(playerShip.position.x+playerShip.velocity.x*deltaTime, playerShip.position.y+playerShip.velocity.y*deltaTime);
+
     //the joystick ends up providing mirror opposite degrees because the device has been rotated
     //it's also off by 90 degrees, again because of the rotation
     int j=90-leftJoystick.degrees;
@@ -56,17 +66,25 @@
         j=j+360;
     }
    
-    
+    int whichShipFrame;
     whichShipFrame=j/10;
-    //NSLog(@"%i", j);
-    [theShipSprite setDisplayFrame:[theShipSpins objectAtIndex:whichShipFrame]];
-    [theShipSprite setPosition:newPosition];
-    [theGameLayer runAction:[CCFollow actionWithTarget:theShipSprite]];
+    NSLog(@"%i", whichShipFrame);
+    //if (leftJoystick.isActive){
+    [theShipSprite setDisplayFrame:[playerShip.spriteFrames objectAtIndex:whichShipFrame]];
+    //}
+    [playerShip setPosition:newPosition];
+    [theGameLayer runAction:[CCFollow actionWithTarget:playerShip]];
+
+//    if (leftJoystick.isActive){
+//        [theShipSprite setDisplayFrame:[theShipSpins objectAtIndex:whichShipFrame]];
+//    }
+//    [theShipSprite setPosition:newPosition];
+//    [theGameLayer runAction:[CCFollow actionWithTarget:theShipSprite]];
+
     //theGameLayer.position=theShipSprite.position;
     //TODO: simulate inertia
     //      increase ship speed over time
     //      smooth turning of the ship
-    //      stop jumping of sprite frame when joystick is released
     //      ship acceleration should be related to mass
     
 }
@@ -88,48 +106,62 @@
         //place a planet
         CCSprite *thePlanet = [CCSprite spriteWithFile:@"test.jpg"];
         thePlanet.position=ccp(0,0);
+        CCSprite *aStation = [CCSprite spriteWithFile:@"testSat.png"];
+        aStation.anchorPoint=ccp(0,0);
+        aStation.position=ccp(200,200);
         //[self addChild:thePlanet z:0];
         [theGameLayer addChild:thePlanet z:0];
+        [theGameLayer addChild:aStation z:1];
         
         
         
-        
-        //read in the ship's spritesheet
-        theShipSpriteSheet=[CCSpriteBatchNode batchNodeWithFile:@"ship-spritesheet.png"];
-        [self addChild:theShipSpriteSheet];
-        //create the ship sprite
-        theShipSprite=[CCSprite spriteWithTexture:theShipSpriteSheet.texture rect:CGRectMake(0,0,64,64)];
-        
-        theShipSprite.position = ccp(theWindowSize.width/2, theWindowSize.height/2);//place the sprite in the center of the screen
-        //[self addChild: theShipSprite];
-        [theGameLayer addChild:theShipSprite];
-        
-        //this should center the camera on the ship
-        //[self setCenterOfScreen:theShipSprite.position];
-        
-        //make the ship spin
-        //theShipSpins=[NSMutableArray array];
-        theShipSpins=[[NSMutableArray alloc] init];
+        theShipSpriteSheet=[CCSpriteBatchNode batchNodeWithFile:@"ship-spritesheet.png"];//read in the ship's spritesheet
+        playerShip=[ShipObject spriteWithTexture:theShipSpriteSheet.texture rect:CGRectMake(0,0,64,64)];//set the ship image to the first frame
+        playerShip.position = ccp(theWindowSize.width/2, theWindowSize.height/2);//place the sprite in the center of the screen
         int frameCount = 0;
 		for (int y = 0; y < 6; y++) {
 			for (int x = 0; x < 6; x++) {
                 CCSprite *theFrame = [CCSpriteFrame frameWithTexture:theShipSpriteSheet.texture  rect:CGRectMake(x*64,y*64,64,64)];
-                [theShipSpins addObject:theFrame];
+                [playerShip.spriteFrames addObject:theFrame];
 				frameCount++;				
 				// stop looping after we've added 36 frames (6 by 6)
 				if (frameCount == 36)
 					break;
 			}
 		}
+        [theGameLayer addChild:playerShip];
+
+        
+//        //read in the ship's spritesheet
+//        theShipSpriteSheet=[CCSpriteBatchNode batchNodeWithFile:@"ship-spritesheet.png"];
+//        [self addChild:theShipSpriteSheet];
+//        //create the ship sprite
+//        theShipSprite=[CCSprite spriteWithTexture:theShipSpriteSheet.texture rect:CGRectMake(0,0,64,64)];
+//        
+//        theShipSprite.position = ccp(theWindowSize.width/2, theWindowSize.height/2);//place the sprite in the center of the screen
+//        //[self addChild: theShipSprite];
+//        [theGameLayer addChild:theShipSprite];
+//                
+//        //make the ship spin
+//        theShipSpins=[[NSMutableArray alloc] init];
+//        int frameCount = 0;
+//		for (int y = 0; y < 6; y++) {
+//			for (int x = 0; x < 6; x++) {
+//                CCSprite *theFrame = [CCSpriteFrame frameWithTexture:theShipSpriteSheet.texture  rect:CGRectMake(x*64,y*64,64,64)];
+//                [theShipSpins addObject:theFrame];
+//				frameCount++;				
+//				// stop looping after we've added 36 frames (6 by 6)
+//				if (frameCount == 36)
+//					break;
+//			}
+//		}
+        
+        
+        
         
         [self initJoystick];
         [self scheduleUpdate];
-        //CCAnimation *theShipSpinAnimation=[CCAnimation animationWithFrames:theShipSpins delay:0.1f];
-        //// create the action
-		//CCAnimate *theShipAction = [CCAnimate actionWithAnimation:theShipSpinAnimation];
-		//CCRepeatForever *repeat = [CCRepeatForever actionWithAction:theShipAction];
-		//// run the action
-		//[theShipSprite runAction:repeat];
+
         
         
     }
@@ -137,34 +169,6 @@
 }
 
 
--(void) setCenterOfScreen:(CGPoint)position{
-    //CGSize screenSize=[[CCDirector sharedDirector] winSize];
-    self.position=theShipSprite.position;
-}
-
-
-
-
-//-(id) init
-//{
-//	// always call "super" init
-//	// Apple recommends to re-assign "self" with the "super" return value
-//	if( (self=[super init])) {
-//        
-//		// create and initialize a Label
-//		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-//
-//		// ask director the the window size
-//		CGSize size = [[CCDirector sharedDirector] winSize];
-//	
-//		// position the label on the center of the screen
-//		label.position =  ccp( size.width /2 , size.height/2 );
-//		
-//		// add the label as a child to this Layer
-//		[self addChild: label];
-//	}
-//	return self;
-//}
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
