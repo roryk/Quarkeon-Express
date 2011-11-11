@@ -16,6 +16,8 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    CCLayer *theGameLayer;
+    CCLayer *theHUDLayer;
     SneakyJoystick *leftJoystick;
     SneakyButton *rightButton;
     CCSpriteBatchNode *theShipSpriteSheet;

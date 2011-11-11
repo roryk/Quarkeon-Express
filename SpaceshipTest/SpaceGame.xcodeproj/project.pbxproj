@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253072C9146DA26C0048A727 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253072C8146DA26C0048A727 /* test.jpg */; };
 		254418901469539300634A3C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2544188F1469539300634A3C /* QuartzCore.framework */; };
 		254418921469539300634A3C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254418911469539300634A3C /* OpenGLES.framework */; };
 		254418941469539300634A3C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254418931469539300634A3C /* OpenAL.framework */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		253072C8146DA26C0048A727 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		2544188B1469539300634A3C /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2544188F1469539300634A3C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		254418911469539300634A3C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -400,6 +402,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		253072C6146DA24C0048A727 /* planets */ = {
+			isa = PBXGroup;
+			children = (
+				253072C8146DA26C0048A727 /* test.jpg */,
+			);
+			path = planets;
+			sourceTree = "<group>";
+		};
 		254418801469539200634A3C = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +463,7 @@
 		254418A01469539300634A3C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				253072C6146DA24C0048A727 /* planets */,
 				25BF3941146D1DCE00702DDF /* Default.png */,
 				25BF3942146D1DCE00702DDF /* Default@2x.png */,
 				25BF3943146D1DCE00702DDF /* Icon-72.png */,
@@ -901,6 +912,7 @@
 				25BF394E146D1DCE00702DDF /* Icon-Small@2x.png in Resources */,
 				25BF394F146D1DCE00702DDF /* Icon.png in Resources */,
 				25BF3950146D1DCE00702DDF /* Icon@2x.png in Resources */,
+				253072C9146DA26C0048A727 /* test.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
