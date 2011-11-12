@@ -60,5 +60,6 @@
 
 - (void)updateGameScreen;
 - (void)updateButton:(UIButton *)button buttonText:(NSString *)title;
+- (IBAction)endTurn:(id)sender;
 
 @end

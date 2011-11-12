@@ -8,6 +8,11 @@
 
 #import "Player.h"
 #import "AI.h"
+#import "GameState.h"
+#import "Quarkeon_ExpressAppDelegate.h"
+#import "Quarkeon_ExpressViewController.h"
+
+@class Quarkeon_ExpressAppDelegate;
 
 @implementation AI
 
@@ -55,8 +60,8 @@
 }
 
 -(void) playTurn {
-    NSString *dir;
-    Planet *planet;
+    NSString *dir = [NSString string];
+    Planet *planet = [[Planet alloc] init];
     while(self.uranium > 0) {
         dir = [self chooseRandomDir];
         [self movePlayerInDirection:dir];
@@ -67,6 +72,10 @@
             }
         }
     }
+    // fix this to trigger the button directly
+    // something like this:
+    // [button sendActionsForControlEvents:UIControlEventTouchUpInside]
+    [appDelegate.playGameVC endTurn:nil];
 }
 
 @end

@@ -27,7 +27,7 @@
 @synthesize gameSetupVC = gameSetupVC;
 @synthesize mainMenuVC = mainMenuVC;
 @synthesize playerSetupVC = playerSetupVC;
-@synthesize playGameVC = playGameVC;
+@synthesize playGameVC;
 
 - (void) generateMap
 {
@@ -49,6 +49,7 @@
 
   
     [self.gameState setupTurnOrder];
+    [self.gameState.currPlayer startTurn];
 
 }
 

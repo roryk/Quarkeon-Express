@@ -177,13 +177,13 @@
     GameState *gs = appDelegate.gameState;
 
     [gs endTurn];
-    // switch views to the pass the game screen
+    
     appDelegate.passGameVC = [[PassGameVC alloc] init];
     [appDelegate.playGameVC.view removeFromSuperview];
-    //[appDelegate.viewController release];
     [appDelegate.window addSubview:appDelegate.passGameVC.view];
-
-
+    if([[gs.turnQueue getHead] isKindOfClass:[AI class]]) {
+        [appDelegate.passGameVC startTurn:(id)nil];
+    }   
 }
 
 @end

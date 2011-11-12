@@ -11,4 +11,5 @@
 @interface NSMutableArray(Queue)
 - (id) dequeue;
 - (void) enqueue:(id)object;
+- (id) getHead;
 @end

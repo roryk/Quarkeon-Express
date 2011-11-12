@@ -13,4 +13,6 @@
 @interface PassGameVC : UIViewController {
     Quarkeon_ExpressAppDelegate *appDelegate;
 }
+
+- (IBAction)startTurn:(id)sender;
 @end

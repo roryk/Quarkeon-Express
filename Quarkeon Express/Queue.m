@@ -21,4 +21,8 @@
 - (void) enqueue:(id)obj {
     [self addObject:obj];
 }
+
+- (id) getHead {
+    return [self objectAtIndex:0];
+}
 @end
