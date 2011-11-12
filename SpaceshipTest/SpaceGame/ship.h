@@ -40,7 +40,7 @@
 @property (readwrite, assign) int crew;
 @property (readwrite, assign) CGPoint velocity;
 @property (nonatomic, retain) CCSpriteBatchNode *theShipSpriteSheet;
-@property (readwrite, assign) NSMutableArray *spriteFrames;
+@property (readwrite, retain) NSMutableArray *spriteFrames;
 @property int currentSpriteFrame;
 
 @end

@@ -40,20 +40,11 @@
     leftJoy.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:32];
     leftJoy.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,128,128)];
     leftJoystick = [leftJoy.joystick retain];
-    //[self addChild:leftJoy z:10];
     [theHUDLayer addChild:leftJoy z:10];
 }
 
 -(void)update:(ccTime)deltaTime{
     CGPoint scaledVelocity=ccpMult(leftJoystick.velocity, 240);
-    //I need to make a player class, I think
-    //that has a "speed" property
-    //so I can get inertia.
-    //if (leftJoystick.isActive) {
-    //    theShipSprite.userData=
-    //}
-    //NSLog(@"%i", leftJoystick.velocity);
-    //CGPoint newPosition=ccp(theShipSprite.position.x+scaledVelocity.x*deltaTime, theShipSprite.position.y+scaledVelocity.y*deltaTime);
     if (leftJoystick.isActive){
         playerShip.velocity=scaledVelocity;
     }
@@ -68,20 +59,13 @@
    
     int whichShipFrame;
     whichShipFrame=j/10;
-    NSLog(@"%i", whichShipFrame);
-    //if (leftJoystick.isActive){
-    [theShipSprite setDisplayFrame:[playerShip.spriteFrames objectAtIndex:whichShipFrame]];
-    //}
+    //NSLog(@"%i", whichShipFrame);
+    if (leftJoystick.isActive){
+        [playerShip setDisplayFrame:[playerShip.spriteFrames objectAtIndex:whichShipFrame]];
+    }
     [playerShip setPosition:newPosition];
     [theGameLayer runAction:[CCFollow actionWithTarget:playerShip]];
 
-//    if (leftJoystick.isActive){
-//        [theShipSprite setDisplayFrame:[theShipSpins objectAtIndex:whichShipFrame]];
-//    }
-//    [theShipSprite setPosition:newPosition];
-//    [theGameLayer runAction:[CCFollow actionWithTarget:theShipSprite]];
-
-    //theGameLayer.position=theShipSprite.position;
     //TODO: simulate inertia
     //      increase ship speed over time
     //      smooth turning of the ship
@@ -109,7 +93,6 @@
         CCSprite *aStation = [CCSprite spriteWithFile:@"testSat.png"];
         aStation.anchorPoint=ccp(0,0);
         aStation.position=ccp(200,200);
-        //[self addChild:thePlanet z:0];
         [theGameLayer addChild:thePlanet z:0];
         [theGameLayer addChild:aStation z:1];
         
@@ -118,6 +101,7 @@
         theShipSpriteSheet=[CCSpriteBatchNode batchNodeWithFile:@"ship-spritesheet.png"];//read in the ship's spritesheet
         playerShip=[ShipObject spriteWithTexture:theShipSpriteSheet.texture rect:CGRectMake(0,0,64,64)];//set the ship image to the first frame
         playerShip.position = ccp(theWindowSize.width/2, theWindowSize.height/2);//place the sprite in the center of the screen
+        playerShip.spriteFrames=[[NSMutableArray alloc] init];
         int frameCount = 0;
 		for (int y = 0; y < 6; y++) {
 			for (int x = 0; x < 6; x++) {
@@ -131,34 +115,6 @@
 		}
         [theGameLayer addChild:playerShip];
 
-        
-//        //read in the ship's spritesheet
-//        theShipSpriteSheet=[CCSpriteBatchNode batchNodeWithFile:@"ship-spritesheet.png"];
-//        [self addChild:theShipSpriteSheet];
-//        //create the ship sprite
-//        theShipSprite=[CCSprite spriteWithTexture:theShipSpriteSheet.texture rect:CGRectMake(0,0,64,64)];
-//        
-//        theShipSprite.position = ccp(theWindowSize.width/2, theWindowSize.height/2);//place the sprite in the center of the screen
-//        //[self addChild: theShipSprite];
-//        [theGameLayer addChild:theShipSprite];
-//                
-//        //make the ship spin
-//        theShipSpins=[[NSMutableArray alloc] init];
-//        int frameCount = 0;
-//		for (int y = 0; y < 6; y++) {
-//			for (int x = 0; x < 6; x++) {
-//                CCSprite *theFrame = [CCSpriteFrame frameWithTexture:theShipSpriteSheet.texture  rect:CGRectMake(x*64,y*64,64,64)];
-//                [theShipSpins addObject:theFrame];
-//				frameCount++;				
-//				// stop looping after we've added 36 frames (6 by 6)
-//				if (frameCount == 36)
-//					break;
-//			}
-//		}
-        
-        
-        
-        
         [self initJoystick];
         [self scheduleUpdate];
 
