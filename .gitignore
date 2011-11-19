@@ -5,6 +5,7 @@ xcuserdatad/
 *.swp
 *~.nib
 build/
+*.pyc
 
 *.pbxuser
 *.perspective

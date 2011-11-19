@@ -145,3 +145,68 @@ class DataGuy (object):
         cur.close()
         
         return {"status": "ok", 'id': user_id}
+
+
+    @db_error_handler
+    def init_new_db(self):
+    # this is simply to help us get a big corpus of planets
+    # if init db is called
+    # we should move the image names into the DB, rather than having this as a list
+        planet_images = [ 
+                        'Arid World.jpg',
+                        'Caldonia.jpg',
+                        'Cold World.jpg',
+                        'Dead World.jpg',
+                        'Drye.jpg',
+                        'Global Warming.jpg',
+                        'High Winds.jpg',
+                        'Ice Planet.jpg',
+                        'Mostly Harmless.jpg',
+                        'Nu Earth.jpg',
+                        'Pyrobora.jpg',
+                        'Small Gas Giant.jpg',
+                        'Waterless World.jpg']
+        planet_names = [
+                        'Burn', 'Earth', 'Mars', 'New Earth', 'New Mars',
+                        'New Mercury', 'New Jupiter', 'New Saturn', 'New Pluto', 'New Venus', 
+                        'New Chiba', 'Ashpool', 'Germany', 'Merica', 'Cellulon', 
+                        'Ertria', 'Goulton', 'Myria', 'Odin', 'Thesus',
+                        'Appera', 'Pathi', 'Orgon', 'Quell', 'Bob', 
+                        'Franliz', 'Ecaz', 'Oppoero', 'Worl', 'Solo', 
+                        'Anakiin', 'Sophus', 'Lucien', 'Ciaus', 'Pyron',
+                        'Losaoz', 'Syyz', 'Oiish', 'Posque', 'Rance',
+                        'Celand', 'Anada', 'Apan', 'Hina', 'Pycon', 
+                        'Hilee', 'Razil', 'Zelean', 'Papau', 'Uba'
+                        ]
+
+
+
+        cur = self.dbcon.cursor()
+
+        cur.execute("DELETE FROM PLANETS")
+        cur.execute("DELETE FROM PLAYERS")
+
+        for name in planet_names:
+            cur.execute("INSERT INTO planets (name, picture) VALUES (?, ?)", 
+                    (name, planet_images[random.randint(0, len(planet_images) - 1)]))
+
+        self.dbcon.commit()
+
+        # setup some default users
+        cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('adam', 'adamf@csh.rit.edu', 'foo')")
+        cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('rory', 'roryk@mit.edu', 'foo')")
+        cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('sean', 'seanth@gmail.com', 'foo')")
+
+        self.dbcon.commit()
+
+    @db_error_handler
+    def create_random_map (self, width=100, size=100, planet_density=70):
+        star_images = [ 
+                        'stars1.png',
+                        'stars2.png',
+                        'stars3.png',
+                        'stars5.png',
+                        'stars6.png']
+        pass
+
+

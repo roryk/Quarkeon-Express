@@ -42,6 +42,13 @@
 		C3131D661451AF010096F21A /* Planets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D631451AF010096F21A /* Planets.plist */; };
 		C3131D6B1451AF220096F21A /* planet-glass-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = C3131D681451AF220096F21A /* planet-glass-retina.png */; };
 		C3131D6C1451AF220096F21A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3131D6A1451AF220096F21A /* Queue.m */; };
+		C324590E14775702000C18C7 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590514775702000C18C7 /* NSObject+SBJSON.m */; };
+		C324590F14775702000C18C7 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590714775702000C18C7 /* NSString+SBJSON.m */; };
+		C324591014775702000C18C7 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590914775702000C18C7 /* SBJsonBase.m */; };
+		C324591114775702000C18C7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590B14775702000C18C7 /* SBJsonParser.m */; };
+		C324591214775702000C18C7 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590D14775702000C18C7 /* SBJsonWriter.m */; };
+		C324591814775730000C18C7 /* QEHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591514775730000C18C7 /* QEHTTPClient.m */; };
+		C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591714775730000C18C7 /* QEHTTPClientResponse.m */; };
 		C33C7072145C65BD0094534C /* Arid World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7065145C65BD0094534C /* Arid World.jpg */; };
 		C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7066145C65BD0094534C /* Caldonia.jpg */; };
 		C33C7074145C65BD0094534C /* Cold World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7067145C65BD0094534C /* Cold World.jpg */; };
@@ -137,6 +144,21 @@
 		C3131D681451AF220096F21A /* planet-glass-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina.png"; sourceTree = "<group>"; };
 		C3131D691451AF220096F21A /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		C3131D6A1451AF220096F21A /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		C324590314775702000C18C7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		C324590414775702000C18C7 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		C324590514775702000C18C7 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		C324590614775702000C18C7 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		C324590714775702000C18C7 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		C324590814775702000C18C7 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		C324590914775702000C18C7 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		C324590A14775702000C18C7 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		C324590B14775702000C18C7 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		C324590C14775702000C18C7 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		C324590D14775702000C18C7 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C324591414775730000C18C7 /* QEHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; path = QEHTTPClient.h; sourceTree = "<group>"; };
+		C324591514775730000C18C7 /* QEHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClient.m; sourceTree = "<group>"; };
+		C324591614775730000C18C7 /* QEHTTPClientResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; path = QEHTTPClientResponse.h; sourceTree = "<group>"; };
+		C324591714775730000C18C7 /* QEHTTPClientResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClientResponse.m; sourceTree = "<group>"; };
 		C33C7065145C65BD0094534C /* Arid World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Arid World.jpg"; path = "Game Images/Arid World.jpg"; sourceTree = "<group>"; };
 		C33C7066145C65BD0094534C /* Caldonia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Caldonia.jpg; path = "Game Images/Caldonia.jpg"; sourceTree = "<group>"; };
 		C33C7067145C65BD0094534C /* Cold World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Cold World.jpg"; path = "Game Images/Cold World.jpg"; sourceTree = "<group>"; };
@@ -231,9 +253,40 @@
 			name = "Star Fields";
 			sourceTree = "<group>";
 		};
+		C32458FE147756D5000C18C7 /* JSON Client */ = {
+			isa = PBXGroup;
+			children = (
+				C324590314775702000C18C7 /* JSON.h */,
+				C324590414775702000C18C7 /* NSObject+SBJSON.h */,
+				C324590514775702000C18C7 /* NSObject+SBJSON.m */,
+				C324590614775702000C18C7 /* NSString+SBJSON.h */,
+				C324590714775702000C18C7 /* NSString+SBJSON.m */,
+				C324590814775702000C18C7 /* SBJsonBase.h */,
+				C324590914775702000C18C7 /* SBJsonBase.m */,
+				C324590A14775702000C18C7 /* SBJsonParser.h */,
+				C324590B14775702000C18C7 /* SBJsonParser.m */,
+				C324590C14775702000C18C7 /* SBJsonWriter.h */,
+				C324590D14775702000C18C7 /* SBJsonWriter.m */,
+			);
+			name = "JSON Client";
+			sourceTree = "<group>";
+		};
+		C324591314775716000C18C7 /* QE Client */ = {
+			isa = PBXGroup;
+			children = (
+				C324591414775730000C18C7 /* QEHTTPClient.h */,
+				C324591514775730000C18C7 /* QEHTTPClient.m */,
+				C324591614775730000C18C7 /* QEHTTPClientResponse.h */,
+				C324591714775730000C18C7 /* QEHTTPClientResponse.m */,
+			);
+			name = "QE Client";
+			sourceTree = "<group>";
+		};
 		C377A5EA144E446C00663A2C = {
 			isa = PBXGroup;
 			children = (
+				C324591314775716000C18C7 /* QE Client */,
+				C32458FE147756D5000C18C7 /* JSON Client */,
 				C30234691465AA4900A0ED4D /* Star Fields */,
 				C302345E1465A6D700A0ED4D /* Space Stations */,
 				C38E1467145B5CBD00AF2E8F /* PlanetPics */,
@@ -537,6 +590,13 @@
 				98A93D69146372FA00493A97 /* MainMenu.m in Sources */,
 				98A93D6E146378FA00493A97 /* PlayerSetupScreen.m in Sources */,
 				9838DB0F14660A35006BFACA /* AI.m in Sources */,
+				C324590E14775702000C18C7 /* NSObject+SBJSON.m in Sources */,
+				C324590F14775702000C18C7 /* NSString+SBJSON.m in Sources */,
+				C324591014775702000C18C7 /* SBJsonBase.m in Sources */,
+				C324591114775702000C18C7 /* SBJsonParser.m in Sources */,
+				C324591214775702000C18C7 /* SBJsonWriter.m in Sources */,
+				C324591814775730000C18C7 /* QEHTTPClient.m in Sources */,
+				C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

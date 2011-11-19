@@ -18,6 +18,7 @@ import qe.handlers.json
 
 define("port", default=8888, help="run on the given port", type=int)
 define("sqlite_db", default="./database/qe.db", help="path to sqliteDB", type=str)
+define("init_db", default=False, help="Re-initialize the database (destructive!)", type=bool)
 
 def main():
     tornado.options.parse_command_line()
@@ -35,6 +36,13 @@ def main():
 
     application = tornado.web.Application([
 
+####
+# Need to add: map generation, map data model, retrieving an old
+# game from the server (w/ map & state), creating a game, starting
+# a game, taking turns, inviting users to play the game, handling
+# winning and losing, notifing the players of their turn happening.
+####
+
         # REST interface, everything under /api
         # user managment
         (r"/api/signupnewplayer", json.SignUpNewPlayerHandler, dg),
@@ -45,11 +53,24 @@ def main():
         (r"/api/inviteusertogame", json.InviteUserToGameHandler, dg),
         (r"/api/startgame", json.StartGameHandler, dg),
 
+
+
+        # game management, to be implemented once a single game works
+#        (r"/api/loadgame", json.LoadGameHandler, dg),
+#        (r"/api/getgames", json.GetGamesHandler, dg),
+
         # game play
         (r"/api/buyplanet", json.BuyPlanetHandler, dg),
         (r"/api/endturn", json.EndTurnHandler, dg),
 
     ], **settings)
+
+
+    if (options.init_db):
+        logging.info("Wiping DB and initing")
+        dg['dg'].init_new_db()
+        return 
+
 
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)
