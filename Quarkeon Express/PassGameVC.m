@@ -56,7 +56,7 @@
 
 - (IBAction)startTurn:(id)sender {
     GameState *gs = appDelegate.gameState;
-    [gs startTurn];
+    [gs setupTurn];
     if([gs didCurrentPlayerWin]) {
         appDelegate.winScreenVC = [[WinScreenVC alloc] init];
         [appDelegate.passGameVC.view removeFromSuperview];
@@ -68,11 +68,13 @@
         //appDelegate.window.rootViewController = (UIViewController *) appDelegate.viewController;
         //[appDelegate.window makeKeyAndVisible];
         //[UIWindow addSubview:self.viewController];
+//        [gs startTurn];
         [appDelegate.passGameVC.view removeFromSuperview];
         //[appDelegate.passGameVC release];
         [appDelegate.playGameVC updateGameScreen];
         [appDelegate.window addSubview:appDelegate.playGameVC.view];
 //        [appDelegate.viewController updateGameScreen];
+        [gs startTurn];
         
     }
     

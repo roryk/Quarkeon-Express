@@ -142,10 +142,9 @@
     // XXX: add go to the no-spoiler screen
 }
 
-- (void)startTurn {
+- (void)setupTurn {
     self.currPlayer = [self.turnQueue dequeue];
     self.currCell = self.currPlayer.currLocation;
-    [self.currPlayer startTurn];
     for(Planet *planet in self.planets) {
         NSLog(@"planet: %@", planet);
         NSLog(@"owner: %@", planet.owner);
@@ -155,6 +154,10 @@
             self.currPlayer.uranium += planet.earnRate;
         }
     }
+}
+
+- (void)startTurn {
+    [self.currPlayer startTurn];
 }
 
 - (bool) didCurrentPlayerWin {

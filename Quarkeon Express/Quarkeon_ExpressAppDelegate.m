@@ -46,14 +46,12 @@
 
 - (void) startGame
 {
-
-  
     [self.gameState setupTurnOrder];
-    [self.gameState.currPlayer startTurn];
-
+    [self.gameState setupTurn];
+    [self.gameState startTurn];
 }
 
-- (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
+-(void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
 {
     [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
 }

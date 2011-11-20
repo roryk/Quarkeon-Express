@@ -40,5 +40,6 @@
 - (void)gameOverCleanup;
 - (void)setupTurnOrder;
 - (bool)canMove:(NSString *)dir;
+-(void)setupTurn;
 
 @end
