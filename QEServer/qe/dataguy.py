@@ -3,6 +3,8 @@
 from .error import QEPermissionsError
 from .error import QEIntegrityError
 
+from .qemap import Generator
+
 import logging
 import datetime
 
@@ -199,14 +201,28 @@ class DataGuy (object):
 
         self.dbcon.commit()
 
+        cur.close()
+
+
+    
     @db_error_handler
-    def create_random_map (self, width=100, size=100, planet_density=70):
-        star_images = [ 
-                        'stars1.png',
-                        'stars2.png',
-                        'stars3.png',
-                        'stars5.png',
-                        'stars6.png']
-        pass
+    def get_planets(self, count=0):
+        cur = self.dbcon.cursor()
+        limit = ""
+        if count != 0:
+            limit = "LIMIT " + str(count)
 
+        cur.execute("SELECT * FROM PLANETS " + limit)
+       
+        planets = db_rows_to_dict('planets', cur)
+        cur.close()
 
+        planets['status'] = 'ok'     
+
+        return planets
+        
+
+    @db_error_handler
+    def create_random_map (self, width=100, height=100, max_planets=40):
+        planets = self.get_planets()
+        newMap = Generator(planets, width, height, max_planets)
