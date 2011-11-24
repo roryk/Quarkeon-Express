@@ -3,8 +3,6 @@
 from .error import QEPermissionsError
 from .error import QEIntegrityError
 
-from .qemap import Generator
-
 import logging
 import datetime
 
@@ -111,8 +109,10 @@ class DataGuy (object):
         cur.execute("SELECT id, name, emailAddress FROM players WHERE emailAddress = ? and password = ?", 
                     (login_credential, password))
 
+        logging.info(login_credential + " " + password)
         try:
             userID, name, email_address = cur.fetchone()
+            logging.info(str(userID) + " " + name + " " + email_address)
             result = {'status' : "ok", 'email_address' : email_address, 'id' : userID, 'name' : name }
         except Exception, e:
             logging.error("error: %s" % (e))
@@ -221,8 +221,115 @@ class DataGuy (object):
 
         return planets
         
+    @db_error_handler
+    def get_game(self, game_id):
+        cur = self.dbcon.cursor()
+        cur.execute("SELECT * FROM game WHERE id=?", (game_id))
+        
+        result['game'] = db_rows_to_dict('game', cur)
+        result['id'] = game_id
+
+        cur.execute("SELECT * FROM map WHERE game=?", (game_id))
+        result['map'] = db_rows_to_dict('map', cur)
+
+        cur.execute("SELECT * FROM player_in_game WHERE game=?", (game_id))
+        result['players'] = db_rows_to_dict('players', cur)
+        
+        cur.execute("SELECT * FROM planet_in_game WHERE game=?", (game_id))
+        result['planets'] = db_rows_to_dict('planets', cur)
+
+        result['status'] = 'ok'
+
+        return result
+        
 
     @db_error_handler
-    def create_random_map (self, width=100, height=100, max_planets=40):
+    def create_game(self, players, starting_uranium, width, height, planet_percentage, mean_uranium, mean_planet_life):
+        cur = self.dbcon.cursor()
+
+        cur.execute("INSERT INTO game (players_in_game, whose_turn, num_planets, map, last_turn) VALUES (?, ?, ?, ?, ?)",
+                        (len(players), 0, 0, 0, 0))
+
+        self.dbcon.commit()
+
+        cur.execute('SELECT last_insert_rowid()')
+
+        game_id = cur.fetchone()[0]
+        player_ids = []
+        
+        for player in players:
+            cur.execute("SELECT id FROM player WHERE emailAddress = ?", (player))
+
+            player_id = cur.fetchone()[0]
+            player_ids.append(player_id)
+
+            cur.execute("INSERT INTO player_in_game (uranium, player, xLocation, yLocation, game) VALUES (?, ?, ?, ?, ?)", 
+                            (starting_uranium, player_id, random.randint(1, width), random.randint(1, height), game_id))
+
+       
+        self.dbcon.commit()
+
+        new_map = self.create_random_map (game_id, map_width, map_height, planet_percentage, mean_uranium, mean_planet_life) 
+
+        whose_turn = random.choice(player_ids)
+
+        cur.execute("UPDATE game SET whose_turn=?, num_planets=?, map=? WHERE id=?", 
+                       (whose_turn, new_map['num_planets'], new_map['map_id'])) 
+
+        self.dbcon.commit()
+
+        return self.get_game(game_id)
+
+
+
+    @db_error_handler
+    def create_map(self, game_id, width=100, height=100, planet_percentage=40, mean_uranium=200, mean_planet_life=100):
         planets = self.get_planets()
-        newMap = Generator(planets, width, height, max_planets)
+
+        cur = self.dbcon.cursor()
+
+
+        cur.execute("INSERT INTO map (game, width, height) VALUES (?, ?, ?)", 
+            (game_id, width, height));
+
+        self.dbcon.commit()
+
+        cur.execute('SELECT last_insert_rowid()')
+
+        map_id = cur.fetchone()[0]
+
+        random.shuffle(planets)
+
+        # each planet has some total uranium that is on the normal curve of the mean_uranium
+        # earn_rate is total_uranium divided by mean_lifetime
+        # cost is related to the total, plus/minus some fudge
+        #
+
+        for x in range(0, width):
+            for y in range(0, height):
+                if random.random() <= (planet_percentage * 0.01):
+
+                    planet = planets.pop()
+
+                    # XXX replace 3 with a better value
+                    total_uranium = int(random.normalvariate(mean_uranium, mean_uranium/3))
+                    earn_rate = int(total_uranium / random.normalvariate(mean_planet_life, mean_planet_life/3))
+
+                    cost = earn_rate * mean_planet_life # XXX also improve this.
+                    cur.execute("INSERT INTO planet_in_game (cost, earn_rate, total_uranium, game, map, xLocation, yLocation) " + 
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)", (cost, earn_rate, total_uranium, game_id, map_id, x, y));
+                   
+        cur.commit() 
+        cur.execute("SELECT * FROM planet_in_game where map = ? and game = ?", (map_id, game_id))
+
+        new_map = db_rows_to_dict('map', cur)
+        cur.close()
+
+        new_map['width'] = width
+        new_map['height'] = height
+        new_map['map_id'] = map_id
+        new_map['status'] = 'ok'     
+
+        logging.info(new_map)
+
+        return new_map

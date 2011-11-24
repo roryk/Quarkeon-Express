@@ -108,20 +108,31 @@ class SignUpNewPlayerHandler(BaseJSONHandler):
 
     def safe_post(self):
 
-       name = self.get_argument('name')
-       email = self.get_argument('email_address')
-       password = self.get_argument('password')
+        name = self.get_argument('name')
+        email = self.get_argument('email_address')
+        password = self.get_argument('password')
 
-       result = self.dg.add_player(name, email, password)
-          
-       self.write(result)
+        result = self.dg.add_player(name, email, password)
+            
+        self.write(result)
 
 class CreateGameHandler(BaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        pass
+        players = tornado.json_decode(self.get_argument('players'))
+        # players should be a json dict with a list of all the players email addresses
+        map_width = self.get_argument('map_width')
+        map_height = self.get_argument('map_width')
+        planet_percentage = self.get_argument('planet_percentage')
+        mean_uranium = self.get_argument('mean_uranium')
+        starting_uranium = self.get_argument('starting_uranium')
+        mean_planet_lifetime = self.get_argument('mean_planet_lifetime')
+
+        result = self.dg.create_game(players, starting_uranium, map_width, map_height, planet_percentage, mean_uranium, mean_planet_life)
+        self.write(result)
+
 
 class InviteUserToGameHandler(BaseJSONHandler):
     def initialize (self, dg):

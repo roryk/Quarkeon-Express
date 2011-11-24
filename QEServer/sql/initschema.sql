@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS PLAYER_IN_GAME (
         id INTEGER PRIMARY KEY,
         uranium INTEGER NOT NULL,
         player INTEGER NOT NULL,
-        location INTEGER NOT NULL,
+        yLocation INTEGER NOT NULL,
+        xLocation INTEGER NOT NULL,
         game INTEGER NOT NULL
     );
 
@@ -21,7 +22,10 @@ CREATE TABLE IF NOT EXISTS PLANET_IN_GAME (
         earn_rate INTEGER NOT NULL,
         total_uranium INTEGER NOT NULL,
         game INTEGER NOT NULL,
-        owner INTEGER
+        map INTEGER NOT NULL,
+        owner INTEGER,
+        xLocation INTEGER NOT NULL,
+        yLocation INTEGER NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS PLAYERS (
@@ -39,22 +43,7 @@ CREATE TABLE IF NOT EXISTS PLANETS (
 
 CREATE TABLE IF NOT EXISTS MAP (
         id INTEGER PRIMARY KEY,
-        game INTEGER NOT NULL
-    );
-
-
-CREATE TABLE IF NOT EXISTS MAP_CELL (
-        id INTEGER PRIMARY KEY,
-        map INTEGER NOT NULL,
-        planet INTEGER,
-        picture VARCHAR(255)
-    );
-
-CREATE TABLE IF NOT EXISTS MAP_CONNECTION (
-        id INTEGER PRIMARY KEY,
-        map INTEGER NOT NULL,
-        cell1 INTEGER NOT NULL,
-        cell2 INTEGER NOT NULL,
-        name1 VARCHAR(255) NOT NULL,
-        name2 VARCHAR(255) NOT NULL
+        game INTEGER NOT NULL,
+        width INTEGER NOT NULL,
+        height INTEGER NOT NULL
     );

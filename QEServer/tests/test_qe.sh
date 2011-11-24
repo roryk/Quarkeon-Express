@@ -123,10 +123,13 @@ curlopts="-s -c ${cookiejar} -b ${cookiejar} -D ${headers} "
 port=`perl -e 'print int(rand(30000)) + 1024'`
 #let port=8000+${$}
 
-command="../qe.py -sqlite_db=${testdb} --port=${port}"
-
 
 echo ".quit" | sqlite3 -init ../sql/initschema.sql ${testdb}
+
+command="../qe.py -sqlite_db=${testdb} --init_db"
+python ${command}
+
+command="../qe.py -sqlite_db=${testdb} --port=${port}"
 
 python ${command} &
 qepid=${!}
@@ -158,6 +161,11 @@ checkjson "login" "${LOGIN_STATUS}" "id" 4 "${headers}" "LOGIN_STATUS"
 LOGIN_STATUS=`curl ${curlopts} -d email_address=roryasdfasdf@gmail.com -d password=foobar http://localhost:${port}/api/login`
 XSRF=`grep xsrf ${cookiejar} | awk '{print $7}'`
 checkjson "login" "${LOGIN_STATUS}" "id" 5 "${headers}" "LOGIN_STATUS"
+
+echo ${XSRF} 
+
+CREATE_STATUS=`curl ${curlopts} -d _xsrf=${XSFR} -d players="['adamf@csh.rit.edu', 'adamfblahblah@gmail.com', 'roryasdfasdf@gmail.com']" -d map_width=100 -d map_height=100 -d planet_percentage=40 -d mean_uranium=100 -d starting_uranium=400 -d mean_planet_lifetime=100 http://localhost:${port}/api/creategame`
+checkjson "create_game" "${CREATE_STATUS}" "id" 1 "${headers}" "CREATE_STATUS"
 
 if [ "${KEEP_DB}" == "" ]; then
     cleanup
