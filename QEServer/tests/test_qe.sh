@@ -164,7 +164,7 @@ checkjson "login" "${LOGIN_STATUS}" "id" 5 "${headers}" "LOGIN_STATUS"
 
 echo ${XSRF} 
 
-CREATE_STATUS=`curl ${curlopts} -d _xsrf=${XSRF} -d players='["adamf@csh.rit.edu", "adamfblahblah@gmail.com", "roryasdfasdf@gmail.com"]' -d map_width=100 -d map_height=100 -d planet_percentage=40 -d mean_uranium=100 -d starting_uranium=400 -d mean_planet_lifetime=100 http://localhost:${port}/api/creategame`
+CREATE_STATUS=`curl ${curlopts} -d _xsrf=${XSRF} -d players='["adamf@csh.rit.edu", "adamfblahblah@gmail.com", "roryasdfasdf@gmail.com"]' -d map_width=20 -d map_height=20 -d planet_percentage=10 -d mean_uranium=100 -d starting_uranium=400 -d mean_planet_lifetime=100 http://localhost:${port}/api/creategame`
 checkjson "create_game" "${CREATE_STATUS}" "id" 1 "${headers}" "CREATE_STATUS"
 
 if [ "${KEEP_DB}" == "" ]; then

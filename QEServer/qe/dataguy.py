@@ -1,24 +1,17 @@
 #!/usr/bin/env python
 
-from .error import QEPermissionsError
-from .error import QEIntegrityError
 
 import logging
-import datetime
 
 import sqlite3
 
-import uuid
 
 import traceback
-import copy
 import random
 
 import urlparse
 
 
-# XXX we use this just for the JSON library; we need to refactor this out
-import tornado
 
 # XXX we set the port in qe.py as well, which is a bug waiting to happen.
 # since we need to keep them in sync. Not a problem when we switch to port 80
@@ -278,7 +271,7 @@ class DataGuy (object):
         whose_turn = random.choice(player_ids)
 
         cur.execute("UPDATE game SET whose_turn=?, num_planets=?, map=? WHERE id=?", 
-                       (whose_turn, new_map['num_planets'], new_map['map_id'])) 
+                       (whose_turn, new_map['num_planets'], new_map['map_id'], game_id)) 
 
         self.dbcon.commit()
 
@@ -316,8 +309,9 @@ class DataGuy (object):
                     planet = planets.pop()
 
                     # XXX replace 3 with a better value
-                    total_uranium = int(random.normalvariate(mean_uranium, mean_uranium/3))
-                    earn_rate = int(total_uranium / random.normalvariate(mean_planet_life, mean_planet_life/3))
+                    total_uranium = int(random.normalvariate(mean_uranium, mean_uranium/3)) + 1
+                    earn_rate = int(total_uranium / random.normalvariate(mean_planet_life, mean_planet_life/3)) + 1
+                    logging.info("putting planet at " + str(x) + ", " + str(y))
 
                     cost = earn_rate * mean_planet_life # XXX also improve this.
                     # XX and the id
@@ -325,7 +319,7 @@ class DataGuy (object):
                     cur.execute("INSERT INTO planet_in_game (name, picture, cost, earn_rate, total_uranium, game, map, xLocation, yLocation) " + 
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (planet["name"], planet["picture"], cost, earn_rate, total_uranium, game_id, map_id, x, y));
                    
-        cur.commit() 
+        self.dbcon.commit() 
         cur.execute("SELECT * FROM planet_in_game where map = ? and game = ?", (map_id, game_id))
 
         new_map = db_rows_to_dict('map', cur)
