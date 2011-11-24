@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS PLANET_IN_GAME (
         map INTEGER NOT NULL,
         owner INTEGER,
         xLocation INTEGER NOT NULL,
-        yLocation INTEGER NOT NULL
+        yLocation INTEGER NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        picture VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS PLAYERS (

@@ -8,8 +8,6 @@ import tornado.escape
 import logging
 import tornado.auth
 
-from tornado.template import Loader
-
 from tornado.options import define, options
 
 from qe.dataguy import DataGuy
@@ -28,6 +26,7 @@ def main():
     settings = {
         "cookie_secret": "ALKJSLAKJDLKAJSDLKAJSDLKAJSDLKJASDNEBBEBENNMMEQQERTT",
         "xsrf_cookies": True,
+        "debug": True
     }
 
     logging.info("sqlite_db: %s" % (options.sqlite_db))

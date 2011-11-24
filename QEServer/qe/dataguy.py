@@ -224,18 +224,19 @@ class DataGuy (object):
     @db_error_handler
     def get_game(self, game_id):
         cur = self.dbcon.cursor()
-        cur.execute("SELECT * FROM game WHERE id=?", (game_id))
+        cur.execute("SELECT * FROM game WHERE id=?", (game_id,))
+        result = {}
         
         result['game'] = db_rows_to_dict('game', cur)
         result['id'] = game_id
 
-        cur.execute("SELECT * FROM map WHERE game=?", (game_id))
+        cur.execute("SELECT * FROM map WHERE game=?", (game_id,))
         result['map'] = db_rows_to_dict('map', cur)
 
-        cur.execute("SELECT * FROM player_in_game WHERE game=?", (game_id))
+        cur.execute("SELECT * FROM player_in_game WHERE game=?", (game_id,))
         result['players'] = db_rows_to_dict('players', cur)
         
-        cur.execute("SELECT * FROM planet_in_game WHERE game=?", (game_id))
+        cur.execute("SELECT * FROM planet_in_game WHERE game=?", (game_id,))
         result['planets'] = db_rows_to_dict('planets', cur)
 
         result['status'] = 'ok'
@@ -247,6 +248,8 @@ class DataGuy (object):
     def create_game(self, players, starting_uranium, width, height, planet_percentage, mean_uranium, mean_planet_life):
         cur = self.dbcon.cursor()
 
+        logging.info(players)
+
         cur.execute("INSERT INTO game (players_in_game, whose_turn, num_planets, map, last_turn) VALUES (?, ?, ?, ?, ?)",
                         (len(players), 0, 0, 0, 0))
 
@@ -255,10 +258,11 @@ class DataGuy (object):
         cur.execute('SELECT last_insert_rowid()')
 
         game_id = cur.fetchone()[0]
+
         player_ids = []
         
         for player in players:
-            cur.execute("SELECT id FROM player WHERE emailAddress = ?", (player))
+            cur.execute("SELECT id FROM players WHERE emailAddress = ?", (player,))
 
             player_id = cur.fetchone()[0]
             player_ids.append(player_id)
@@ -269,7 +273,7 @@ class DataGuy (object):
        
         self.dbcon.commit()
 
-        new_map = self.create_random_map (game_id, map_width, map_height, planet_percentage, mean_uranium, mean_planet_life) 
+        new_map = self.create_map (game_id, width, height, planet_percentage, mean_uranium, mean_planet_life) 
 
         whose_turn = random.choice(player_ids)
 
@@ -284,8 +288,8 @@ class DataGuy (object):
 
     @db_error_handler
     def create_map(self, game_id, width=100, height=100, planet_percentage=40, mean_uranium=200, mean_planet_life=100):
-        planets = self.get_planets()
-
+        planets = self.get_planets()['planets']
+        num_planets = len(planets)
         cur = self.dbcon.cursor()
 
 
@@ -316,8 +320,10 @@ class DataGuy (object):
                     earn_rate = int(total_uranium / random.normalvariate(mean_planet_life, mean_planet_life/3))
 
                     cost = earn_rate * mean_planet_life # XXX also improve this.
-                    cur.execute("INSERT INTO planet_in_game (cost, earn_rate, total_uranium, game, map, xLocation, yLocation) " + 
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)", (cost, earn_rate, total_uranium, game_id, map_id, x, y));
+                    # XX and the id
+
+                    cur.execute("INSERT INTO planet_in_game (name, picture, cost, earn_rate, total_uranium, game, map, xLocation, yLocation) " + 
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (planet["name"], planet["picture"], cost, earn_rate, total_uranium, game_id, map_id, x, y));
                    
         cur.commit() 
         cur.execute("SELECT * FROM planet_in_game where map = ? and game = ?", (map_id, game_id))
@@ -325,6 +331,9 @@ class DataGuy (object):
         new_map = db_rows_to_dict('map', cur)
         cur.close()
 
+        num_planets = abs(len(planets) - num_planets)
+
+        new_map['num_planets'] = num_planets
         new_map['width'] = width
         new_map['height'] = height
         new_map['map_id'] = map_id

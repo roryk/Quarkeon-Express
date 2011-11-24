@@ -7,10 +7,7 @@ import tornado.web
 import tornado.escape
 import logging
 import tornado.auth
-import datetime
 
-
-import uuid
 
 import traceback
 
@@ -47,7 +44,6 @@ class BaseJSONHandler (BaseHandler):
 
 
     def write (self, d):
-        current_user = self.get_current_user()
 
         # if we got this far, and no one has
         # manually set an error, assume this ended OK
@@ -116,46 +112,47 @@ class SignUpNewPlayerHandler(BaseJSONHandler):
             
         self.write(result)
 
-class CreateGameHandler(BaseJSONHandler):
+class CreateGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        players = tornado.json_decode(self.get_argument('players'))
+        players = tornado.escape.json_decode(self.get_argument('players'))
+        logging.info(players)
         # players should be a json dict with a list of all the players email addresses
-        map_width = self.get_argument('map_width')
-        map_height = self.get_argument('map_width')
-        planet_percentage = self.get_argument('planet_percentage')
-        mean_uranium = self.get_argument('mean_uranium')
-        starting_uranium = self.get_argument('starting_uranium')
-        mean_planet_lifetime = self.get_argument('mean_planet_lifetime')
+        map_width = int(self.get_argument('map_width'))
+        map_height = int(self.get_argument('map_width'))
+        planet_percentage = int(self.get_argument('planet_percentage'))
+        mean_uranium = int(self.get_argument('mean_uranium'))
+        starting_uranium = int(self.get_argument('starting_uranium'))
+        mean_planet_lifetime = int(self.get_argument('mean_planet_lifetime'))
 
-        result = self.dg.create_game(players, starting_uranium, map_width, map_height, planet_percentage, mean_uranium, mean_planet_life)
+        result = self.dg.create_game(players, starting_uranium, map_width, map_height, planet_percentage, mean_uranium, mean_planet_lifetime)
         self.write(result)
 
 
-class InviteUserToGameHandler(BaseJSONHandler):
+class InviteUserToGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
         pass
 
-class StartGameHandler(BaseJSONHandler):
+class StartGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
         pass
 
-class BuyPlanetHandler(BaseJSONHandler):
+class BuyPlanetHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
         pass
 
-class EndTurnHandler(BaseJSONHandler):
+class EndTurnHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
