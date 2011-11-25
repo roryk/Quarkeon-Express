@@ -61,6 +61,7 @@ def main():
 #        (r"/api/getgames", json.GetGamesHandler, dg),
 
         # game play
+        (r"/api/move", json.MoveHandler, dg),
         (r"/api/buyplanet", json.BuyPlanetHandler, dg),
         (r"/api/endturn", json.EndTurnHandler, dg),
 

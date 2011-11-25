@@ -255,14 +255,9 @@ class DataGuy (object):
     def get_status(self, game_id, current_user):
         cur = self.dbcon.cursor()
 
-        # check that the current_user is a player in the game.
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
-
-        inGame = cur.fetchone()
-
-        if inGame == None:
-                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         cur.execute("SELECT whose_turn FROM game WHERE id=? AND game_over = 0", (game_id,))
 
@@ -282,13 +277,10 @@ class DataGuy (object):
     @db_error_handler
     def get_players_in_game(self, game_id, current_user):
         cur = self.dbcon.cursor()
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
 
-        inGame = cur.fetchone()
-
-        if inGame == None:
-                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
                 (game_id, current_user["id"]))
@@ -324,28 +316,26 @@ class DataGuy (object):
         cur = self.dbcon.cursor()
 
         # check that the current_user is a player in the game.
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
-
-        inGame = cur.fetchone()
-
-        if inGame == None:
-            return {"status": "error", "error_msg": "You are not in this game" }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         # check that it is the current users' turn
-        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
-        whose_turn, = cur.fetchone()[0]
-        if whose_turn != current_user["id"]:
-            return {"status": "error", "error_msg": "It is not your turn" }
+        isTurn = self.check_my_turn(game_id, current_user)
+        if isTurn["status"] != "ok":
+            return isTurn
 
-
-        # check that the current and the planet have the same location
-        # check that the current user has the funds needed
         cur.execute("SELECT xLocation, yLocation, cost FROM planet_in_game WHERE planet=? and game=?", 
                 (planet_id, game_id))
 
         planet = db_rows_to_dict('planet', cur)['planet']
 
+        # check that the current user has the funds needed
+        hasMoney = self.check_has_funds(game_id, planet["cost"], current_user)
+        if hasMoney["status"] != "ok":
+            return hasMoney
+
+        # check that the current and the planet have the same location
         cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
                 (current_user["id"], game_id))
 
@@ -373,29 +363,24 @@ class DataGuy (object):
         cur = self.dbcon.cursor()
 
         # check that the current_user is a player in the game.
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
-
-        inGame = cur.fetchone()
-
-        if inGame == None:
-                return {"status": "error", "error_msg": "You are not in this game" }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         # check that it is the current users' turn
-        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
-        whose_turn, = cur.fetchone()[0]
-        if whose_turn != current_user["id"]:
-            return {"status": "error", "error_msg": "It is not your turn" }
+        isTurn = self.check_my_turn(game_id, current_user)
+        if isTurn["status"] != "ok":
+            return isTurn
 
         # check that the current user has the funds needed
+        hasMoney = self.check_has_funds(game_id, cost_to_move, current_user)
+        if hasMoney["status"] != "ok":
+            return hasMoney
 
         cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
                 (current_user["id"], game_id))
 
         player = db_rows_to_dict('player', cur)['player']
-
-        if player["uranium"] < cost_to_move:
-            return {"status": "ok", "moved": False }
 
         # check that the new location is one x xor one y away from the current location
         if abs(player["xLocation"] - new_x) + abs(player["yLocation"] - new_y) != 1:
@@ -417,15 +402,15 @@ class DataGuy (object):
         cur = self.dbcon.cursor()
 
         # check that the current_user is a player in the game.
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
-
-        inGame = cur.fetchone()
-
-        if inGame == None:
-                return {"status": "error", "error_msg": "You are not in this game" }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         # check that it is the current users' turn
+        isTurn = self.check_my_turn(game_id, current_user)
+        if isTurn["status"] != "ok":
+            return isTurn
+
         # enqueue a notification for the next user?
         # set whose_turn properly
         # if the current user has another turn, be sure to notify them somehow
@@ -438,13 +423,9 @@ class DataGuy (object):
         cur = self.dbcon.cursor()
 
         # check that the current_user is a player in the game.
-        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
-                (game_id, current_user["id"]))
-
-        inGame = cur.fetchone()
-
-        if inGame == None:
-                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
 
         cur.execute("SELECT * FROM game WHERE id=?", (game_id,))
         result = {}
@@ -563,3 +544,47 @@ class DataGuy (object):
         new_map['status'] = 'ok'     
 
         return new_map
+
+    @db_error_handler
+    def check_in_game(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "You are not in this game" }
+
+        cur.close()
+        return {"status": "ok"}
+
+    @db_error_handler
+    def check_my_turn(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that it is the current users' turn
+        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
+        whose_turn, = cur.fetchone()[0]
+        if whose_turn != current_user["id"]:
+            return {"status": "error", "error_msg": "It is not your turn" }
+
+        cur.close()
+        return {"status": "ok"}
+
+    @db_error_handler
+    def check_has_funds(self, game_id, cost, current_user):
+        cur = self.dbcon.cursor()
+
+        cur.execute("SELECT uranium FROM player_in_game WHERE player=? and game=?", 
+                (current_user["id"], game_id))
+
+        uranium, = cur.fetchone()[0] 
+
+        if uranium < cost:
+           return {"status": "error", "error_msg": "Insufficient funds"}
+
+        return {"status": "ok"}
+

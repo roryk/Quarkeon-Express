@@ -194,10 +194,30 @@ class BuyPlanetHandler(AuthenticatedBaseJSONHandler):
 
         self.write(result)
 
+class MoveHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        new_x = int(self.get_argument('new_x'))
+        new_y = int(self.get_argument('new_y'))
+
+        cost_to_move = 1 # XXX move this to somewhere better than here
+
+        result = self.dg.move_player(game_id, new_x, new_y, cost_to_move, current_user)
+
+        self.write(result)
 
 class EndTurnHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        pass
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+
+        result = self.dg.end_turn(game_id, current_user)
+
+        self.write(result)
