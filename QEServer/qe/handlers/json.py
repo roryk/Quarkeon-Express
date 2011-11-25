@@ -119,8 +119,6 @@ class CreateGameHandler(AuthenticatedBaseJSONHandler):
     def safe_post(self):
         current_user = self.get_current_user()
         players = tornado.escape.json_decode(self.get_argument('players'))
-        logging.info(players)
-        # players should be a json dict with a list of all the players email addresses
         map_width = int(self.get_argument('map_width'))
         map_height = int(self.get_argument('map_width'))
         planet_percentage = int(self.get_argument('planet_percentage'))
@@ -138,7 +136,7 @@ class LoadGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
-    def safe_post(self):
+    def safe_get(self):
         current_user = self.get_current_user()
         game_id = int(self.get_argument('game_id'))
         result = self.dg.get_game(game_id, current_user);
@@ -149,9 +147,9 @@ class GetMyGamesHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
-    def safe_post(self):
+    def safe_get(self):
         current_user = self.get_current_user()
-        result = self.dg.get_my_game(current_user);
+        result = self.dg.get_my_games(current_user);
 
         self.write(result)
 
@@ -161,7 +159,7 @@ class GetStatusHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
-    def safe_post(self):
+    def safe_get(self):
         current_user = self.get_current_user()
         game_id = int(self.get_argument('game_id'))
         result = self.dg.get_status(game_id, current_user);

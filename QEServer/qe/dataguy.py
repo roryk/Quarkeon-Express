@@ -226,9 +226,9 @@ class DataGuy (object):
 
         result = {}
         games = []
-        for game_id in game_ids:
-            cur.execute("SELECT name, game, players_in_game FROM game WHERE id=? AND game_over = 0", (game_id,))
-            games.append(cur.fetchone())
+        for game_id, in game_ids:
+            cur.execute("SELECT name, id, players_in_game FROM game WHERE id=? AND game_over = 0", (game_id,))
+            games.append(db_rows_to_dict('game', cur)['game'])
 
         result["games"] = games
         result["status"] = 'ok'
@@ -252,11 +252,16 @@ class DataGuy (object):
 
         # check winning here?
 
-        whose_turn = cur.fetchone()
-        if whose_turn == current_user["id"]:
-            return {"status": "ok", "game_id": game_id, "my_turn": True}
+        whose_turn = cur.fetchone()[0]
 
-        return {"status": "ok", "game_id": game_id, "my_turn": False}
+        cur.execute("SELECT emailAddress, name, id FROM players WHERE id=?", (whose_turn,))
+
+        active_player_details = db_rows_to_dict('whose_turn', cur)['whose_turn'][0]
+
+        if whose_turn == current_user["id"]:
+            return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, "my_turn": True}
+
+        return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, "my_turn": False}
 
     @db_error_handler
     def get_players_in_game(self, game_id, current_user):
@@ -385,7 +390,6 @@ class DataGuy (object):
         result['planets'] = db_rows_to_dict('planets', cur)['planets']
 
         result['status'] = 'ok'
-        logging.info(result)
 
         return result
         
@@ -464,7 +468,6 @@ class DataGuy (object):
                     # XXX replace 3 with a better value
                     total_uranium = int(random.normalvariate(mean_uranium, mean_uranium/3)) + 1
                     earn_rate = int(total_uranium / random.normalvariate(mean_planet_life, mean_planet_life/3)) + 1
-                    logging.info("putting planet at " + str(x) + ", " + str(y))
 
                     cost = earn_rate * mean_planet_life # XXX also improve this.
                     # XX and the id

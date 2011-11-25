@@ -165,7 +165,17 @@ checkjson "login" "${LOGIN_STATUS}" "id" 5 "${headers}" "LOGIN_STATUS"
 echo ${XSRF} 
 
 CREATE_STATUS=`curl ${curlopts} -d _xsrf=${XSRF} -d players='["adamf@csh.rit.edu", "adamfblahblah@gmail.com", "roryasdfasdf@gmail.com"]' -d map_width=20 -d map_height=20 -d planet_percentage=10 -d mean_uranium=100 -d starting_uranium=400 -d mean_planet_lifetime=100 http://localhost:${port}/api/creategame`
-checkjson "create_game" "${CREATE_STATUS}" "id" 1 "${headers}" "CREATE_STATUS"
+checkjson "create_game" "${CREATE_STATUS}" "id" 1 "${headers}" "GAME_ID"
+
+DATA=`curl ${curlopts} http://localhost:${port}/api/getmygames`
+checkjson "getmygames" "${DATA}" "id" 1 "${headers}" "MYGAMES"
+
+DATA=`curl ${curlopts} http://localhost:${port}/api/loadgame?game_id=$GAME_ID`
+checkjson "loadgame" "${DATA}" "id" 1 "${headers}" "LOADED_GAME"
+
+DATA=`curl ${curlopts} http://localhost:${port}/api/getstatus?game_id=$GAME_ID`
+checkjson "getstatus" "${DATA}" "game_id" 1 "${headers}" "GAME_STATUS"
+
 
 if [ "${KEEP_DB}" == "" ]; then
     cleanup
