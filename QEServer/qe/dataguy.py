@@ -171,7 +171,23 @@ class DataGuy (object):
                         'Anakiin', 'Sophus', 'Lucien', 'Ciaus', 'Pyron',
                         'Losaoz', 'Syyz', 'Oiish', 'Posque', 'Rance',
                         'Celand', 'Anada', 'Apan', 'Hina', 'Pycon', 
-                        'Hilee', 'Razil', 'Zelean', 'Papau', 'Uba'
+                        'Hilee', 'Razil', 'Zelean', 'Papau', 'Uba',
+                        'Mensae III', 'Uruk', 'Galli III', 'Ahemait II', 'Mkale',
+                        'Hofa', 'Hargi VI', 'Svati VII', 'Tian-Mu', 'Lifthrasir', 'Peng-Lai-Shan',
+                        'Freyr', 'Babbar', 'Tranxu Dbaale', 'Maenali VI', 'Endiku', 'Slombi', 'Liluri',
+                        'Deino V', 'Ronii IV', 'Li-Nezha Prime', 'Mudi III',
+                        'Serket', 'Dale Byoti', 'Mensae II', 'Lei-Zu', 'Dziewanna',
+                        'Kvorti', 'Hurquij IV', 'He-Xian-Gu V', 'Magni', 'Sagittae III',
+                        'Qetesh', '3460 Wei Xiu II', 'New Phaeton', 'Almar', '9453 Gui Xiu V',
+                        'Nemesis II', 'Goni C-Yeectroilph', '6527 Mali VI', 'Ahemait', 'Liara',
+                        'New Babylon', 'Mintau VI', 'Omen Shawin', 'Kulla', 'New Thyoph', 'Smei-Gorynich III',
+                        'Metha I-Lori', 'Song-Jiang VI', 'Baja', 'New Laurentia', 'A-Vorte',
+                        'New Vulcan', 'New Mars', 'Xu Xiu VII', 'Velorum IV', 'New Triton', 'Berith',
+                        'Laukamat III', 'He-Xian-Gu IV', 'New Angeles', 'Lachesis', 'New Oberon',
+                        'V-Jiro', 'S-Brani', 'Gothmog', 'I-Rani', 'Xi-He Prime', 'Tilion',
+                        'Elyon', 'Hoggi IV', 'Feanor', 'Krani', 'Hadi', 'Dobrynya', 'Yarikh',
+                        'Trani II', 'New Gaia', 'R-Gridu', 'Jyeshtha VII', 'Kyuli', 'Arietis III',
+                        'New Terra', 'Ceti III', 'H-Vilga', 'Hohnir', 'Reticuli III', 'Tencta', 'Hippolyta IV'
                         ]
 
 
