@@ -330,16 +330,46 @@ class DataGuy (object):
         inGame = cur.fetchone()
 
         if inGame == None:
-                return {"status": "error", "error_msg": "You are not in this game" }
-
+            return {"status": "error", "error_msg": "You are not in this game" }
 
         # check that it is the current users' turn
+        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
+        whose_turn, = cur.fetchone()[0]
+        if whose_turn != current_user["id"]:
+            return {"status": "error", "error_msg": "It is not your turn" }
+
+
         # check that the current and the planet have the same location
         # check that the current user has the funds needed
-        # buy the planet
+        cur.execute("SELECT xLocation, yLocation, cost FROM planet_in_game WHERE planet=? and game=?", 
+                (planet_id, game_id))
+
+        planet = db_rows_to_dict('planet', cur)['planet']
+
+        cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
+                (current_user["id"], game_id))
+
+        player = db_rows_to_dict('player', cur)['player']
+
+        if (player["xLocation"] == planet["xLocation"] and 
+            player["yLocation"] == planet["yLocation"] and 
+            player["uranium"] >= planet["cost"]):
+
+            new_uranium = player["uranium"] - planet["cost"]
+            new_cost = int(planet["cost"] * 1.5) # XXX we should make this factor some value in the DB
+
+            cur.excute("UPDATE planet_in_game SET owner=?, cost=? WHERE planet=? AND game=?", (current_user["id"], new_cost, planet_id, game_id))
+            cur.excute("UPDATE player_in_game SET uranium=? WHERE player=? AND game=?", (new_uranium, current_user["id"], game_id))
+
+            self.dbcon.commit()
+
+            return {"status": "ok", "bought": True, "uranium": new_uranium, "cost": new_cost}
+        
+
+        return {"status": "ok", "bought": False}
 
     @db_error_handler
-    def move_player(self, game_id, new_x, new_y, current_user):
+    def move_player(self, game_id, new_x, new_y, cost_to_move, current_user):
         cur = self.dbcon.cursor()
 
         # check that the current_user is a player in the game.
@@ -352,8 +382,35 @@ class DataGuy (object):
                 return {"status": "error", "error_msg": "You are not in this game" }
 
         # check that it is the current users' turn
+        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
+        whose_turn, = cur.fetchone()[0]
+        if whose_turn != current_user["id"]:
+            return {"status": "error", "error_msg": "It is not your turn" }
+
         # check that the current user has the funds needed
+
+        cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
+                (current_user["id"], game_id))
+
+        player = db_rows_to_dict('player', cur)['player']
+
+        if player["uranium"] < cost_to_move:
+            return {"status": "ok", "moved": False }
+
         # check that the new location is one x xor one y away from the current location
+        if abs(player["xLocation"] - new_x) + abs(player["yLocation"] - new_y) != 1:
+            return {"status": "error", "error_msg": "Attempted illegal move"}
+
+
+        # update the player
+        new_uranium = player["uranium"] - cost_to_move
+        cur.excute("UPDATE player_in_game SET uranium=?, xLocation=?, yLocation=? WHERE player=? AND game=?", 
+                (new_uranium, new_x, new_y, current_user["id"], game_id))
+
+        self.dbcon.commit()
+
+        return {"status": "ok", "xLocation": new_x, "yLocation": new_y, "uranium": new_uranium}
+
 
     @db_error_handler
     def end_turn(self, game_id, current_user):
