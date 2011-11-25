@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS PLAYER_IN_GAME (
         player INTEGER NOT NULL,
         yLocation INTEGER NOT NULL,
         xLocation INTEGER NOT NULL,
+        round INTEGER NOT NULL,
         game INTEGER NOT NULL
     );
 

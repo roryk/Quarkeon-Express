@@ -398,6 +398,66 @@ class DataGuy (object):
 
 
     @db_error_handler
+    def start_turn(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        inGame = self.check_in_game(game_id, current_user)
+        if inGame["status"] != "ok":
+            return inGame
+
+        # check that it is the current users' turn
+        isTurn = self.check_my_turn(game_id, current_user)
+        if isTurn["status"] != "ok":
+            return isTurn
+
+
+        cur.execute("SELECT num_planets from game WHERE id=?", (game_id,))
+
+        num_planets, = cur.fetchone()[0]
+
+        cur.execute("SELECT * from planets_in_game WHERE owner=? and game=?", (current_user["id"], game_id))
+
+        owned_planets = db_rows_to_dict('planets', cur)['planets']
+
+        # check to see if you won.
+        # XXX the 50% measure here should be a config parameter in create game...
+        if owned_planets > int(num_planets / 2):
+            cur.execute("UPDATE game SET game_over=1 WHERE id=?", (game_id,))
+            self.dbcon.commit()
+            return { "status": "ok", "won_game": True }
+
+        # update the uranium based on owned planet earn rate
+
+        earned_uranium = 0 
+        for planet in owned_planets:
+
+            if planet["earn_rate"] > planet["total_uranium"]:
+                planet["earn_rate"] = planet["total_uranium"]
+
+            earned_uranium = earned_uranium + planet["earn_rate"]
+
+            new_total_u = planet["total_uranium"] - planet["earn_rate"]
+
+            # XXX we should set a flag indicating the planet is dead if total_u == 0
+            # decrement the total uranium in a planet
+            cur.execute("UPDATE planet_in_game SET total_uranium=? WHERE planet=? AND game=?", 
+                    (new_total_u, planet["planet"], game_id))
+
+            self.dbcon.commit()
+
+        cur.execute("SELECT uranium FROM player_in_game WHERE player=? AND game=?", (current_user["id"], game_id))
+
+        current_u, = cur.fetchone()[0]
+
+        new_u = current_u + earned_uranium
+
+        cur.execute("UPDATE player_in_game SET uranium=? WHERE player=? AND game=?", (new_u, current_user["id"], game_id))
+
+        return {"status": "ok", "won_game": False, "new_u": new_u}
+
+
+    @db_error_handler
     def end_turn(self, game_id, current_user):
         cur = self.dbcon.cursor()
 
@@ -410,6 +470,38 @@ class DataGuy (object):
         isTurn = self.check_my_turn(game_id, current_user)
         if isTurn["status"] != "ok":
             return isTurn
+
+
+        cur.execute("SELECT round FROM player_in_game WHERE player=? AND game=?", (current_user["id"], game_id))
+
+        cur_round, = cur.fetchone()[0]
+
+        new_round = cur_round + 1
+        # increment this player's round counter
+        cur.execute("UPDATE player_in_game SET round=? WHERE player=? AND game=?", (new_round, current_user["id"], game_id))
+        self.dbcon.commit()
+
+        # get a player whose round counter is the same as the old round
+        cur.execute("SELECT player FROM player_in_game WHERE game=? AND round=?", 
+                (game_id, cur_round))
+
+        possible_players = cur.fetchall()
+
+        if possible_players != None:
+            random.shuffle(possible_players)
+            whose_turn, = possible_players[0]
+        else:
+            cur.execute("SELECT player FROM player_in_game WHERE game=? AND round=?", 
+                    (game_id, new_round))
+
+            possible_players = cur.fetchall()
+            random.shuffle(possible_players)
+            whose_turn, = possible_players[0]
+
+        logging.info(whose_turn)
+
+        cur.execute("UPDATE game SET whose_turn=? WHERE game=?", (whose_turn, game_id))
+        self.dbcon.commit()
 
         # enqueue a notification for the next user?
         # set whose_turn properly
@@ -465,15 +557,16 @@ class DataGuy (object):
         game_id = cur.fetchone()[0]
 
         player_ids = []
-        
+
+
         for player in players:
             cur.execute("SELECT id FROM players WHERE emailAddress = ?", (player,))
 
             player_id = cur.fetchone()[0]
             player_ids.append(player_id)
 
-            cur.execute("INSERT INTO player_in_game (uranium, player, xLocation, yLocation, game) VALUES (?, ?, ?, ?, ?)", 
-                            (starting_uranium, player_id, random.randint(1, width), random.randint(1, height), game_id))
+            cur.execute("INSERT INTO player_in_game (uranium, player, xLocation, yLocation, game, round) VALUES (?, ?, ?, ?, ?, ?)", 
+                            (starting_uranium, player_id, random.randint(1, width), random.randint(1, height), game_id, 0))
             self.dbcon.commit()
 
        
@@ -485,6 +578,8 @@ class DataGuy (object):
                        (whose_turn, new_map['num_planets'], new_map['map_id'], game_id)) 
 
         self.dbcon.commit()
+
+
 
         return self.get_game(game_id, current_user)
 
