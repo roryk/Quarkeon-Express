@@ -4,7 +4,10 @@ CREATE TABLE IF NOT EXISTS GAME (
         whose_turn INTEGER NOT NULL,
         num_planets INTEGER NOT NULL,
         map INTEGER NOT NULL,
-        last_turn INTEGER NOT NULL
+        last_turn INTEGER NOT NULL,
+        owner INTEGER NOT NULL,
+        game_over INTEGER NOT NULL,
+        name VARCHAR(255) NOT NULL
 	);
 
 CREATE TABLE IF NOT EXISTS PLAYER_IN_GAME (

@@ -55,7 +55,7 @@ def main():
 
 
         # game management, to be implemented once a single game works
-#        (r"/api/loadgame", json.LoadGameHandler, dg),
+        (r"/api/loadgame", json.LoadGameHandler, dg),
 #        (r"/api/getgames", json.GetGamesHandler, dg),
 
         # game play

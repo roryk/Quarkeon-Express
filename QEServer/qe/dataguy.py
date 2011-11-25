@@ -11,6 +11,8 @@ import random
 
 import urlparse
 
+import uuid
+
 
 
 # XXX we set the port in qe.py as well, which is a bug waiting to happen.
@@ -102,10 +104,8 @@ class DataGuy (object):
         cur.execute("SELECT id, name, emailAddress FROM players WHERE emailAddress = ? and password = ?", 
                     (login_credential, password))
 
-        logging.info(login_credential + " " + password)
         try:
             userID, name, email_address = cur.fetchone()
-            logging.info(str(userID) + " " + name + " " + email_address)
             result = {'status' : "ok", 'email_address' : email_address, 'id' : userID, 'name' : name }
         except Exception, e:
             logging.error("error: %s" % (e))
@@ -214,37 +214,132 @@ class DataGuy (object):
 
         return planets
         
+        
     @db_error_handler
-    def get_game(self, game_id):
+    def get_my_games(self, current_user):
         cur = self.dbcon.cursor()
+
+        cur.execute("SELECT game FROM player_in_game WHERE player=?", 
+                (current_user["id"],))
+
+        game_ids = cur.fetchall()
+
+        result = {}
+        games = []
+        for game_id in game_ids:
+            cur.execute("SELECT name, game, players_in_game FROM game WHERE id=? AND game_over = 0", (game_id,))
+            games.append(cur.fetchone())
+
+        result["games"] = games
+        result["status"] = 'ok'
+
+        return result
+
+    @db_error_handler
+    def get_status(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+
+        cur.execute("SELECT whose_turn FROM game WHERE id=? AND game_over = 0", (game_id,))
+
+        whose_turn = cur.fetchone()
+        if whose_turn == current_user["id"]:
+            return {"status": "ok", "game_id": game_id, "my_turn": True}
+
+        return {"status": "ok", "game_id": game_id, "my_turn": False}
+
+    @db_error_handler
+    def get_players_in_game(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        current_player_data = db_rows_to_dict('me', cur)['me'][0]
+
+
+        cur.execute("SELECT player FROM player_in_game WHERE game=?", 
+                (game_id,))
+
+        player_ids = cur.fetchall()
+
+        result = {}
+        result["players"] = [] 
+        for player_id, in player_ids:
+            cur.execute("SELECT emailAddress, name FROM players WHERE id=?", (player_id,))
+            emailAddress, name = cur.fetchone()
+
+            playerDict = { "id": player_id, "emailAddress": emailAddress, "name": name}
+
+            if playerDict["id"] == current_user["id"]:
+
+                for key, value in current_player_data.iteritems():
+                    playerDict[key] = value
+
+            result["players"].append(playerDict)
+
+        return result
+            
+
+    @db_error_handler
+    def get_game(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "Cannot load a game for you are not in." }
+
         cur.execute("SELECT * FROM game WHERE id=?", (game_id,))
         result = {}
         
-        result['game'] = db_rows_to_dict('game', cur)
+        result['game'] = db_rows_to_dict('game', cur)['game']
         result['id'] = game_id
 
-        cur.execute("SELECT * FROM map WHERE game=?", (game_id,))
-        result['map'] = db_rows_to_dict('map', cur)
 
-        cur.execute("SELECT * FROM player_in_game WHERE game=?", (game_id,))
-        result['players'] = db_rows_to_dict('players', cur)
-        
+        cur.execute("SELECT * FROM map WHERE game=?", (game_id,))
+        result['map'] = db_rows_to_dict('map', cur)['map']
+
+        result['players'] = self.get_players_in_game(game_id, current_user)['players']
+
+
         cur.execute("SELECT * FROM planet_in_game WHERE game=?", (game_id,))
-        result['planets'] = db_rows_to_dict('planets', cur)
+        result['planets'] = db_rows_to_dict('planets', cur)['planets']
 
         result['status'] = 'ok'
+        logging.info(result)
 
         return result
         
 
     @db_error_handler
-    def create_game(self, players, starting_uranium, width, height, planet_percentage, mean_uranium, mean_planet_life):
+    def create_game(self, players, starting_uranium, width, height, planet_percentage, mean_uranium, mean_planet_life, current_user):
         cur = self.dbcon.cursor()
 
-        logging.info(players)
 
-        cur.execute("INSERT INTO game (players_in_game, whose_turn, num_planets, map, last_turn) VALUES (?, ?, ?, ?, ?)",
-                        (len(players), 0, 0, 0, 0))
+        game_name = str(uuid.uuid4()).split('-')[0]
+
+        cur.execute("INSERT INTO game (players_in_game, whose_turn, num_planets, map, last_turn, owner, name, game_over) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (len(players), 0, 0, 0, 0, current_user["id"], game_name, 0))
 
         self.dbcon.commit()
 
@@ -262,10 +357,9 @@ class DataGuy (object):
 
             cur.execute("INSERT INTO player_in_game (uranium, player, xLocation, yLocation, game) VALUES (?, ?, ?, ?, ?)", 
                             (starting_uranium, player_id, random.randint(1, width), random.randint(1, height), game_id))
+            self.dbcon.commit()
 
        
-        self.dbcon.commit()
-
         new_map = self.create_map (game_id, width, height, planet_percentage, mean_uranium, mean_planet_life) 
 
         whose_turn = random.choice(player_ids)
@@ -275,7 +369,7 @@ class DataGuy (object):
 
         self.dbcon.commit()
 
-        return self.get_game(game_id)
+        return self.get_game(game_id, current_user)
 
 
 
@@ -332,7 +426,5 @@ class DataGuy (object):
         new_map['height'] = height
         new_map['map_id'] = map_id
         new_map['status'] = 'ok'     
-
-        logging.info(new_map)
 
         return new_map

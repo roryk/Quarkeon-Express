@@ -117,6 +117,7 @@ class CreateGameHandler(AuthenticatedBaseJSONHandler):
         self.dg = dg
 
     def safe_post(self):
+        current_user = self.get_current_user()
         players = tornado.escape.json_decode(self.get_argument('players'))
         logging.info(players)
         # players should be a json dict with a list of all the players email addresses
@@ -127,9 +128,45 @@ class CreateGameHandler(AuthenticatedBaseJSONHandler):
         starting_uranium = int(self.get_argument('starting_uranium'))
         mean_planet_lifetime = int(self.get_argument('mean_planet_lifetime'))
 
-        result = self.dg.create_game(players, starting_uranium, map_width, map_height, planet_percentage, mean_uranium, mean_planet_lifetime)
+        result = self.dg.create_game(players, starting_uranium, map_width, map_height, 
+                    planet_percentage, mean_uranium, mean_planet_lifetime, current_user)
+
         self.write(result)
 
+
+class LoadGameHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        result = self.dg.get_game(game_id, current_user);
+
+        self.write(result)
+
+class GetMyGamesHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        result = self.dg.get_my_game(current_user);
+
+        self.write(result)
+
+
+class GetStatusHandler(AuthenticatedBaseJSONHandler):
+    # A routine for checking if it is the current users' turn in this game.
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        result = self.dg.get_status(game_id, current_user);
+
+        self.write(result)
 
 class InviteUserToGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
