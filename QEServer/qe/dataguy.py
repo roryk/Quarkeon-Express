@@ -250,6 +250,8 @@ class DataGuy (object):
 
         cur.execute("SELECT whose_turn FROM game WHERE id=? AND game_over = 0", (game_id,))
 
+        # check winning here?
+
         whose_turn = cur.fetchone()
         if whose_turn == current_user["id"]:
             return {"status": "ok", "game_id": game_id, "my_turn": True}
@@ -295,6 +297,63 @@ class DataGuy (object):
 
         return result
             
+
+    @db_error_handler
+    def buy_planet(self, game_id, planet_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "You are not in this game" }
+
+
+        # check that it is the current users' turn
+        # check that the current and the planet have the same location
+        # check that the current user has the funds needed
+        # buy the planet
+
+    @db_error_handler
+    def move_player(self, game_id, new_x, new_y, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "You are not in this game" }
+
+        # check that it is the current users' turn
+        # check that the current user has the funds needed
+        # check that the new location is one x xor one y away from the current location
+
+    @db_error_handler
+    def end_turn(self, game_id, current_user):
+        cur = self.dbcon.cursor()
+
+        # check that the current_user is a player in the game.
+        cur.execute("SELECT * FROM player_in_game WHERE game=? AND player=?", 
+                (game_id, current_user["id"]))
+
+        inGame = cur.fetchone()
+
+        if inGame == None:
+                return {"status": "error", "error_msg": "You are not in this game" }
+
+        # check that it is the current users' turn
+        # enqueue a notification for the next user?
+        # set whose_turn properly
+        # if the current user has another turn, be sure to notify them somehow
+        # if the player whose turn it now is has won, set that flag here!
+
+
 
     @db_error_handler
     def get_game(self, game_id, current_user):
