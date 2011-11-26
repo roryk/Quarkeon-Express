@@ -69,12 +69,12 @@ class QEPlayer:
 
     def creategame(self, players):
         params = {'players': tornado.escape.json_encode(players), 
-                  'map_width': 20,
-                  'map_height': 20,
-                  'planet_percentage': 10,
+                  'map_width': 5,
+                  'map_height': 5,
+                  'planet_percentage': 50,
                   'mean_uranium': 100,
                   'mean_planet_lifetime': 100,
-                  'starting_uranium': 400
+                  'starting_uranium': 4000
                   }
         json = self.do_post("/api/creategame", params)
         game_data = tornado.escape.json_decode(json)
@@ -90,6 +90,7 @@ class QEPlayer:
         self.x = status["my_state"]["xLocation"]
         self.y = status["my_state"]["yLocation"]
         self.myturn = status["my_turn"]
+        print status
 
     def loadgame(self):
         json = self.do_get("/api/loadgame", "game_id=" + str(self.gid))
@@ -107,11 +108,13 @@ class QEPlayer:
         params = {'game_id': self.gid}
         json = self.do_post("/api/startturn", params)
         turn_state = tornado.escape.json_decode(json)
+        return turn_state["won_game"]
 
     def endturn(self):
         params = {'game_id': self.gid}
         json = self.do_post("/api/endturn", params)
         turn_state = tornado.escape.json_decode(json)
+        print turn_state
 
     def move(self):
         params = {'game_id': self.gid}
@@ -180,12 +183,16 @@ if __name__ == '__main__':
     won_game = False
     turn_count = 0
 
-    while not won_game and turn_count < 10:
+    while not won_game and turn_count < 400:
         turn_count = turn_count + 1
+        print turn_count
         for player in players:
             player.getstatus()
             if player.myturn:
-                player.startturn()
+                won_game = player.startturn()
+                if won_game:
+                    print "We have a winner!", player.pid
+                    exit(1)
                 has_planet = player.move()
                 while not has_planet:
                     has_planet = player.move()

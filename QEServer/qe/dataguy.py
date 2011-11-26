@@ -331,10 +331,13 @@ class DataGuy (object):
         if isTurn["status"] != "ok":
             return isTurn
 
-        cur.execute("SELECT xLocation, yLocation, cost FROM planet_in_game WHERE id=? and game=?", 
+        cur.execute("SELECT xLocation, yLocation, cost, owner FROM planet_in_game WHERE id=? and game=?", 
                 (planet_id, game_id))
 
         planet = db_rows_to_dict('planet', cur)['planet'][0]
+
+        if planet["owner"] == current_user["id"]:
+            return {"status": "error", "error_msg": "You already own this planet"}
 
         # check that the current user has the funds needed
         hasMoney = self.check_has_funds(game_id, planet["cost"], current_user)
