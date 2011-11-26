@@ -35,13 +35,6 @@ def main():
 
     application = tornado.web.Application([
 
-####
-# Need to add: map generation, map data model, retrieving an old
-# game from the server (w/ map & state), creating a game, starting
-# a game, taking turns, inviting users to play the game, handling
-# winning and losing, notifing the players of their turn happening.
-####
-
         # REST interface, everything under /api
         # user managment
         (r"/api/signupnewplayer", json.SignUpNewPlayerHandler, dg),

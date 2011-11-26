@@ -26,6 +26,7 @@ class QEPlayer:
         self.dir_y = 1
         self.y = -1
         self.gid = ""
+        self.turn = 0
 
     def do_get(self, path, qstring):
         headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
@@ -71,7 +72,7 @@ class QEPlayer:
         params = {'players': tornado.escape.json_encode(players), 
                   'map_width': 5,
                   'map_height': 5,
-                  'planet_percentage': 50,
+                  'planet_percentage': 20,
                   'mean_uranium': 100,
                   'mean_planet_lifetime': 100,
                   'starting_uranium': 4000
@@ -91,6 +92,7 @@ class QEPlayer:
         self.y = status["my_state"]["yLocation"]
         self.myturn = status["my_turn"]
         print status
+        return status["whose_turn"]["id"]
 
     def loadgame(self):
         json = self.do_get("/api/loadgame", "game_id=" + str(self.gid))
@@ -141,7 +143,7 @@ class QEPlayer:
         self.x = params['new_x']
         self.y = params['new_y']
 
-        if move_state["planet"] != []:
+        if move_state["status"] == "ok" and move_state["planet"] != []:
             return move_state["planet"]["id"]
 
         return None
@@ -183,20 +185,31 @@ if __name__ == '__main__':
     won_game = False
     turn_count = 0
 
+    whose_turn = players[0].getstatus()
+
     while not won_game and turn_count < 400:
         turn_count = turn_count + 1
         print turn_count
-        for player in players:
-            player.getstatus()
-            if player.myturn:
-                won_game = player.startturn()
-                if won_game:
-                    print "We have a winner!", player.pid
-                    exit(1)
-                has_planet = player.move()
-                while not has_planet:
-                    has_planet = player.move()
+        played = 0
+        while played < len(players):
+            for player in players: 
+                if player.pid == whose_turn:
+                    won_game = player.startturn()
+                    if won_game:
+                        print "We have a winner!", player.pid
+                        exit(1)
 
-                player.buyplanet(has_planet)
-                player.endturn()
+                    has_planet = player.move()
+                    move_count = 0
+                    while not has_planet and move_count < 10:
+                        move_count = move_count + 1
+                        has_planet = player.move()
+
+                    if move_count < 10:
+                        player.buyplanet(has_planet)
+
+                    player.endturn()
+                    whose_turn = player.getstatus()
+                    played = played + 1
+                    break
 
