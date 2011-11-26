@@ -331,10 +331,10 @@ class DataGuy (object):
         if isTurn["status"] != "ok":
             return isTurn
 
-        cur.execute("SELECT xLocation, yLocation, cost FROM planet_in_game WHERE planet=? and game=?", 
+        cur.execute("SELECT xLocation, yLocation, cost FROM planet_in_game WHERE id=? and game=?", 
                 (planet_id, game_id))
 
-        planet = db_rows_to_dict('planet', cur)['planet']
+        planet = db_rows_to_dict('planet', cur)['planet'][0]
 
         # check that the current user has the funds needed
         hasMoney = self.check_has_funds(game_id, planet["cost"], current_user)
@@ -345,7 +345,7 @@ class DataGuy (object):
         cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
                 (current_user["id"], game_id))
 
-        player = db_rows_to_dict('player', cur)['player']
+        player = db_rows_to_dict('player', cur)['player'][0]
 
         if (player["xLocation"] == planet["xLocation"] and 
             player["yLocation"] == planet["yLocation"] and 
@@ -354,8 +354,8 @@ class DataGuy (object):
             new_uranium = player["uranium"] - planet["cost"]
             new_cost = int(planet["cost"] * 1.5) # XXX we should make this factor some value in the DB
 
-            cur.excute("UPDATE planet_in_game SET owner=?, cost=? WHERE planet=? AND game=?", (current_user["id"], new_cost, planet_id, game_id))
-            cur.excute("UPDATE player_in_game SET uranium=? WHERE player=? AND game=?", (new_uranium, current_user["id"], game_id))
+            cur.execute("UPDATE planet_in_game SET owner=?, cost=? WHERE id=? AND game=?", (current_user["id"], new_cost, planet_id, game_id))
+            cur.execute("UPDATE player_in_game SET uranium=? WHERE player=? AND game=?", (new_uranium, current_user["id"], game_id))
 
             self.dbcon.commit()
 
@@ -386,7 +386,7 @@ class DataGuy (object):
         cur.execute("SELECT xLocation, yLocation, uranium FROM player_in_game WHERE player=? and game=?", 
                 (current_user["id"], game_id))
 
-        player = db_rows_to_dict('player', cur)['player']
+        player = db_rows_to_dict('player', cur)['player'][0]
 
         # check that the new location is one x xor one y away from the current location
         if abs(player["xLocation"] - new_x) + abs(player["yLocation"] - new_y) != 1:
@@ -395,7 +395,7 @@ class DataGuy (object):
 
         # update the player
         new_uranium = player["uranium"] - cost_to_move
-        cur.excute("UPDATE player_in_game SET uranium=?, xLocation=?, yLocation=? WHERE player=? AND game=?", 
+        cur.execute("UPDATE player_in_game SET uranium=?, xLocation=?, yLocation=? WHERE player=? AND game=?", 
                 (new_uranium, new_x, new_y, current_user["id"], game_id))
 
         self.dbcon.commit()
@@ -403,6 +403,8 @@ class DataGuy (object):
         # return planet details if they are here
         cur.execute("SELECT * FROM planet_in_game WHERE xLocation=? AND yLocation=? AND game=?", (new_x, new_y, game_id))
         planet_at_cell = db_rows_to_dict('planet', cur)['planet']
+        if planet_at_cell != []:
+            planet_at_cell = planet_at_cell[0]
 
         return {"status": "ok", "xLocation": new_x, "yLocation": new_y, "uranium": new_uranium, "planet": planet_at_cell}
 
@@ -451,8 +453,8 @@ class DataGuy (object):
 
             # XXX we should set a flag indicating the planet is dead if total_u == 0
             # decrement the total uranium in a planet
-            cur.execute("UPDATE planet_in_game SET total_uranium=? WHERE planet=? AND game=?", 
-                    (new_total_u, planet["planet"], game_id))
+            cur.execute("UPDATE planet_in_game SET total_uranium=? WHERE id=? AND game=?", 
+                    (new_total_u, planet["id"], game_id))
 
             self.dbcon.commit()
 
@@ -532,7 +534,7 @@ class DataGuy (object):
 
 
         cur.execute("SELECT * FROM map WHERE game=?", (game_id,))
-        result['map'] = db_rows_to_dict('map', cur)['map']
+        result['map'] = db_rows_to_dict('map', cur)['map'][0]
 
         result['players'] = self.get_players_in_game(game_id, current_user)['players']
 
@@ -682,7 +684,7 @@ class DataGuy (object):
         cur.execute("SELECT uranium FROM player_in_game WHERE player=? and game=?", 
                 (current_user["id"], game_id))
 
-        uranium, = cur.fetchone()[0] 
+        uranium, = cur.fetchone()
 
         if uranium < cost:
            return {"status": "error", "error_msg": "Insufficient funds"}

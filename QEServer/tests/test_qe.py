@@ -2,8 +2,8 @@
 
 import httplib
 import urllib
+import random
 import optparse
-import logging
 import tornado.escape
 
 
@@ -21,6 +21,10 @@ class QEPlayer:
         self.email = ""
         self.pid = ""
         self.myturn = False
+        self.x = -1
+        self.dir_x = 1
+        self.dir_y = 1
+        self.y = -1
         self.gid = ""
 
     def do_get(self, path, qstring):
@@ -78,11 +82,21 @@ class QEPlayer:
         self.game_map = game_data["map"]
         self.game_planets = game_data["planets"]
         self.gid = game_data["id"]
+        print self.game_map
 
     def getstatus(self):
         json = self.do_get("/api/getstatus", "game_id=" + str(self.gid))
         status = tornado.escape.json_decode(json)
+        self.x = status["my_state"]["xLocation"]
+        self.y = status["my_state"]["yLocation"]
         self.myturn = status["my_turn"]
+
+    def loadgame(self):
+        json = self.do_get("/api/loadgame", "game_id=" + str(self.gid))
+        game_data = tornado.escape.json_decode(json)
+        self.game_state = game_data
+        self.game_map = game_data["map"]
+        self.game_planets = game_data["planets"]
 
     def getmygames(self):
         json = self.do_get("/api/getmygames",'')
@@ -99,6 +113,42 @@ class QEPlayer:
         json = self.do_post("/api/endturn", params)
         turn_state = tornado.escape.json_decode(json)
 
+    def move(self):
+        params = {'game_id': self.gid}
+        if self.x == self.game_map["width"]:
+            self.dir_x = -1
+        if self.y == self.game_map["height"]:
+            self.dir_y = -1
+        if self.x == 0:
+            self.dir_x = 1
+        if self.y == 0:
+            self.dir_y = 1
+
+        if random.randint(1,2) == 1:
+            params['new_x'] = self.x + self.dir_x
+            params['new_y'] = self.y
+        else:
+            params['new_x'] = self.x 
+            params['new_y'] = self.y + self.dir_y
+
+
+        json = self.do_post("/api/move", params)
+        move_state = tornado.escape.json_decode(json)
+
+        self.x = params['new_x']
+        self.y = params['new_y']
+
+        if move_state["planet"] != []:
+            return move_state["planet"]["id"]
+
+        return None
+
+        
+    def buyplanet(self, planetid):
+        params = {'game_id': self.gid, 'planet_id': planetid}
+        json = self.do_post("/api/buyplanet", params)
+        buy_state = tornado.escape.json_decode(json)
+        print buy_state
 
 if __name__ == '__main__': 
 
@@ -125,6 +175,7 @@ if __name__ == '__main__':
 
     for player in players:
         player.getmygames()
+        player.loadgame()
 
     won_game = False
     turn_count = 0
@@ -135,5 +186,10 @@ if __name__ == '__main__':
             player.getstatus()
             if player.myturn:
                 player.startturn()
+                has_planet = player.move()
+                while not has_planet:
+                    has_planet = player.move()
+
+                player.buyplanet(has_planet)
                 player.endturn()
 
