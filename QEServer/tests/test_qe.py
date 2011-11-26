@@ -53,6 +53,7 @@ class QEPlayer:
 
         if response.getheader('set-cookie'):
             self.cookies = response.getheader('set-cookie')
+            print "Cookies: ", self.cookies
 
             name, value = self.cookies.split(';')[0].split('=')
             if name == '_xsrf':
@@ -67,6 +68,7 @@ class QEPlayer:
         player_data = tornado.escape.json_decode(json)
         self.pid = player_data["id"]
         self.email = player_data["email_address"]
+        print "Login json:\n", json
 
     def creategame(self, players):
         params = {'players': tornado.escape.json_encode(players), 
@@ -91,7 +93,7 @@ class QEPlayer:
         self.x = status["my_state"]["xLocation"]
         self.y = status["my_state"]["yLocation"]
         self.myturn = status["my_turn"]
-        print status
+        print "status json:\n", json
         return status["whose_turn"]["id"]
 
     def loadgame(self):
@@ -100,16 +102,19 @@ class QEPlayer:
         self.game_state = game_data
         self.game_map = game_data["map"]
         self.game_planets = game_data["planets"]
+        print "load game json:\n", json
 
     def getmygames(self):
         json = self.do_get("/api/getmygames",'')
         games = tornado.escape.json_decode(json)
         self.gid = games["games"][0]["id"]
+        print "get my games json:\n", json
 
     def startturn(self):
         params = {'game_id': self.gid}
         json = self.do_post("/api/startturn", params)
         turn_state = tornado.escape.json_decode(json)
+        print "start turn json:\n", json
         return turn_state["won_game"]
 
     def endturn(self):

@@ -54,9 +54,39 @@ class BaseJSONHandler (BaseHandler):
 
 class AuthenticatedBaseJSONHandler (BaseJSONHandler):
 
-    def prepare(self):
+    def get (self):
         if not self.current_user:
-            self.write(tornado.escape.json_encode({'status': 'error', 'message': 'you must be logged into to hit this URL, hit /api/login'}))
+            raise tornado.web.HTTPError(403)
+
+        try: 
+            self.safe_get()
+        except QEIntegrityError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'integrity', 'message': str(e)})
+        except QEPermissionsError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'permissions', 'message': str(e)})
+        except Exception, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'unknown', 'message': str(e)})
+
+    def post (self):
+        if not self.current_user:
+            raise tornado.web.HTTPError(403)
+
+        try: 
+            self.safe_post()
+        except QEIntegrityError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'integrity', 'message': str(e)})
+        except QEPermissionsError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'permissions', 'message': str(e)})
+        except Exception, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'unknown', 'message': str(e)})
+
+
 
 class LoginHandler (BaseJSONHandler):
     def initialize (self, dg):

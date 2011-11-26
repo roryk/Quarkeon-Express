@@ -9,3 +9,5 @@ class QEPermissionsError (Exception):
 class QEIntegrityError (Exception):
     pass
 
+class QENotLoggedInError (Exception):
+    pass

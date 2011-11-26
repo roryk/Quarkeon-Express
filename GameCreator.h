@@ -37,6 +37,32 @@
 
 }
 
+/* 
+ params = {'players': tornado.escape.json_encode(players), 
+ 'map_width': 5,
+ 'map_height': 5,
+ 'planet_percentage': 20,
+ 'mean_uranium': 100,
+ 'mean_planet_lifetime': 100,
+ 'starting_uranium': 4000
+ }
+ */
+
+// multiplayer properties
+@property (readwrite, assign) int largeMapMeanPlanetLifetime;
+@property (readwrite, assign) int mediumMapMeanPlanetLifetime;
+@property (readwrite, assign) int smallMapMeanPlanetLifetime;
+
+@property (readwrite, assign) int largeMapMeanPlanetTotalU;
+@property (readwrite, assign) int mediumMapMeanPlanetTotalU;
+@property (readwrite, assign) int smallMapMeanPlanetTotalU;
+
+@property (readwrite, assign) int largeMapStartingU;
+@property (readwrite, assign) int mediumMapStartingU;
+@property (readwrite, assign) int smallMapStartingU;
+
+// single player properties
+
 @property (readwrite, assign) int largeMapSize;
 @property (readwrite, assign) int smallMapSize;
 @property (readwrite, assign) int mediumMapSize;
@@ -55,7 +81,10 @@
 
 - (NSMutableArray *)loadPlanets;
 - (NSMutableArray *)loadPlist:(NSString *)fileName rootKey:(NSString *)rootKey;
+
 - (void)makeRandomMap:(int)x y:(int)y max_planets:(int)max_planets;
+- (void)makeFixedMapWithPlanets:(int)width height:(int)height planets:(NSMutableArray *)planets;
+
 - (void)startSampleGame;
 - (id)initWithGameState:(GameState *)gs;
 

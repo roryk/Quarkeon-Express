@@ -23,6 +23,7 @@
 @synthesize planets;
 @synthesize numPlayers;
 @synthesize mapSize;
+@synthesize isMultiplayer;
 
 - (id)init
 {
@@ -35,6 +36,7 @@
         self.currCell = nil;
         self.mapSize = [[NSString alloc] init];
         self.planets = [NSMutableArray array];
+        self.isMultiplayer = false;
     }
 
     return self;

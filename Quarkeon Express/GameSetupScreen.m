@@ -111,7 +111,9 @@
 
 - (IBAction)nextScreen:(id)sender
 {
-    [appDelegate generateMap];
+    if (!appDelegate.gameState.isMultiplayer) {
+        [appDelegate generateMap];
+    }
     [appDelegate.gameSetupVC.view removeFromSuperview];
     [appDelegate.window addSubview:appDelegate.playerSetupVC.view];
 

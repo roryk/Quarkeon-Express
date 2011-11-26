@@ -20,6 +20,7 @@
 @synthesize description;
 @synthesize currentCost, initialCost, earnRate;
 @synthesize owner;
+@synthesize x,y;
 
 - (id)init
 {

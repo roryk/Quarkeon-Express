@@ -31,6 +31,9 @@
 @property (readwrite, assign) int initialCost;
 @property (readwrite, assign) int earnRate;
 @property (readwrite, assign) int currentCost;
+@property (readwrite, assign) int x;
+@property (readwrite, assign) int y;
+
 
 @property (nonatomic, retain) Player *owner;
 

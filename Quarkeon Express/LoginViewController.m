@@ -1,18 +1,17 @@
 //
-//  MainMenu.m
+//  LoginViewController.m
 //  Quarkeon Express
 //
-//  Created by Rory Kirchner on 11/3/11.
-//  Copyright 2011 MIT. All rights reserved.
+//  Created by Adam Fletcher on 11/26/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainMenu.h"
+#import "LoginViewController.h"
 #import "Quarkeon_ExpressAppDelegate.h"
-#import "GameSetupScreen.h"
 
-@implementation MainMenu
+@implementation LoginViewController
 
-@synthesize newGameButton, multiplayerButton, loadGameButton;
+@synthesize loginButton, emailAddressField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,11 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     appDelegate = (Quarkeon_ExpressAppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.gameState.isMultiplayer = false;
 
-
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -56,17 +53,21 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-- (IBAction)newGame:(id)sender
+- (IBAction)textFieldDoneEditing:(id)sender
 {
-    [appDelegate.mainMenuVC.view removeFromSuperview];
-    [appDelegate.window addSubview:appDelegate.gameSetupVC.view];
+    [sender resignFirstResponder];
 }
 
-- (IBAction)multiplayerGame:(id)sender
+- (IBAction)login:(id)sender
 {
-    [appDelegate.mainMenuVC.view removeFromSuperview];
-    appDelegate.gameState.isMultiplayer = true;
-    [appDelegate startMultiplayer];
+    bool didLogin = [appDelegate login:emailAddressField.text password:@"foo"];
+    if (didLogin) {
+        [appDelegate.loginVC.view removeFromSuperview];
+        [appDelegate startMultiplayer];
+    } else {    // XXX need to handle failure to login with a create login option?
+        NSLog(@"Failed to login! XXXXX DO SOMETHING HERE!");
+    }
+    
 }
 
 @end

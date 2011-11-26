@@ -23,6 +23,9 @@
     NSString *mapSize;
     
 }
+
+@property (readwrite, assign) bool isMultiplayer;
+
 @property (readwrite, assign) int numPlayers;
 @property (nonatomic, retain) NSString *mapSize;
 

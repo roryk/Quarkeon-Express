@@ -15,6 +15,9 @@
 #import "PlayerSetupScreen.h"
 #import "GameSetupScreen.h"
 #import "MainMenu.h"
+#import "LoginViewController.h"
+#import "PickMultiplayerGameTableView.h"
+#import "QEHTTPClient.h"
 
 
 @implementation Quarkeon_ExpressAppDelegate
@@ -28,6 +31,10 @@
 @synthesize mainMenuVC = mainMenuVC;
 @synthesize playerSetupVC = playerSetupVC;
 @synthesize playGameVC = playGameVC;
+@synthesize loginVC = loginVC;
+@synthesize pickMPGameVC = pickMPGameVC;
+@synthesize myMultiplayerGames;
+@synthesize QEClient;
 
 - (void) generateMap
 {
@@ -46,10 +53,34 @@
 
 - (void) startGame
 {
-
-  
     [self.gameState setupTurnOrder];
+}
 
+- (bool) login:(NSString *)emailAddress password:(NSString *)password
+{
+    int requestStatus;
+    [QEClient login:emailAddress password:password status:&requestStatus];
+    if (requestStatus == 200) {
+        return true;
+    }
+    return false;
+    
+}
+
+- (void) startMultiplayer
+{
+    int requestStatus;
+    self.myMultiplayerGames = [QEClient getMyGames:&requestStatus];
+    NSLog(@"getMyGames requestStatus: %d\n", requestStatus);
+    self.gameState.isMultiplayer = true;
+    if (self.QEClient.isLoggedIn) {
+        [self.window addSubview:self.pickMPGameVC.view];
+    } else if ([myMultiplayerGames count] > 0) {
+        [self.window addSubview:self.loginVC.view];
+    } else {
+        [self.window addSubview:self.gameSetupVC.view];
+    }
+        
 }
 
 - (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
@@ -61,13 +92,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+   
     self.gameState = [[GameState alloc] init];
     self.gameCreator = [[GameCreator alloc] initWithGameState:self.gameState];
+    
+    self.QEClient = [[QEHTTPClient alloc] init];
 
     
     self.playGameVC = [[Quarkeon_ExpressViewController alloc] init];
     self.gameSetupVC = [[GameSetupScreen alloc] init];
     self.playerSetupVC = [[PlayerSetupScreen alloc] init];
+    self.loginVC = [[LoginViewController alloc] init];
+    self.pickMPGameVC = [[PickMultiplayerGameTableView alloc] init];
     
     self.window.rootViewController = self.mainMenuVC;
     [self.window makeKeyAndVisible];

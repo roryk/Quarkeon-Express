@@ -16,6 +16,9 @@
 @synthesize defaultUranium;
 @synthesize largeMapSize, mediumMapSize, smallMapSize;
 @synthesize largeMapMaxPlanets, mediumMapMaxPlanets, smallMapMaxPlanets;
+@synthesize largeMapStartingU, mediumMapStartingU, smallMapStartingU;
+@synthesize largeMapMeanPlanetTotalU, mediumMapMeanPlanetTotalU, smallMapMeanPlanetTotalU;
+@synthesize largeMapMeanPlanetLifetime, mediumMapMeanPlanetLifetime, smallMapMeanPlanetLifetime;
 
 - (id) initWithGameState:(GameState *)gs
 {
@@ -25,6 +28,7 @@
         self.cells = [NSMutableArray array];
         // Initialization code here.
         
+        // single player defaults
         self.defaultUranium = 100;
         
         self.largeMapSize = 10;
@@ -36,10 +40,22 @@
         self.smallMapSize = 4;
         self.smallMapMaxPlanets = 7;
         
+        // multiplayer defaults
+        self.largeMapMeanPlanetLifetime = 100;
+        self.mediumMapMeanPlanetLifetime = 50;
+        self.smallMapMeanPlanetLifetime = 25;
+        
+        self.largeMapMeanPlanetTotalU = 1000;
+        self.mediumMapMeanPlanetTotalU = 750;
+        self.smallMapMeanPlanetTotalU = 500;
+        
+        self.largeMapStartingU = 4000;
+        self.mediumMapStartingU = 3000;
+        self.smallMapStartingU = 2000;
+    
+        // various generators & loaders
         self.mg = [[MapGenerator alloc] init];
         self.mg.loadedPlanets = [self loadPlanets];
-
-
     }
     
     return self;
@@ -102,6 +118,15 @@
     return newPlanets;
 }
 
+- (void)makeFixedMapWithPlanets:(int)width height:(int)height planets:(NSMutableArray *)planets
+{
+    [self.mg setSize:width y:height];
+    [self.mg initCells];
+    [self.mg buildMapWithPlanets:planets];
+    self.gameState.cells = self.mg.cells;
+    self.gameState.planets = self.mg.usedPlanets;
+    
+}
 - (void)makeRandomMap:(int)x y:(int)y max_planets:(int)max_planets {
     [self.mg setSize:x y:y];
     self.mg.backgroundImages = [self loadBackgrounds];
