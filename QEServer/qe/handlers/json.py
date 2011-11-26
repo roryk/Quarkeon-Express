@@ -210,6 +210,18 @@ class MoveHandler(AuthenticatedBaseJSONHandler):
 
         self.write(result)
 
+class StartTurnHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+
+        result = self.dg.start_turn(game_id, current_user)
+
+        self.write(result)
+
 class EndTurnHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg

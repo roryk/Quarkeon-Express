@@ -52,18 +52,16 @@ def main():
         (r"/api/inviteusertogame", json.InviteUserToGameHandler, dg),
         (r"/api/startgame", json.StartGameHandler, dg),
 
-
-
         # game management, to be implemented once a single game works
         (r"/api/loadgame", json.LoadGameHandler, dg),
-        (r"/api/getstatus", json.GetStatusHandler, dg),
         (r"/api/getmygames", json.GetMyGamesHandler, dg),
-#        (r"/api/getgames", json.GetGamesHandler, dg),
 
         # game play
         (r"/api/move", json.MoveHandler, dg),
         (r"/api/buyplanet", json.BuyPlanetHandler, dg),
         (r"/api/endturn", json.EndTurnHandler, dg),
+        (r"/api/startturn", json.StartTurnHandler, dg),
+        (r"/api/getstatus", json.GetStatusHandler, dg),
 
     ], **settings)
 

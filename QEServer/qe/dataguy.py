@@ -207,6 +207,7 @@ class DataGuy (object):
         cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('adam', 'adamf@csh.rit.edu', 'foo')")
         cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('rory', 'roryk@mit.edu', 'foo')")
         cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('sean', 'seanth@gmail.com', 'foo')")
+        cur.execute("INSERT INTO players (name, emailAddress, password) VALUES ('jessica', 'jessica.mckellar@gmail.com', 'foo')")
 
         self.dbcon.commit()
 
@@ -235,18 +236,10 @@ class DataGuy (object):
     def get_my_games(self, current_user):
         cur = self.dbcon.cursor()
 
-        cur.execute("SELECT game FROM player_in_game WHERE player=?", 
-                (current_user["id"],))
+        cur.execute("SELECT name, id, players_in_game FROM game WHERE id=" + 
+                "(SELECT game FROM player_in_game WHERE player=?) AND game_over = 0", (current_user["id"],))
 
-        game_ids = cur.fetchall()
-
-        result = {}
-        games = []
-        for game_id, in game_ids:
-            cur.execute("SELECT name, id, players_in_game FROM game WHERE id=? AND game_over = 0", (game_id,))
-            games.append(db_rows_to_dict('game', cur)['game'])
-
-        result["games"] = games
+        result = db_rows_to_dict('games', cur)
         result["status"] = 'ok'
 
         return result
@@ -269,10 +262,23 @@ class DataGuy (object):
 
         active_player_details = db_rows_to_dict('whose_turn', cur)['whose_turn'][0]
 
-        if whose_turn == current_user["id"]:
-            return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, "my_turn": True}
+        cur.execute("SELECT * FROM player_in_game WHERE player=? AND game=?", (current_user["id"], game_id))
 
-        return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, "my_turn": False}
+        my_state = db_rows_to_dict('my_state', cur)['my_state'][0]
+
+        cur.execute("SELECT * from planet_in_game WHERE xLocation=? AND yLocation=? AND game=?", 
+            (my_state["xLocation"], my_state["yLocation"], game_id))
+
+        planet = db_rows_to_dict("planet", cur)['planet']
+        if planet:
+            planet = planet[0]
+
+        if whose_turn == current_user["id"]:
+            return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, 
+                    "my_turn": True, "my_state": my_state, "planet": planet}
+
+        return {"status": "ok", "game_id": game_id, "whose_turn": active_player_details, 
+                "my_turn": False, "my_state": my_state, "planet": planet}
 
     @db_error_handler
     def get_players_in_game(self, game_id, current_user):
@@ -394,7 +400,11 @@ class DataGuy (object):
 
         self.dbcon.commit()
 
-        return {"status": "ok", "xLocation": new_x, "yLocation": new_y, "uranium": new_uranium}
+        # return planet details if they are here
+        cur.execute("SELECT * FROM planet_in_game WHERE xLocation=? AND yLocation=? AND game=?", (new_x, new_y, game_id))
+        planet_at_cell = db_rows_to_dict('planet', cur)['planet']
+
+        return {"status": "ok", "xLocation": new_x, "yLocation": new_y, "uranium": new_uranium, "planet": planet_at_cell}
 
 
     @db_error_handler
@@ -412,17 +422,17 @@ class DataGuy (object):
             return isTurn
 
 
-        cur.execute("SELECT num_planets from game WHERE id=?", (game_id,))
+        cur.execute("SELECT num_planets FROM game WHERE id=?", (game_id,))
 
-        num_planets, = cur.fetchone()[0]
+        num_planets, = cur.fetchone()
 
-        cur.execute("SELECT * from planets_in_game WHERE owner=? and game=?", (current_user["id"], game_id))
+        cur.execute("SELECT * from planet_in_game WHERE owner=? and game=?", (current_user["id"], game_id))
 
         owned_planets = db_rows_to_dict('planets', cur)['planets']
 
         # check to see if you won.
         # XXX the 50% measure here should be a config parameter in create game...
-        if owned_planets > int(num_planets / 2):
+        if len(owned_planets) > int(num_planets / 2):
             cur.execute("UPDATE game SET game_over=1 WHERE id=?", (game_id,))
             self.dbcon.commit()
             return { "status": "ok", "won_game": True }
@@ -448,7 +458,7 @@ class DataGuy (object):
 
         cur.execute("SELECT uranium FROM player_in_game WHERE player=? AND game=?", (current_user["id"], game_id))
 
-        current_u, = cur.fetchone()[0]
+        current_u, = cur.fetchone()
 
         new_u = current_u + earned_uranium
 
@@ -474,7 +484,7 @@ class DataGuy (object):
 
         cur.execute("SELECT round FROM player_in_game WHERE player=? AND game=?", (current_user["id"], game_id))
 
-        cur_round, = cur.fetchone()[0]
+        cur_round, = cur.fetchone()
 
         new_round = cur_round + 1
         # increment this player's round counter
@@ -487,7 +497,7 @@ class DataGuy (object):
 
         possible_players = cur.fetchall()
 
-        if possible_players != None:
+        if possible_players != []:
             random.shuffle(possible_players)
             whose_turn, = possible_players[0]
         else:
@@ -498,16 +508,11 @@ class DataGuy (object):
             random.shuffle(possible_players)
             whose_turn, = possible_players[0]
 
-        logging.info(whose_turn)
 
-        cur.execute("UPDATE game SET whose_turn=? WHERE game=?", (whose_turn, game_id))
+        cur.execute("UPDATE game SET whose_turn=? WHERE id=?", (whose_turn, game_id))
         self.dbcon.commit()
 
-        # enqueue a notification for the next user?
-        # set whose_turn properly
-        # if the current user has another turn, be sure to notify them somehow
-        # if the player whose turn it now is has won, set that flag here!
-
+        return {"status": "ok", "whose_turn": whose_turn}
 
 
     @db_error_handler
@@ -661,8 +666,9 @@ class DataGuy (object):
         cur = self.dbcon.cursor()
 
         # check that it is the current users' turn
-        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id))
-        whose_turn, = cur.fetchone()[0]
+        cur.execute("SELECT whose_turn FROM game WHERE id=?", (game_id,))
+        whose_turn, = cur.fetchone()
+
         if whose_turn != current_user["id"]:
             return {"status": "error", "error_msg": "It is not your turn" }
 
