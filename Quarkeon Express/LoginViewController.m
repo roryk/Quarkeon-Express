@@ -64,7 +64,8 @@
     if (didLogin) {
         [appDelegate.loginVC.view removeFromSuperview];
         [appDelegate startMultiplayer];
-    } else {    // XXX need to handle failure to login with a create login option?
+    } else {    
+        // XXX need to handle failure to login with a create login option?
         NSLog(@"Failed to login! XXXXX DO SOMETHING HERE!");
     }
     

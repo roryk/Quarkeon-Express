@@ -30,6 +30,8 @@
         self.planetID = -1;
         self.currentCost = -1;
         self.initialCost = -1;
+        self.x = -1;
+        self.y = -1;
         self.picture = nil;
         self.name = [NSString string];
         self.description = [NSString string];
@@ -54,6 +56,8 @@
     newPlanet.name = self.name;
     newPlanet.picture = self.picture;
     newPlanet.type = self.type;
+    newPlanet.x = self.x;
+    newPlanet.y = self.y;
     return(newPlanet);
 }
 

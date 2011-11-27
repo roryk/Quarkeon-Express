@@ -40,6 +40,7 @@
 - (NSMutableArray *)buildMap:(int) max_planets;
 - (void)setSize:(int)x y:(int)y;
 - (void)initCells;
+- (void) initCellsWithCoords;
 - (NSMutableArray *)buildMapWithPlanets:(NSMutableArray *)planets;
 
 @end

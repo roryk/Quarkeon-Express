@@ -569,6 +569,8 @@ class DataGuy (object):
         player_ids = []
 
 
+        # XXX what happens here if the player doesn't exist?
+        # Should we just add them? 
         for player in players:
             cur.execute("SELECT id FROM players WHERE emailAddress = ?", (player,))
 

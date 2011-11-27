@@ -61,6 +61,9 @@
 @property (readwrite, assign) int mediumMapStartingU;
 @property (readwrite, assign) int smallMapStartingU;
 
+@property (readwrite, assign) int largeMapPlanetPercentage;
+@property (readwrite, assign) int mediumMapPlanetPercentage;
+@property (readwrite, assign) int smallMapPlanetPercentage;
 
 // single player properties
 

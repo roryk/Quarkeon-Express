@@ -16,7 +16,7 @@
 #import "GameSetupScreen.h"
 #import "MainMenu.h"
 #import "LoginViewController.h"
-#import "PickMultiplayerGameTableView.h"
+#import "PickMultiplayerGameViewController.h"
 #import "QEHTTPClient.h"
 
 
@@ -66,7 +66,7 @@
         if ([self.gameState.mapSize isEqualToString:@"Small"]) {
             
             multiplayerGame = [QEClient createGame:playerEmailAddresses width:gc.smallMapSize height:gc.smallMapSize 
-                   planetDensity:gc.smallMapMaxPlanets meanUranium:gc.smallMapMeanPlanetTotalU 
+                   planetDensity:gc.smallMapPlanetPercentage meanUranium:gc.smallMapMeanPlanetTotalU 
                                 meanPlanetLifetime:gc.smallMapMeanPlanetLifetime startingUranium:gc.smallMapStartingU 
                           status:&requestStatus];
             
@@ -105,15 +105,20 @@
 - (void) startMultiplayer
 {
     int requestStatus;
-    self.myMultiplayerGames = [QEClient getMyGames:&requestStatus];
-    NSLog(@"getMyGames requestStatus: %d\n", requestStatus);
     self.gameState.isMultiplayer = true;
-    if (self.QEClient.isLoggedIn) {
-        [self.window addSubview:self.pickMPGameVC.view];
-    } else if ([myMultiplayerGames count] > 0) {
+    self.myMultiplayerGames = [QEClient getMyGames:&requestStatus]; // XXX we do this to see if we are logged in.
+    
+    if (!self.QEClient.isLoggedIn) {
         [self.window addSubview:self.loginVC.view];
     } else {
-        [self.window addSubview:self.gameSetupVC.view];
+        self.myMultiplayerGames = [QEClient getMyGames:&requestStatus];
+        NSLog(@"getMyGames requestStatus: %d\n", requestStatus);
+        if ([myMultiplayerGames count] > 0) {
+            [self.window addSubview:self.pickMPGameVC.view];
+        } else {
+            [self.window addSubview:self.gameSetupVC.view];
+
+        }
     }
         
 }
@@ -151,7 +156,7 @@
     self.gameSetupVC = [[GameSetupScreen alloc] init];
     self.playerSetupVC = [[PlayerSetupScreen alloc] init];
     self.loginVC = [[LoginViewController alloc] init];
-    self.pickMPGameVC = [[PickMultiplayerGameTableView alloc] init];
+    self.pickMPGameVC = [[PickMultiplayerGameViewController alloc] init];
     
     self.window.rootViewController = self.mainMenuVC;
     [self.window makeKeyAndVisible];

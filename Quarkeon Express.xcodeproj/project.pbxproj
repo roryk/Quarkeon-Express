@@ -49,6 +49,9 @@
 		C324591214775702000C18C7 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590D14775702000C18C7 /* SBJsonWriter.m */; };
 		C324591814775730000C18C7 /* QEHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591514775730000C18C7 /* QEHTTPClient.m */; };
 		C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591714775730000C18C7 /* QEHTTPClientResponse.m */; };
+		C32B9B531482CDAC00C513C6 /* PickMultiplayerGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */; };
+		C32B9B541482CDAC00C513C6 /* PickMultiplayerGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */; };
+		C32B9B571482DB4B00C513C6 /* QEUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C32B9B561482DB4B00C513C6 /* QEUIButton.m */; };
 		C33C7072145C65BD0094534C /* Arid World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7065145C65BD0094534C /* Arid World.jpg */; };
 		C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7066145C65BD0094534C /* Caldonia.jpg */; };
 		C33C7074145C65BD0094534C /* Cold World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7067145C65BD0094534C /* Cold World.jpg */; };
@@ -63,8 +66,6 @@
 		C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7070145C65BD0094534C /* Small Gas Giant.jpg */; };
 		C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7071145C65BD0094534C /* Waterless World.jpg */; };
 		C33ED2E414813A6E00AFCC4B /* MultiplayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */; };
-		C33ED2E814813E4100AFCC4B /* PickMultiplayerGameTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C33ED2E614813E4100AFCC4B /* PickMultiplayerGameTableView.m */; };
-		C33ED2E914813E4100AFCC4B /* PickMultiplayerGameTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33ED2E714813E4100AFCC4B /* PickMultiplayerGameTableView.xib */; };
 		C33ED2ED14814BA600AFCC4B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33ED2EB14814BA600AFCC4B /* LoginViewController.m */; };
 		C33ED2EE14814BA600AFCC4B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */; };
 		C377A5FA144E446C00663A2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5F9144E446C00663A2C /* UIKit.framework */; };
@@ -164,6 +165,11 @@
 		C324591514775730000C18C7 /* QEHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClient.m; sourceTree = "<group>"; };
 		C324591614775730000C18C7 /* QEHTTPClientResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QEHTTPClientResponse.h; sourceTree = "<group>"; };
 		C324591714775730000C18C7 /* QEHTTPClientResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClientResponse.m; sourceTree = "<group>"; };
+		C32B9B501482CDAC00C513C6 /* PickMultiplayerGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickMultiplayerGameViewController.h; path = "Quarkeon Express/PickMultiplayerGameViewController.h"; sourceTree = "<group>"; };
+		C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickMultiplayerGameViewController.m; path = "Quarkeon Express/PickMultiplayerGameViewController.m"; sourceTree = "<group>"; };
+		C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickMultiplayerGameViewController.xib; path = "Quarkeon Express/PickMultiplayerGameViewController.xib"; sourceTree = "<group>"; };
+		C32B9B551482DB4B00C513C6 /* QEUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QEUIButton.h; sourceTree = "<group>"; };
+		C32B9B561482DB4B00C513C6 /* QEUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEUIButton.m; sourceTree = "<group>"; };
 		C33C7065145C65BD0094534C /* Arid World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Arid World.jpg"; path = "Game Images/Arid World.jpg"; sourceTree = "<group>"; };
 		C33C7066145C65BD0094534C /* Caldonia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Caldonia.jpg; path = "Game Images/Caldonia.jpg"; sourceTree = "<group>"; };
 		C33C7067145C65BD0094534C /* Cold World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Cold World.jpg"; path = "Game Images/Cold World.jpg"; sourceTree = "<group>"; };
@@ -179,9 +185,6 @@
 		C33C7071145C65BD0094534C /* Waterless World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Waterless World.jpg"; path = "Game Images/Waterless World.jpg"; sourceTree = "<group>"; };
 		C33ED2E214813A6E00AFCC4B /* MultiplayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiplayerGame.h; path = "Quarkeon Express/MultiplayerGame.h"; sourceTree = "<group>"; };
 		C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiplayerGame.m; path = "Quarkeon Express/MultiplayerGame.m"; sourceTree = "<group>"; };
-		C33ED2E514813E4100AFCC4B /* PickMultiplayerGameTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickMultiplayerGameTableView.h; path = "Quarkeon Express/PickMultiplayerGameTableView.h"; sourceTree = "<group>"; };
-		C33ED2E614813E4100AFCC4B /* PickMultiplayerGameTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickMultiplayerGameTableView.m; path = "Quarkeon Express/PickMultiplayerGameTableView.m"; sourceTree = "<group>"; };
-		C33ED2E714813E4100AFCC4B /* PickMultiplayerGameTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickMultiplayerGameTableView.xib; path = "Quarkeon Express/PickMultiplayerGameTableView.xib"; sourceTree = "<group>"; };
 		C33ED2EA14814BA600AFCC4B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "Quarkeon Express/LoginViewController.h"; sourceTree = "<group>"; };
 		C33ED2EB14814BA600AFCC4B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "Quarkeon Express/LoginViewController.m"; sourceTree = "<group>"; };
 		C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = "Quarkeon Express/LoginViewController.xib"; sourceTree = "<group>"; };
@@ -300,12 +303,12 @@
 			children = (
 				C33ED2E214813A6E00AFCC4B /* MultiplayerGame.h */,
 				C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */,
-				C33ED2E514813E4100AFCC4B /* PickMultiplayerGameTableView.h */,
-				C33ED2E614813E4100AFCC4B /* PickMultiplayerGameTableView.m */,
-				C33ED2E714813E4100AFCC4B /* PickMultiplayerGameTableView.xib */,
 				C33ED2EA14814BA600AFCC4B /* LoginViewController.h */,
 				C33ED2EB14814BA600AFCC4B /* LoginViewController.m */,
 				C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */,
+				C32B9B501482CDAC00C513C6 /* PickMultiplayerGameViewController.h */,
+				C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */,
+				C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */,
 			);
 			name = "Multiplayer QE";
 			sourceTree = "<group>";
@@ -400,6 +403,8 @@
 				98A93D66146372FA00493A97 /* MainMenu.h */,
 				98A93D67146372FA00493A97 /* MainMenu.m */,
 				98A93D68146372FA00493A97 /* MainMenu.xib */,
+				C32B9B551482DB4B00C513C6 /* QEUIButton.h */,
+				C32B9B561482DB4B00C513C6 /* QEUIButton.m */,
 			);
 			path = "Quarkeon Express";
 			sourceTree = "<group>";
@@ -565,8 +570,8 @@
 				C30234711465AAAC00A0ED4D /* stars3.png in Resources */,
 				9838DB071465EFA2006BFACA /* stars5.png in Resources */,
 				9838DB081465EFA2006BFACA /* stars6.png in Resources */,
-				C33ED2E914813E4100AFCC4B /* PickMultiplayerGameTableView.xib in Resources */,
 				C33ED2EE14814BA600AFCC4B /* LoginViewController.xib in Resources */,
+				C32B9B541482CDAC00C513C6 /* PickMultiplayerGameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,8 +634,9 @@
 				C324591814775730000C18C7 /* QEHTTPClient.m in Sources */,
 				C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */,
 				C33ED2E414813A6E00AFCC4B /* MultiplayerGame.m in Sources */,
-				C33ED2E814813E4100AFCC4B /* PickMultiplayerGameTableView.m in Sources */,
 				C33ED2ED14814BA600AFCC4B /* LoginViewController.m in Sources */,
+				C32B9B531482CDAC00C513C6 /* PickMultiplayerGameViewController.m in Sources */,
+				C32B9B571482DB4B00C513C6 /* QEUIButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

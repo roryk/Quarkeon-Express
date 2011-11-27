@@ -2,6 +2,7 @@
 #import "QEHTTPClientResponse.h"
 #import "JSON.h"
 #import "MultiplayerGame.h"
+#import "Planet.h"
 
 
 
@@ -210,8 +211,15 @@
     // I wonder if objective C has decorators? 
     // 403 means we need to log in. 
     if (*status == 403) {
+        self.isLoggedIn = false;
+    }
+    if (*status != 200) {
         return nil;
     }
+    
+    self.isLoggedIn = true;
+    
+    
     
 	NSDictionary *results = [content JSONValue];
     
@@ -278,28 +286,67 @@ params = {'players': tornado.escape.json_encode(players),
                 planetDensity:(int)planetDensity meanUranium:(int)meanU meanPlanetLifetime:(int)meanPlanetLifetime
               startingUranium:(int)startingU status:(int *)status
 {
-    NSMutableDictionary *postParams = [[NSDictionary alloc] init];
+    NSMutableDictionary *postParams = [[NSMutableDictionary alloc] init];
     SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
     
-    NSString *jsonPlayers = [jsonWriter stringWithObject:players];
+    NSString *jsonPlayers = [[NSString alloc] initWithString:[jsonWriter stringWithObject:players]];
     
-    [postParams setObject:jsonPlayers forKey:@"players"];
     [postParams setObject:[[NSNumber alloc] initWithInt:width] forKey:@"map_width"];
     [postParams setObject:[[NSNumber alloc] initWithInt:height] forKey:@"map_height"];
     [postParams setObject:[[NSNumber alloc] initWithInt:planetDensity] forKey:@"planet_percentage"];
     [postParams setObject:[[NSNumber alloc] initWithInt:meanU] forKey:@"mean_uranium"];
     [postParams setObject:[[NSNumber alloc] initWithInt:meanPlanetLifetime] forKey:@"mean_planet_lifetime"];
     [postParams setObject:[[NSNumber alloc] initWithInt:startingU] forKey:@"starting_uranium"];
-    
+    [postParams setObject:jsonPlayers forKey:@"players"];
+
 	QEHTTPClientResponse *qeResponse = [self doQEPostRequest:@"creategame" postFields:postParams];
     
     NSString *content = qeResponse.content;
 	*status = qeResponse.statusCode;
+    
+    // we do this a lot, and should move this code elsewhere.
     if (*status == 403) {
+        self.isLoggedIn = false;
+    }
+    if (*status != 200) {
         return nil;
     }
     
-	NSMutableDictionary *results = [content JSONValue];
+    self.isLoggedIn = true;
+    
+    return [self parseLoadedGame:[content JSONValue]];
+}
+
+// Transform the dictionary we get back from creategame and loadgame into native objects, and return
+// this dictionary
+- (NSMutableDictionary *)parseLoadedGame:(NSMutableDictionary *)game
+{
+    NSMutableDictionary *results = game;
+    NSMutableArray *planetsArray = [game objectForKey:@"planets"];
+    NSMutableArray *loadedPlanets = [[NSMutableArray alloc] init];
+    for (NSDictionary *planetDict in planetsArray) {
+        Planet *newPlanet = [[Planet alloc] init];
+        newPlanet.name = [planetDict objectForKey:@"name"];
+        newPlanet.description = @"";
+        
+        NSString *imagePath = [NSString stringWithString:[planetDict objectForKey:@"picture"]];
+        if ([imagePath isEqualToString:@""]) {
+            imagePath = @"Nu Earth.jpg";
+        }
+        newPlanet.picture = [UIImage imageNamed:imagePath];
+        newPlanet.type = -1;
+        newPlanet.earnRate = [[planetDict objectForKey:@"earn_rate"] intValue];
+        newPlanet.initialCost = [[planetDict objectForKey:@"cost"] intValue];
+        newPlanet.currentCost = newPlanet.initialCost;
+        newPlanet.x = [[planetDict objectForKey:@"xLocation"] intValue];
+        newPlanet.y = [[planetDict objectForKey:@"yLocation"] intValue];
+        newPlanet.planetID = [[planetDict objectForKey:@"id"] intValue];
+        
+        [loadedPlanets addObject:newPlanet];
+        NSLog(@"loaded planet: %@", newPlanet.name);
+        [newPlanet release];
+    }
+    [results setObject:loadedPlanets forKey:@"planets"];
     return results;
 }
 

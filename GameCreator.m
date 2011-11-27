@@ -19,6 +19,7 @@
 @synthesize largeMapStartingU, mediumMapStartingU, smallMapStartingU;
 @synthesize largeMapMeanPlanetTotalU, mediumMapMeanPlanetTotalU, smallMapMeanPlanetTotalU;
 @synthesize largeMapMeanPlanetLifetime, mediumMapMeanPlanetLifetime, smallMapMeanPlanetLifetime;
+@synthesize largeMapPlanetPercentage, mediumMapPlanetPercentage, smallMapPlanetPercentage;
 
 - (id) initWithGameState:(GameState *)gs
 {
@@ -53,6 +54,10 @@
         self.mediumMapStartingU = 3000;
         self.smallMapStartingU = 2000;
             
+        self.largeMapPlanetPercentage = 50;
+        self.mediumMapPlanetPercentage = 40;
+        self.smallMapPlanetPercentage = 30;
+        
         // various generators & loaders
         self.mg = [[MapGenerator alloc] init];
         self.mg.loadedPlanets = [self loadPlanets];
@@ -121,7 +126,8 @@
 - (void)makeFixedMapWithPlanets:(int)width height:(int)height planets:(NSMutableArray *)planets
 {
     [self.mg setSize:width y:height];
-    [self.mg initCells];
+    self.mg.backgroundImages = [self loadBackgrounds];
+    [self.mg initCellsWithCoords];
     [self.mg buildMapWithPlanets:planets];
     self.gameState.cells = self.mg.cells;
     self.gameState.planets = self.mg.usedPlanets;
@@ -169,8 +175,8 @@
 
 - (void)addMultiplayerPlayer:(NSString *)emailAddress
 {
-    Player *newPlayer;
-    newPlayer.name = emailAddress;
+    Player *newPlayer = [[Player alloc] init];
+    newPlayer.name = [[NSString alloc] initWithString:emailAddress];
     [self.gameState.players addObject:newPlayer];
     [newPlayer release];
 

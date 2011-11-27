@@ -18,7 +18,7 @@
 @class PlayerSetupScreen;
 @class GameSetupScreen;
 @class GameCreator;
-@class PickMultiplayerGameTableView;
+@class PickMultiplayerGameViewController;
 @class LoginViewController;
 @class QEHTTPClient;
 
@@ -54,7 +54,7 @@
 
 @property (nonatomic, retain) IBOutlet LoginViewController *loginVC;
 
-@property (nonatomic, retain) IBOutlet PickMultiplayerGameTableView *pickMPGameVC;
+@property (nonatomic, retain) IBOutlet PickMultiplayerGameViewController *pickMPGameVC;
 
 
 
