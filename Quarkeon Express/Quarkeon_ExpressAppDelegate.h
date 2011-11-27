@@ -64,6 +64,7 @@
 
 - (bool) login:(NSString *)emailAddress password:(NSString *)password;
 - (void) startMultiplayer;
+- (void) loadMultiplayerGame:(int)gameId;
 
 
 @end

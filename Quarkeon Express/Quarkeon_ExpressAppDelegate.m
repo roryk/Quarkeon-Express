@@ -51,6 +51,23 @@
     
 }
 
+- (void) loadMultiplayerGame:(int)gameId
+{
+    int requestStatus;
+    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
+    GameCreator *gc = self.gameCreator;
+    multiplayerGame = [QEClient loadGame:gameId status:&requestStatus];
+    // XXX we should check to see if we need to login here. 
+    // XXX also, the views should be in a stack, so we can push the login, then
+    // pop back to the active one.
+    
+    NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
+    NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
+    [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
+                         height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
+    
+}
+
 - (void) startGame
 {
     int requestStatus;
@@ -58,7 +75,7 @@
     NSMutableArray *playerEmailAddresses = [[NSMutableArray alloc] init];
     NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
     for (Player *player in self.gameState.players) {
-        [playerEmailAddresses addObject:player.name];
+        [playerEmailAddresses addObject:player.emailAddress];
     }
     
     if (self.gameState.isMultiplayer) {

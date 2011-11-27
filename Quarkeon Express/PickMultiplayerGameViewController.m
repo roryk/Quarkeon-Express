@@ -11,6 +11,7 @@
 #import "MultiplayerGame.h"
 #import "QEUIButton.h"
 #import "GameSetupScreen.h"
+#import "Quarkeon_ExpressViewController.h"
 
 @implementation PickMultiplayerGameViewController
 
@@ -88,11 +89,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// open a alert with an OK and cancel button
-	NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    
+    MultiplayerGame *pickedGame = [appDelegate.myMultiplayerGames objectAtIndex:indexPath.row];
+    [appDelegate.pickMPGameVC.view removeFromSuperview];
+    [appDelegate loadMultiplayerGame:pickedGame.gameID];
+    [appDelegate.window addSubview:appDelegate.playGameVC.view];
+    
 }
 
 - (IBAction)newGame:(id)sender

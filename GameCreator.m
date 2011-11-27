@@ -176,7 +176,7 @@
 - (void)addMultiplayerPlayer:(NSString *)emailAddress
 {
     Player *newPlayer = [[Player alloc] init];
-    newPlayer.name = [[NSString alloc] initWithString:emailAddress];
+    newPlayer.emailAddress = [[NSString alloc] initWithString:emailAddress];
     [self.gameState.players addObject:newPlayer];
     [newPlayer release];
 

@@ -3,6 +3,7 @@
 #import "JSON.h"
 #import "MultiplayerGame.h"
 #import "Planet.h"
+#import "Player.h"
 
 
 
@@ -323,7 +324,11 @@ params = {'players': tornado.escape.json_encode(players),
 {
     NSMutableDictionary *results = game;
     NSMutableArray *planetsArray = [game objectForKey:@"planets"];
+    NSMutableArray *playersArray = [game objectForKey:@"players"];
+
     NSMutableArray *loadedPlanets = [[NSMutableArray alloc] init];
+    NSMutableArray *loadedPlayers = [[NSMutableArray alloc] init];
+
     for (NSDictionary *planetDict in planetsArray) {
         Planet *newPlanet = [[Planet alloc] init];
         newPlanet.name = [planetDict objectForKey:@"name"];
@@ -346,8 +351,55 @@ params = {'players': tornado.escape.json_encode(players),
         NSLog(@"loaded planet: %@", newPlanet.name);
         [newPlanet release];
     }
+    
+    /* 
+     [{"name": "adam", "xLocation": 2, "uranium": 4000, "yLocation": 1, 
+     "player": 1, "game": 1, "emailAddress": "adamf@csh.rit.edu", "id": 1, "round": 0}, 
+     {"emailAddress": "roryk@mit.edu", "id": 2, "name": "rory"}, 
+     {"emailAddress": "seanth@gmail.com", "id": 3, "name": "sean"}, 
+     {"emailAddress": "jessica.mckellar@gmail.com", "id": 4, "name": "jessica"}], 
+     
+     */
+    for (NSDictionary *playerDict in playersArray) {
+        Player *newPlayer = [[Player alloc] init];
+        newPlayer.name = [playerDict objectForKey:@"name"];
+        newPlayer.emailAddress = [playerDict objectForKey:@"emailAddress"];
+        if ([playerDict objectForKey:@"uranium"] != nil) {
+            // this is us. 
+            newPlayer.xLocation = [[playerDict objectForKey:@"xLocation"] intValue];
+            newPlayer.yLocation = [[playerDict objectForKey:@"yLocation"] intValue];
+            newPlayer.uranium = [[playerDict objectForKey:@"uranium"] intValue];
+            newPlayer.pid = [[playerDict objectForKey:@"player"] intValue];
+
+        }
+        [loadedPlanets addObject:newPlayer];
+        [newPlayer release];
+
+    }
+    [results setObject:loadedPlayers forKey:@"players"];
     [results setObject:loadedPlanets forKey:@"planets"];
     return results;
+}
+
+-(NSMutableDictionary *)loadGame:(int)gameId status:(int *)status
+{
+	QEHTTPClientResponse *qeResponse = [self doQEGetRequest:@"loadgame" queryFields:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber alloc] initWithInt:gameId], @"game_id", nil]];
+    
+    NSString *content = qeResponse.content;
+	*status = qeResponse.statusCode;
+    // XXX - find a better way to check this all the time
+    // I wonder if objective C has decorators? 
+    // 403 means we need to log in. 
+    if (*status == 403) {
+        self.isLoggedIn = false;
+    }
+    if (*status != 200) {
+        return nil;
+    }
+    
+    self.isLoggedIn = true;
+    
+    return [self parseLoadedGame:[content JSONValue]];
 }
 
 @end

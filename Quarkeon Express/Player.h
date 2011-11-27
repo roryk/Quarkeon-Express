@@ -27,10 +27,12 @@
     int planetsOwned;
 }
 
+@property (readwrite, assign) int pid;
 @property (readwrite, assign) int planetsOwned;
 @property (readwrite, assign) int xLocation;
 @property (readwrite, assign) int yLocation;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *emailAddress;
 @property (nonatomic, retain) UIImage *picture;
 @property (readwrite, retain) Spaceship *ship;
 @property (readwrite, retain) Cell *currLocation;

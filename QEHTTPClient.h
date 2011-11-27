@@ -28,6 +28,9 @@
                 planetDensity:(int)planetDensity meanUranium:(int)meanU meanPlanetLifetime:(int)meanPlanetLifetime
               startingUranium:(int)startingU status:(int *)status;
 
+-(NSMutableDictionary *)loadGame:(int)gameId status:(int *)status;
+
+
 - (NSMutableDictionary *)parseLoadedGame:(NSMutableDictionary *)game;
 
 @end
