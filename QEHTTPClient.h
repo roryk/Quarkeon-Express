@@ -24,4 +24,8 @@
 -(void)login:(NSString *)username password:(NSString *)password status:(int *)status;
 -(NSMutableArray *)getMyGames:(int *)status;
 
+-(NSMutableDictionary *)createGame:(NSMutableArray *)players width:(int)width height:(int)height 
+                planetDensity:(int)planetDensity meanUranium:(int)meanU meanPlanetLifetime:(int)meanPlanetLifetime
+              startingUranium:(int)startingU status:(int *)status;
+
 @end

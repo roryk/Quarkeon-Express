@@ -29,6 +29,11 @@
 @property (readwrite, assign) int numPlayers;
 @property (nonatomic, retain) NSString *mapSize;
 
+@property (nonatomic, retain) NSString *myEmailAddress;
+@property (readwrite, assign) int myUserID;
+
+
+
 @property (nonatomic, retain) Cell *currCell;
 @property (nonatomic, retain) Player *currPlayer;
 @property (nonatomic, retain) NSMutableArray *turnQueue;

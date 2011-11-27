@@ -52,7 +52,7 @@
         self.largeMapStartingU = 4000;
         self.mediumMapStartingU = 3000;
         self.smallMapStartingU = 2000;
-    
+            
         // various generators & loaders
         self.mg = [[MapGenerator alloc] init];
         self.mg.loadedPlanets = [self loadPlanets];
@@ -165,6 +165,15 @@
     [self.gameState.players addObject:newPlayer];
     [newPlayer release];
     
+}
+
+- (void)addMultiplayerPlayer:(NSString *)emailAddress
+{
+    Player *newPlayer;
+    newPlayer.name = emailAddress;
+    [self.gameState.players addObject:newPlayer];
+    [newPlayer release];
+
 }
 
 - (void)startSampleGame

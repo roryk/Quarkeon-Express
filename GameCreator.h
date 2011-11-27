@@ -61,6 +61,7 @@
 @property (readwrite, assign) int mediumMapStartingU;
 @property (readwrite, assign) int smallMapStartingU;
 
+
 // single player properties
 
 @property (readwrite, assign) int largeMapSize;
@@ -89,6 +90,8 @@
 - (id)initWithGameState:(GameState *)gs;
 
 - (void)addPlayer:(int)startingUranium playerName:(NSString *)playerName isAI:(bool)isAI;
+- (void)addMultiplayerPlayer:(NSString *)emailAddress;
+
 - (NSArray *)loadBackgrounds;
 
 @end

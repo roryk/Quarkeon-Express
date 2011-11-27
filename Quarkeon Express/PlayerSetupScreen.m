@@ -56,7 +56,7 @@
         self.player2AI.hidden = YES;
         self.player3AI.hidden = YES;
         self.player4AI.hidden = YES;
-        self.player1Name.text = @"You";
+        self.player1Name.text = appDelegate.gameState.myEmailAddress;
         [self.player1Name setEnabled:NO];
         
         self.player2Name.placeholder = @"email address";

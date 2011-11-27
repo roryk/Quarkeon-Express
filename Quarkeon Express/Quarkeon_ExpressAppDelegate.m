@@ -53,7 +53,37 @@
 
 - (void) startGame
 {
-    [self.gameState setupTurnOrder];
+    int requestStatus;
+
+    NSMutableArray *playerEmailAddresses = [[NSMutableArray alloc] init];
+    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
+    for (Player *player in self.gameState.players) {
+        [playerEmailAddresses addObject:player.name];
+    }
+    
+    if (self.gameState.isMultiplayer) {
+        GameCreator *gc = self.gameCreator;
+        if ([self.gameState.mapSize isEqualToString:@"Small"]) {
+            
+            multiplayerGame = [QEClient createGame:playerEmailAddresses width:gc.smallMapSize height:gc.smallMapSize 
+                   planetDensity:gc.smallMapMaxPlanets meanUranium:gc.smallMapMeanPlanetTotalU 
+                                meanPlanetLifetime:gc.smallMapMeanPlanetLifetime startingUranium:gc.smallMapStartingU 
+                          status:&requestStatus];
+            
+            NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
+            NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
+            [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
+                                 height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
+
+            
+        } else if ([self.gameState.mapSize isEqualToString:@"Medium"]) {
+        } else {
+        }
+        
+        
+    } else {
+        [self.gameState setupTurnOrder];
+    }
 }
 
 - (bool) login:(NSString *)emailAddress password:(NSString *)password
@@ -61,6 +91,11 @@
     int requestStatus;
     [QEClient login:emailAddress password:password status:&requestStatus];
     if (requestStatus == 200) {
+        NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDirectory = [arrayPaths objectAtIndex:0];
+        NSString* filePath = [docDirectory stringByAppendingPathComponent:@"myemail.txt"];
+        [emailAddress writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        self.gameState.myEmailAddress = emailAddress;
         return true;
     }
     return false;
@@ -85,7 +120,11 @@
 
 - (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
 {
-    [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
+    if (self.gameState.isMultiplayer) {
+        [self.gameCreator addMultiplayerPlayer:playerName];
+    } else {
+        [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
+    }
 }
 
 
@@ -97,6 +136,15 @@
     self.gameCreator = [[GameCreator alloc] initWithGameState:self.gameState];
     
     self.QEClient = [[QEHTTPClient alloc] init];
+    
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [arrayPaths objectAtIndex:0];
+    NSString* filePath = [docDirectory stringByAppendingPathComponent:@"myemail.txt"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        self.gameState.myEmailAddress = fileContents;
+        NSLog(@"%@", fileContents);
+    }
 
     
     self.playGameVC = [[Quarkeon_ExpressViewController alloc] init];

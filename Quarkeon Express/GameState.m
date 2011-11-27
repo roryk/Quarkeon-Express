@@ -24,6 +24,7 @@
 @synthesize numPlayers;
 @synthesize mapSize;
 @synthesize isMultiplayer;
+@synthesize myUserID, myEmailAddress;
 
 - (id)init
 {
@@ -37,6 +38,8 @@
         self.mapSize = [[NSString alloc] init];
         self.planets = [NSMutableArray array];
         self.isMultiplayer = false;
+        self.myUserID = -1;
+        self.myEmailAddress = [[NSString alloc] init];
     }
 
     return self;

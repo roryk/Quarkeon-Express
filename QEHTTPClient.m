@@ -263,17 +263,44 @@
     "id": 1}
  
  */
-
--(NSMutableArray *)createGame:(NSNumber *)userID status:(int *)status
+/*
+params = {'players': tornado.escape.json_encode(players), 
+    'map_width': 5,
+    'map_height': 5,
+    'planet_percentage': 20,
+    'mean_uranium': 100,
+    'mean_planet_lifetime': 100,
+    'starting_uranium': 4000
+}
+ 
+ */
+-(NSMutableDictionary *)createGame:(NSMutableArray *)players width:(int)width height:(int)height 
+                planetDensity:(int)planetDensity meanUranium:(int)meanU meanPlanetLifetime:(int)meanPlanetLifetime
+              startingUranium:(int)startingU status:(int *)status
 {
-	QEHTTPClientResponse *qeResponse = [self doQEGetRequest:@"createGame" queryFields:[NSDictionary dictionaryWithObjectsAndKeys:[userID stringValue], @"user_id", nil]];
+    NSMutableDictionary *postParams = [[NSDictionary alloc] init];
+    SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
+    
+    NSString *jsonPlayers = [jsonWriter stringWithObject:players];
+    
+    [postParams setObject:jsonPlayers forKey:@"players"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:width] forKey:@"map_width"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:height] forKey:@"map_height"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:planetDensity] forKey:@"planet_percentage"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:meanU] forKey:@"mean_uranium"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:meanPlanetLifetime] forKey:@"mean_planet_lifetime"];
+    [postParams setObject:[[NSNumber alloc] initWithInt:startingU] forKey:@"starting_uranium"];
+    
+	QEHTTPClientResponse *qeResponse = [self doQEPostRequest:@"creategame" postFields:postParams];
+    
     NSString *content = qeResponse.content;
 	*status = qeResponse.statusCode;
     if (*status == 403) {
         return nil;
     }
-	NSDictionary *results = [content JSONValue];
-     	
+    
+	NSMutableDictionary *results = [content JSONValue];
+    return results;
 }
 
 @end
