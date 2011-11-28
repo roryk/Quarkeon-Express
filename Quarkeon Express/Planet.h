@@ -22,6 +22,8 @@
     int initialCost;
     int earnRate;
     int currentCost;
+    int x;
+    int y;
     Player *owner;
 
 }

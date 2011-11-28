@@ -25,6 +25,7 @@
     int bucks;
     int uranium;
     int planetsOwned;
+    NSString *emailAddress;
 }
 
 @property (readwrite, assign) int pid;

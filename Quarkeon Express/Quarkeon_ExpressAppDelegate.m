@@ -63,9 +63,22 @@
     
     NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
     NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
+    NSMutableArray *players = [multiplayerGame objectForKey:@"players"];
     [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
                          height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
+    NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
     
+    for (Player *player in players) {
+        if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
+            
+            self.gameState.currCell = [[self.gameState.cells objectAtIndex:player.xLocation] objectAtIndex:player.yLocation];
+            self.gameState.currPlayer = player;
+            player.currLocation = self.gameState.currCell;
+            
+            break;
+            
+        }
+    }
 }
 
 - (void) startGame
@@ -96,7 +109,18 @@
         } else if ([self.gameState.mapSize isEqualToString:@"Medium"]) {
         } else {
         }
+        NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
         
+        for (Player *player in [multiplayerGame objectForKey:@"players"]) {
+            if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
+                
+                self.gameState.currCell = [[self.gameState.cells objectAtIndex:player.xLocation] objectAtIndex:player.yLocation];
+                self.gameState.currPlayer = player;
+                
+                break;
+                
+            }
+        }
         
     } else {
         [self.gameState setupTurnOrder];

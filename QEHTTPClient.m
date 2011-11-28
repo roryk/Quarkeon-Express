@@ -372,7 +372,7 @@ params = {'players': tornado.escape.json_encode(players),
             newPlayer.pid = [[playerDict objectForKey:@"player"] intValue];
 
         }
-        [loadedPlanets addObject:newPlayer];
+        [loadedPlayers addObject:newPlayer];
         [newPlayer release];
 
     }

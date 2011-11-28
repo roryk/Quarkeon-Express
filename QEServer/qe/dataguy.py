@@ -236,7 +236,7 @@ class DataGuy (object):
     def get_my_games(self, current_user):
         cur = self.dbcon.cursor()
 
-        cur.execute("SELECT name, id, players_in_game FROM game WHERE id=" + 
+        cur.execute("SELECT name, id, players_in_game FROM game WHERE id IN " + 
                 "(SELECT game FROM player_in_game WHERE player=?) AND game_over = 0", (current_user["id"],))
 
         result = db_rows_to_dict('games', cur)
@@ -305,9 +305,9 @@ class DataGuy (object):
             cur.execute("SELECT emailAddress, name FROM players WHERE id=?", (player_id,))
             emailAddress, name = cur.fetchone()
 
-            playerDict = { "id": player_id, "emailAddress": emailAddress, "name": name}
+            playerDict = { "player": player_id, "emailAddress": emailAddress, "name": name}
 
-            if playerDict["id"] == current_user["id"]:
+            if playerDict["player"] == current_user["id"]:
 
                 for key, value in current_player_data.iteritems():
                     playerDict[key] = value
@@ -532,7 +532,7 @@ class DataGuy (object):
         cur.execute("SELECT * FROM game WHERE id=?", (game_id,))
         result = {}
         
-        result['game'] = db_rows_to_dict('game', cur)['game']
+        result['game'] = db_rows_to_dict('game', cur)['game'][0]
         result['id'] = game_id
 
 
