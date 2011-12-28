@@ -41,7 +41,11 @@
 @synthesize gameSetupVC = gameSetupVC;
 @synthesize mainMenuVC = mainMenuVC;
 @synthesize playerSetupVC = playerSetupVC;
-@synthesize playGameVC;
+@synthesize playGameVC = playGameVC;
+@synthesize loginVC = loginVC;
+@synthesize pickMPGameVC = pickMPGameVC;
+@synthesize myMultiplayerGames;
+@synthesize QEClient;
 
 - (void) generateMap
 {
@@ -90,12 +94,88 @@
 
 - (void) startGame
 {
-    [self.gameState setupTurnOrder];
-    [self.gameState setupTurn];
-    [self.gameState startTurn];
+    int requestStatus;
+
+    NSMutableArray *playerEmailAddresses = [[NSMutableArray alloc] init];
+    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
+    for (Player *player in self.gameState.players) {
+        [playerEmailAddresses addObject:player.emailAddress];
+    }
+    
+    if (self.gameState.isMultiplayer) {
+        GameCreator *gc = self.gameCreator;
+        if ([self.gameState.mapSize isEqualToString:@"Small"]) {
+            
+            multiplayerGame = [QEClient createGame:playerEmailAddresses width:gc.smallMapSize height:gc.smallMapSize 
+                   planetDensity:gc.smallMapPlanetPercentage meanUranium:gc.smallMapMeanPlanetTotalU 
+                                meanPlanetLifetime:gc.smallMapMeanPlanetLifetime startingUranium:gc.smallMapStartingU 
+                          status:&requestStatus];
+            
+            NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
+            NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
+            [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
+                                 height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
+
+            
+        } else if ([self.gameState.mapSize isEqualToString:@"Medium"]) {
+        } else {
+        }
+        NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
+        
+        for (Player *player in [multiplayerGame objectForKey:@"players"]) {
+            if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
+                
+                self.gameState.currCell = [[self.gameState.cells objectAtIndex:player.xLocation] objectAtIndex:player.yLocation];
+                self.gameState.currPlayer = player;
+                
+                break;
+                
+            }
+        }
+        
+    } else {
+        [self.gameState setupTurnOrder];
+    }
 }
 
--(void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
+- (bool) login:(NSString *)emailAddress password:(NSString *)password
+{
+    int requestStatus;
+    [QEClient login:emailAddress password:password status:&requestStatus];
+    if (requestStatus == 200) {
+        NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDirectory = [arrayPaths objectAtIndex:0];
+        NSString* filePath = [docDirectory stringByAppendingPathComponent:@"myemail.txt"];
+        [emailAddress writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        self.gameState.myEmailAddress = emailAddress;
+        return true;
+    }
+    return false;
+    
+}
+
+- (void) startMultiplayer
+{
+    int requestStatus;
+    self.gameState.isMultiplayer = true;
+    self.myMultiplayerGames = [QEClient getMyGames:&requestStatus]; // XXX we do this to see if we are logged in.
+    
+    if (!self.QEClient.isLoggedIn) {
+        [self.window addSubview:self.loginVC.view];
+    } else {
+        self.myMultiplayerGames = [QEClient getMyGames:&requestStatus];
+        NSLog(@"getMyGames requestStatus: %d\n", requestStatus);
+        if ([myMultiplayerGames count] > 0) {
+            [self.window addSubview:self.pickMPGameVC.view];
+        } else {
+            [self.window addSubview:self.gameSetupVC.view];
+
+        }
+    }
+        
+}
+
+- (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
 {
     if (self.gameState.isMultiplayer) {
         [self.gameCreator addMultiplayerPlayer:playerName];
