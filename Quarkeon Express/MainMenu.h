@@ -24,7 +24,7 @@
 {
     IBOutlet UIButton *newGameButton;
     IBOutlet UIButton *loadGameButton;
-    IBOutlet UIButton *helpButton;
+    IBOutlet UIButton *multiplayerButton;
     
     Quarkeon_ExpressAppDelegate *appDelegate;
 
@@ -33,10 +33,11 @@
 
 @property (nonatomic, retain) UIButton *newGameButton;
 @property (nonatomic, retain) UIButton *loadGameButton;
-@property (nonatomic, retain) UIButton *helpButton;
+@property (nonatomic, retain) UIButton *multiplayerButton;
 
 
 - (IBAction)newGame:(id)sender;
 
+- (IBAction)multiplayerGame:(id)sender;
 
 @end

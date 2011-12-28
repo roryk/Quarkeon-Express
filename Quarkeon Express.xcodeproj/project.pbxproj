@@ -42,6 +42,16 @@
 		C3131D661451AF010096F21A /* Planets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3131D631451AF010096F21A /* Planets.plist */; };
 		C3131D6B1451AF220096F21A /* planet-glass-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = C3131D681451AF220096F21A /* planet-glass-retina.png */; };
 		C3131D6C1451AF220096F21A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3131D6A1451AF220096F21A /* Queue.m */; };
+		C324590E14775702000C18C7 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590514775702000C18C7 /* NSObject+SBJSON.m */; };
+		C324590F14775702000C18C7 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590714775702000C18C7 /* NSString+SBJSON.m */; };
+		C324591014775702000C18C7 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590914775702000C18C7 /* SBJsonBase.m */; };
+		C324591114775702000C18C7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590B14775702000C18C7 /* SBJsonParser.m */; };
+		C324591214775702000C18C7 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C324590D14775702000C18C7 /* SBJsonWriter.m */; };
+		C324591814775730000C18C7 /* QEHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591514775730000C18C7 /* QEHTTPClient.m */; };
+		C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C324591714775730000C18C7 /* QEHTTPClientResponse.m */; };
+		C32B9B531482CDAC00C513C6 /* PickMultiplayerGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */; };
+		C32B9B541482CDAC00C513C6 /* PickMultiplayerGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */; };
+		C32B9B571482DB4B00C513C6 /* QEUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C32B9B561482DB4B00C513C6 /* QEUIButton.m */; };
 		C33C7072145C65BD0094534C /* Arid World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7065145C65BD0094534C /* Arid World.jpg */; };
 		C33C7073145C65BD0094534C /* Caldonia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7066145C65BD0094534C /* Caldonia.jpg */; };
 		C33C7074145C65BD0094534C /* Cold World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7067145C65BD0094534C /* Cold World.jpg */; };
@@ -55,6 +65,9 @@
 		C33C707C145C65BD0094534C /* Pyrobora.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C706F145C65BD0094534C /* Pyrobora.jpg */; };
 		C33C707D145C65BD0094534C /* Small Gas Giant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7070145C65BD0094534C /* Small Gas Giant.jpg */; };
 		C33C707E145C65BD0094534C /* Waterless World.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C33C7071145C65BD0094534C /* Waterless World.jpg */; };
+		C33ED2E414813A6E00AFCC4B /* MultiplayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */; };
+		C33ED2ED14814BA600AFCC4B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33ED2EB14814BA600AFCC4B /* LoginViewController.m */; };
+		C33ED2EE14814BA600AFCC4B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */; };
 		C377A5FA144E446C00663A2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5F9144E446C00663A2C /* UIKit.framework */; };
 		C377A5FC144E446C00663A2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FB144E446C00663A2C /* Foundation.framework */; };
 		C377A5FE144E446C00663A2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C377A5FD144E446C00663A2C /* CoreGraphics.framework */; };
@@ -137,6 +150,26 @@
 		C3131D681451AF220096F21A /* planet-glass-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet-glass-retina.png"; sourceTree = "<group>"; };
 		C3131D691451AF220096F21A /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		C3131D6A1451AF220096F21A /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		C324590314775702000C18C7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		C324590414775702000C18C7 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		C324590514775702000C18C7 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		C324590614775702000C18C7 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		C324590714775702000C18C7 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		C324590814775702000C18C7 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		C324590914775702000C18C7 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		C324590A14775702000C18C7 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		C324590B14775702000C18C7 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		C324590C14775702000C18C7 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		C324590D14775702000C18C7 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C324591414775730000C18C7 /* QEHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QEHTTPClient.h; sourceTree = "<group>"; };
+		C324591514775730000C18C7 /* QEHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClient.m; sourceTree = "<group>"; };
+		C324591614775730000C18C7 /* QEHTTPClientResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QEHTTPClientResponse.h; sourceTree = "<group>"; };
+		C324591714775730000C18C7 /* QEHTTPClientResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEHTTPClientResponse.m; sourceTree = "<group>"; };
+		C32B9B501482CDAC00C513C6 /* PickMultiplayerGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickMultiplayerGameViewController.h; path = "Quarkeon Express/PickMultiplayerGameViewController.h"; sourceTree = "<group>"; };
+		C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickMultiplayerGameViewController.m; path = "Quarkeon Express/PickMultiplayerGameViewController.m"; sourceTree = "<group>"; };
+		C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickMultiplayerGameViewController.xib; path = "Quarkeon Express/PickMultiplayerGameViewController.xib"; sourceTree = "<group>"; };
+		C32B9B551482DB4B00C513C6 /* QEUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QEUIButton.h; sourceTree = "<group>"; };
+		C32B9B561482DB4B00C513C6 /* QEUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QEUIButton.m; sourceTree = "<group>"; };
 		C33C7065145C65BD0094534C /* Arid World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Arid World.jpg"; path = "Game Images/Arid World.jpg"; sourceTree = "<group>"; };
 		C33C7066145C65BD0094534C /* Caldonia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Caldonia.jpg; path = "Game Images/Caldonia.jpg"; sourceTree = "<group>"; };
 		C33C7067145C65BD0094534C /* Cold World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Cold World.jpg"; path = "Game Images/Cold World.jpg"; sourceTree = "<group>"; };
@@ -150,6 +183,11 @@
 		C33C706F145C65BD0094534C /* Pyrobora.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Pyrobora.jpg; path = "Game Images/Pyrobora.jpg"; sourceTree = "<group>"; };
 		C33C7070145C65BD0094534C /* Small Gas Giant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Small Gas Giant.jpg"; path = "Game Images/Small Gas Giant.jpg"; sourceTree = "<group>"; };
 		C33C7071145C65BD0094534C /* Waterless World.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Waterless World.jpg"; path = "Game Images/Waterless World.jpg"; sourceTree = "<group>"; };
+		C33ED2E214813A6E00AFCC4B /* MultiplayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiplayerGame.h; path = "Quarkeon Express/MultiplayerGame.h"; sourceTree = "<group>"; };
+		C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiplayerGame.m; path = "Quarkeon Express/MultiplayerGame.m"; sourceTree = "<group>"; };
+		C33ED2EA14814BA600AFCC4B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "Quarkeon Express/LoginViewController.h"; sourceTree = "<group>"; };
+		C33ED2EB14814BA600AFCC4B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "Quarkeon Express/LoginViewController.m"; sourceTree = "<group>"; };
+		C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = "Quarkeon Express/LoginViewController.xib"; sourceTree = "<group>"; };
 		C377A5F5144E446C00663A2C /* Quarkeon Express.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quarkeon Express.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C377A5F9144E446C00663A2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C377A5FB144E446C00663A2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,9 +269,56 @@
 			name = "Star Fields";
 			sourceTree = "<group>";
 		};
+		C32458FE147756D5000C18C7 /* JSON Client */ = {
+			isa = PBXGroup;
+			children = (
+				C324590314775702000C18C7 /* JSON.h */,
+				C324590414775702000C18C7 /* NSObject+SBJSON.h */,
+				C324590514775702000C18C7 /* NSObject+SBJSON.m */,
+				C324590614775702000C18C7 /* NSString+SBJSON.h */,
+				C324590714775702000C18C7 /* NSString+SBJSON.m */,
+				C324590814775702000C18C7 /* SBJsonBase.h */,
+				C324590914775702000C18C7 /* SBJsonBase.m */,
+				C324590A14775702000C18C7 /* SBJsonParser.h */,
+				C324590B14775702000C18C7 /* SBJsonParser.m */,
+				C324590C14775702000C18C7 /* SBJsonWriter.h */,
+				C324590D14775702000C18C7 /* SBJsonWriter.m */,
+			);
+			name = "JSON Client";
+			sourceTree = "<group>";
+		};
+		C324591314775716000C18C7 /* QE Client */ = {
+			isa = PBXGroup;
+			children = (
+				C324591414775730000C18C7 /* QEHTTPClient.h */,
+				C324591514775730000C18C7 /* QEHTTPClient.m */,
+				C324591614775730000C18C7 /* QEHTTPClientResponse.h */,
+				C324591714775730000C18C7 /* QEHTTPClientResponse.m */,
+			);
+			name = "QE Client";
+			sourceTree = "<group>";
+		};
+		C33ED2E014813A3D00AFCC4B /* Multiplayer QE */ = {
+			isa = PBXGroup;
+			children = (
+				C33ED2E214813A6E00AFCC4B /* MultiplayerGame.h */,
+				C33ED2E314813A6E00AFCC4B /* MultiplayerGame.m */,
+				C33ED2EA14814BA600AFCC4B /* LoginViewController.h */,
+				C33ED2EB14814BA600AFCC4B /* LoginViewController.m */,
+				C33ED2EC14814BA600AFCC4B /* LoginViewController.xib */,
+				C32B9B501482CDAC00C513C6 /* PickMultiplayerGameViewController.h */,
+				C32B9B511482CDAC00C513C6 /* PickMultiplayerGameViewController.m */,
+				C32B9B521482CDAC00C513C6 /* PickMultiplayerGameViewController.xib */,
+			);
+			name = "Multiplayer QE";
+			sourceTree = "<group>";
+		};
 		C377A5EA144E446C00663A2C = {
 			isa = PBXGroup;
 			children = (
+				C33ED2E014813A3D00AFCC4B /* Multiplayer QE */,
+				C324591314775716000C18C7 /* QE Client */,
+				C32458FE147756D5000C18C7 /* JSON Client */,
 				C30234691465AA4900A0ED4D /* Star Fields */,
 				C302345E1465A6D700A0ED4D /* Space Stations */,
 				C38E1467145B5CBD00AF2E8F /* PlanetPics */,
@@ -301,8 +386,8 @@
 				C377A637144E6F0B00663A2C /* Enemy.m */,
 				C377A63F144E731D00663A2C /* Planet.h */,
 				C377A640144E731D00663A2C /* Planet.m */,
-				98C6E92E145B0D600097267C /* Cell.h */,
 				98C6E92F145B0D600097267C /* Cell.m */,
+				98C6E92E145B0D600097267C /* Cell.h */,
 				C377A642144E733000663A2C /* SpaceLane.h */,
 				C377A643144E733000663A2C /* SpaceLane.m */,
 				98B1226C1461D6A700581981 /* GameCreator.h */,
@@ -318,6 +403,8 @@
 				98A93D66146372FA00493A97 /* MainMenu.h */,
 				98A93D67146372FA00493A97 /* MainMenu.m */,
 				98A93D68146372FA00493A97 /* MainMenu.xib */,
+				C32B9B551482DB4B00C513C6 /* QEUIButton.h */,
+				C32B9B561482DB4B00C513C6 /* QEUIButton.m */,
 			);
 			path = "Quarkeon Express";
 			sourceTree = "<group>";
@@ -483,6 +570,8 @@
 				C30234711465AAAC00A0ED4D /* stars3.png in Resources */,
 				9838DB071465EFA2006BFACA /* stars5.png in Resources */,
 				9838DB081465EFA2006BFACA /* stars6.png in Resources */,
+				C33ED2EE14814BA600AFCC4B /* LoginViewController.xib in Resources */,
+				C32B9B541482CDAC00C513C6 /* PickMultiplayerGameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +626,17 @@
 				98A93D69146372FA00493A97 /* MainMenu.m in Sources */,
 				98A93D6E146378FA00493A97 /* PlayerSetupScreen.m in Sources */,
 				9838DB0F14660A35006BFACA /* AI.m in Sources */,
+				C324590E14775702000C18C7 /* NSObject+SBJSON.m in Sources */,
+				C324590F14775702000C18C7 /* NSString+SBJSON.m in Sources */,
+				C324591014775702000C18C7 /* SBJsonBase.m in Sources */,
+				C324591114775702000C18C7 /* SBJsonParser.m in Sources */,
+				C324591214775702000C18C7 /* SBJsonWriter.m in Sources */,
+				C324591814775730000C18C7 /* QEHTTPClient.m in Sources */,
+				C324591914775730000C18C7 /* QEHTTPClientResponse.m in Sources */,
+				C33ED2E414813A6E00AFCC4B /* MultiplayerGame.m in Sources */,
+				C33ED2ED14814BA600AFCC4B /* LoginViewController.m in Sources */,
+				C32B9B531482CDAC00C513C6 /* PickMultiplayerGameViewController.m in Sources */,
+				C32B9B571482DB4B00C513C6 /* QEUIButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

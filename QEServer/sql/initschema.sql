@@ -3,13 +3,20 @@ CREATE TABLE IF NOT EXISTS GAME (
         players_in_game INTEGER NOT NULL,
         whose_turn INTEGER NOT NULL,
         num_planets INTEGER NOT NULL,
-        last_turn INTEGER NOT NULL
+        map INTEGER NOT NULL,
+        last_turn INTEGER NOT NULL,
+        owner INTEGER NOT NULL,
+        game_over INTEGER NOT NULL,
+        name VARCHAR(255) NOT NULL
 	);
 
 CREATE TABLE IF NOT EXISTS PLAYER_IN_GAME (
         id INTEGER PRIMARY KEY,
         uranium INTEGER NOT NULL,
         player INTEGER NOT NULL,
+        yLocation INTEGER NOT NULL,
+        xLocation INTEGER NOT NULL,
+        round INTEGER NOT NULL,
         game INTEGER NOT NULL
     );
 
@@ -19,7 +26,12 @@ CREATE TABLE IF NOT EXISTS PLANET_IN_GAME (
         earn_rate INTEGER NOT NULL,
         total_uranium INTEGER NOT NULL,
         game INTEGER NOT NULL,
-        owner INTEGER
+        map INTEGER NOT NULL,
+        owner INTEGER,
+        xLocation INTEGER NOT NULL,
+        yLocation INTEGER NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        picture VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS PLAYERS (
@@ -32,13 +44,12 @@ CREATE TABLE IF NOT EXISTS PLAYERS (
 CREATE TABLE IF NOT EXISTS PLANETS (
         id INTEGER PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        picture VARCHAR(255) NOT NULL,
-        description VARCHAR(255) NOT NULL,
-        cost INTEGER NOT NULL,
-        earn_rate INTEGER NOT NULL,
-        starting_uranium INTEGER NOT NULL
+        picture VARCHAR(255) NOT NULL
     );
 
-INSERT INTO players (name, emailAddress, password) VALUES ('adam', 'adamf@csh.rit.edu', 'foo');
-INSERT INTO players (name, emailAddress, password) VALUES ('rory', 'roryk@mit.edu', 'foo');
-INSERT INTO players (name, emailAddress, password) VALUES ('sean', 'seanth@gmail.com', 'foo');
+CREATE TABLE IF NOT EXISTS MAP (
+        id INTEGER PRIMARY KEY,
+        game INTEGER NOT NULL,
+        width INTEGER NOT NULL,
+        height INTEGER NOT NULL
+    );

@@ -60,6 +60,20 @@
     [self clearAIButton:player3AI];
     isPlayer4AI = false;
     [self clearAIButton:player4AI];
+    
+    if (appDelegate.gameState.isMultiplayer) {
+        self.player1AI.hidden = YES;
+        self.player2AI.hidden = YES;
+        self.player3AI.hidden = YES;
+        self.player4AI.hidden = YES;
+        self.player1Name.text = appDelegate.gameState.myEmailAddress;
+        [self.player1Name setEnabled:NO];
+        
+        self.player2Name.placeholder = @"email address";
+        self.player3Name.placeholder = @"email address";
+        self.player4Name.placeholder = @"email address";
+    }
+    
     if (appDelegate.gameState.numPlayers == 2) {
         self.player3Name.hidden = YES;
         self.player3AI.hidden = YES;

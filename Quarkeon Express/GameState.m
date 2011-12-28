@@ -33,6 +33,8 @@
 @synthesize planets;
 @synthesize numPlayers;
 @synthesize mapSize;
+@synthesize isMultiplayer;
+@synthesize myUserID, myEmailAddress;
 
 - (id)init
 {
@@ -45,6 +47,9 @@
         self.currCell = nil;
         self.mapSize = [[NSString alloc] init];
         self.planets = [NSMutableArray array];
+        self.isMultiplayer = false;
+        self.myUserID = -1;
+        self.myEmailAddress = [[NSString alloc] init];
     }
 
     return self;
@@ -68,79 +73,6 @@
     self.currCell = self.currPlayer.currLocation;
 }
 
-
-/**
-- (bool) loadGames
-{
-    NSLog(@"loading games....");
-    NSMutableArray *sourcePlanets = [self loadPlanets];
-    NSMutableArray *allGames = [self loadPlist:@"Games.plist" rootKey:@"Games"];
-    // XXX adamf: this has to load after we've loaded the planets, since we use the index into the planet
-    // array. This is bad idea, but we do it anyways to get the game going.
-    // all these load functions should move to a gameLoader class, and not be in the state class.
-    for (NSDictionary *gamesDict in allGames) {
-        Game *newGame = [[Game alloc] init];
-        newGame.name = [gamesDict objectForKey:@"Name"];
-        newGame.difficulty = [gamesDict objectForKey:@"Difficulty"];
-        newGame.startPlanetID = [[gamesDict objectForKey:@"Start Planet ID"] intValue];
-        newGame.endPlanetID = [[gamesDict objectForKey:@"End Planet ID"] intValue];
-        NSMutableArray *maze = [gamesDict objectForKey:@"Maze"];
-        // first just get the planet IDs we are connected to
-        // then we'll make another pass after all the planets are copied where we 
-        // link the planets
-        for (NSDictionary *planetsDict in maze) {
-            int planetID = [[planetsDict objectForKey:@"Planet ID"] intValue];
-            Planet *newPlanet = [[Planet alloc] init];
-            Planet *sourcePlanet = [sourcePlanets objectAtIndex:planetID];
-            // XXX should implement NSCopying protocol on Planet, in case we need to copy it elsewhere
-            newPlanet.type = sourcePlanet.type;
-            newPlanet.name = sourcePlanet.name;
-            newPlanet.description = sourcePlanet.description;
-            newPlanet.picture = sourcePlanet.picture;
-            newPlanet.planetID = planetID;
-            newPlanet.initialCost = sourcePlanet.initialCost;
-            newPlanet.currentCost = sourcePlanet.currentCost;
-            newPlanet.earnRate = sourcePlanet.earnRate;
-            [newGame.maze addObject:newPlanet];
-            [newPlanet release];
-        }
-        
-        for (NSDictionary *planetsDict in maze) {
-            int srcPlanetID = [[planetsDict objectForKey:@"Planet ID"] intValue];
-            Planet *srcPlanet = [newGame getPlanetByID:srcPlanetID];
-            
-            NSMutableArray *connections = [planetsDict objectForKey:@"Connections"];
-            for (NSDictionary *connection in connections) {
-                
-                SpaceLane *newLane = [[SpaceLane alloc] init];
-                int dstPlanetID = [[connection objectForKey:@"Planet ID"] intValue];
-                Planet *dstPlanet = [newGame getPlanetByID:dstPlanetID];
-                
-                [newLane.planets addObject:srcPlanet];
-                [newLane.planets addObject:dstPlanet];
-                newLane.distance = [[connection objectForKey:@"Cost"] intValue];
-
-                NSString *dir = [connection objectForKey:@"Direction"];
-                
-                if ([dir isEqualToString:@"North"]) {
-                    srcPlanet.north = newLane;
-                } else if ([dir isEqualToString:@"South"]) {
-                    srcPlanet.south = newLane;
-                } else if ([dir isEqualToString:@"East"]) {
-                    srcPlanet.east = newLane;
-                } else if ([dir isEqualToString:@"West"]) {
-                    srcPlanet.west = newLane;
-                }
-                [newLane release];
-            }
-        }
-        [self.games addObject:newGame];
-        [newGame release];
-    }
-    
-    return true;
-}
-**/
 
 - (void)endTurn {
     /**

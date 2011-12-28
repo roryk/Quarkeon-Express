@@ -28,6 +28,7 @@
 @synthesize picture;
 @synthesize defaultpicture;
 @synthesize exitnames;
+@synthesize x, y;
 
 - (id)init
 {

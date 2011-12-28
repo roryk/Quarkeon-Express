@@ -8,8 +8,6 @@ import tornado.escape
 import logging
 import tornado.auth
 
-from tornado.template import Loader
-
 from tornado.options import define, options
 
 from qe.dataguy import DataGuy
@@ -18,6 +16,7 @@ import qe.handlers.json
 
 define("port", default=8888, help="run on the given port", type=int)
 define("sqlite_db", default="./database/qe.db", help="path to sqliteDB", type=str)
+define("init_db", default=False, help="Re-initialize the database (destructive!)", type=bool)
 
 def main():
     tornado.options.parse_command_line()
@@ -27,6 +26,7 @@ def main():
     settings = {
         "cookie_secret": "ALKJSLAKJDLKAJSDLKAJSDLKAJSDLKJASDNEBBEBENNMMEQQERTT",
         "xsrf_cookies": True,
+        "debug": True
     }
 
     logging.info("sqlite_db: %s" % (options.sqlite_db))
@@ -45,11 +45,25 @@ def main():
         (r"/api/inviteusertogame", json.InviteUserToGameHandler, dg),
         (r"/api/startgame", json.StartGameHandler, dg),
 
+        # game management, to be implemented once a single game works
+        (r"/api/loadgame", json.LoadGameHandler, dg),
+        (r"/api/getmygames", json.GetMyGamesHandler, dg),
+
         # game play
+        (r"/api/move", json.MoveHandler, dg),
         (r"/api/buyplanet", json.BuyPlanetHandler, dg),
         (r"/api/endturn", json.EndTurnHandler, dg),
+        (r"/api/startturn", json.StartTurnHandler, dg),
+        (r"/api/getstatus", json.GetStatusHandler, dg),
 
     ], **settings)
+
+
+    if (options.init_db):
+        logging.info("Wiping DB and initing")
+        dg['dg'].init_new_db()
+        return 
+
 
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)

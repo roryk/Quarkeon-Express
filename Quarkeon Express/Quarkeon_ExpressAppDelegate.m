@@ -26,6 +26,9 @@
 #import "PlayerSetupScreen.h"
 #import "GameSetupScreen.h"
 #import "MainMenu.h"
+#import "LoginViewController.h"
+#import "PickMultiplayerGameViewController.h"
+#import "QEHTTPClient.h"
 
 
 @implementation Quarkeon_ExpressAppDelegate
@@ -55,6 +58,36 @@
     
 }
 
+- (void) loadMultiplayerGame:(int)gameId
+{
+    int requestStatus;
+    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
+    GameCreator *gc = self.gameCreator;
+    multiplayerGame = [QEClient loadGame:gameId status:&requestStatus];
+    // XXX we should check to see if we need to login here. 
+    // XXX also, the views should be in a stack, so we can push the login, then
+    // pop back to the active one.
+    
+    NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
+    NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
+    NSMutableArray *players = [multiplayerGame objectForKey:@"players"];
+    [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
+                         height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
+    NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
+    
+    for (Player *player in players) {
+        if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
+            
+            self.gameState.currCell = [[self.gameState.cells objectAtIndex:player.xLocation] objectAtIndex:player.yLocation];
+            self.gameState.currPlayer = player;
+            player.currLocation = self.gameState.currCell;
+            
+            break;
+            
+        }
+    }
+}
+
 - (void) startGame
 {
     [self.gameState setupTurnOrder];
@@ -64,20 +97,38 @@
 
 -(void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI
 {
-    [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
+    if (self.gameState.isMultiplayer) {
+        [self.gameCreator addMultiplayerPlayer:playerName];
+    } else {
+        [self.gameCreator addPlayer:self.gameCreator.defaultUranium playerName:playerName isAI:isAI];
+    }
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+   
     self.gameState = [[GameState alloc] init];
     self.gameCreator = [[GameCreator alloc] initWithGameState:self.gameState];
+    
+    self.QEClient = [[QEHTTPClient alloc] init];
+    
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [arrayPaths objectAtIndex:0];
+    NSString* filePath = [docDirectory stringByAppendingPathComponent:@"myemail.txt"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        self.gameState.myEmailAddress = fileContents;
+        NSLog(@"%@", fileContents);
+    }
 
     
     self.playGameVC = [[Quarkeon_ExpressViewController alloc] init];
     self.gameSetupVC = [[GameSetupScreen alloc] init];
     self.playerSetupVC = [[PlayerSetupScreen alloc] init];
+    self.loginVC = [[LoginViewController alloc] init];
+    self.pickMPGameVC = [[PickMultiplayerGameViewController alloc] init];
     
     self.window.rootViewController = self.mainMenuVC;
     [self.window makeKeyAndVisible];

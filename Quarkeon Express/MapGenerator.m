@@ -63,6 +63,61 @@
     self.ncells = x * y;
 }
 
+- (void) initCellsWithCoords 
+{
+    int x;
+    int y;
+    int n;
+    for (x = 0; x < self.rows; x++) {
+        [self.cells addObject:[[NSMutableArray alloc] init]];
+        for (y = 0; y < self.cols; y++) {
+            Cell *c = [[Cell alloc] init];
+            n = arc4random() % [self.backgroundImages count];
+            c.defaultpicture = [self.backgroundImages objectAtIndex:n];
+            c.x = x;
+            c.y = y;
+            c.picture = c.defaultpicture;
+            [[self.cells objectAtIndex:x] addObject:c];
+            [c release];
+        }
+    }
+}
+
+- (NSMutableArray *) buildMapWithPlanets:(NSMutableArray *)planets
+{
+    int x;
+    int y;
+    for (Planet *planet in planets) {
+        [[[self.cells objectAtIndex:planet.x] objectAtIndex:planet.y] addPlanet:[planet copy]];
+    }
+    for (x = 0; x < self.rows; x++) {
+        for (y = 0; y < self.cols; y++) {
+            Cell *cell = [[self.cells objectAtIndex:x] objectAtIndex:y];
+            if (y - 1 != -1) {
+                Cell *southCell = [[self.cells objectAtIndex:x] objectAtIndex:y - 1];
+                [cell.exits setObject:southCell forKey:@"south"];
+                [southCell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:@"south"]];
+            }
+            if (y + 1 != self.rows) {
+                Cell *northCell = [[self.cells objectAtIndex:x] objectAtIndex:y + 1];
+                [cell.exits setObject:northCell forKey:@"north"];
+                [northCell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:@"north"]];
+            }
+            if (x + 1 != self.cols) {
+                Cell *eastCell = [[self.cells objectAtIndex:x + 1] objectAtIndex:y];
+                [cell.exits setObject:eastCell forKey:@"east"];
+                [eastCell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:@"east"]];
+            }
+            if (x - 1 != -1) {
+                Cell *westCell = [[self.cells objectAtIndex:x - 1] objectAtIndex:y];
+                [cell.exits setObject:westCell forKey:@"west"];
+                [westCell.exits setObject:cell forKey:[self.oppositeDirectionName objectForKey:@"west"]];
+            }
+        }
+    }
+    return self.cells;
+}
+
 - (void) initCells {
     int n;
     for(int i = 0; i < self.ncells; i++) {
@@ -70,10 +125,13 @@
         n = arc4random() % [self.backgroundImages count];
         c.defaultpicture = [self.backgroundImages objectAtIndex:n];
         c.picture = c.defaultpicture;
+        c.ongrid = true;
+        
         [self.cells addObject:c];
         [c release];
     }
 }
+
 
 - (NSMutableArray *) buildMap:(int) max_planets {
     int n = arc4random() % self.ncells;

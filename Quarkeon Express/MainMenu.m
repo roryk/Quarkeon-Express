@@ -22,7 +22,7 @@
 
 @implementation MainMenu
 
-@synthesize newGameButton, helpButton, loadGameButton;
+@synthesize newGameButton, multiplayerButton, loadGameButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +48,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     appDelegate = (Quarkeon_ExpressAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.gameState.isMultiplayer = false;
+
 
 }
 
@@ -68,6 +70,13 @@
 {
     [appDelegate.mainMenuVC.view removeFromSuperview];
     [appDelegate.window addSubview:appDelegate.gameSetupVC.view];
+}
+
+- (IBAction)multiplayerGame:(id)sender
+{
+    [appDelegate.mainMenuVC.view removeFromSuperview];
+    appDelegate.gameState.isMultiplayer = true;
+    [appDelegate startMultiplayer];
 }
 
 @end

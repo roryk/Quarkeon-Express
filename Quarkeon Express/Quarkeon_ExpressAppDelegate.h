@@ -28,16 +28,25 @@
 @class PlayerSetupScreen;
 @class GameSetupScreen;
 @class GameCreator;
+@class PickMultiplayerGameViewController;
+@class LoginViewController;
+@class QEHTTPClient;
 
 @interface Quarkeon_ExpressAppDelegate : NSObject <UIApplicationDelegate> {
     GameState *gameState;
     GameCreator *gameCreator;
+    QEHTTPClient *QEClient;
+    NSMutableArray *myMultiplayerGames;
     
     UINavigationController *navController;
 }
 
+@property (nonatomic, retain) NSMutableArray *myMultiplayerGames;
+
 @property (nonatomic, retain) GameState *gameState;
 @property (nonatomic, retain) GameCreator *gameCreator;
+
+@property (nonatomic, retain) QEHTTPClient *QEClient;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
@@ -53,11 +62,19 @@
 
 @property (nonatomic, retain) IBOutlet GameSetupScreen *gameSetupVC;
 
+@property (nonatomic, retain) IBOutlet LoginViewController *loginVC;
+
+@property (nonatomic, retain) IBOutlet PickMultiplayerGameViewController *pickMPGameVC;
+
 
 
 - (void) addPlayerToGame:(NSString *)playerName isAI:(bool)isAI;
 - (void) startGame;
 - (void) generateMap;
+
+- (bool) login:(NSString *)emailAddress password:(NSString *)password;
+- (void) startMultiplayer;
+- (void) loadMultiplayerGame:(int)gameId;
 
 
 @end

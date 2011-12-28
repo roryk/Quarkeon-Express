@@ -7,10 +7,7 @@ import tornado.web
 import tornado.escape
 import logging
 import tornado.auth
-import datetime
 
-
-import uuid
 
 import traceback
 
@@ -47,7 +44,6 @@ class BaseJSONHandler (BaseHandler):
 
 
     def write (self, d):
-        current_user = self.get_current_user()
 
         # if we got this far, and no one has
         # manually set an error, assume this ended OK
@@ -58,9 +54,39 @@ class BaseJSONHandler (BaseHandler):
 
 class AuthenticatedBaseJSONHandler (BaseJSONHandler):
 
-    def prepare(self):
+    def get (self):
         if not self.current_user:
-            self.write(tornado.escape.json_encode({'status': 'error', 'message': 'you must be logged into to hit this URL, hit /api/login'}))
+            raise tornado.web.HTTPError(403)
+
+        try: 
+            self.safe_get()
+        except QEIntegrityError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'integrity', 'message': str(e)})
+        except QEPermissionsError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'permissions', 'message': str(e)})
+        except Exception, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'unknown', 'message': str(e)})
+
+    def post (self):
+        if not self.current_user:
+            raise tornado.web.HTTPError(403)
+
+        try: 
+            self.safe_post()
+        except QEIntegrityError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'integrity', 'message': str(e)})
+        except QEPermissionsError, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'permissions', 'message': str(e)})
+        except Exception, e:
+            logging.error(traceback.format_exc())
+            self.write({'status': 'error', 'type': 'unknown', 'message': str(e)})
+
+
 
 class LoginHandler (BaseJSONHandler):
     def initialize (self, dg):
@@ -108,45 +134,132 @@ class SignUpNewPlayerHandler(BaseJSONHandler):
 
     def safe_post(self):
 
-       name = self.get_argument('name')
-       email = self.get_argument('email_address')
-       password = self.get_argument('password')
+        name = self.get_argument('name')
+        email = self.get_argument('email_address')
+        password = self.get_argument('password')
 
-       result = self.dg.add_player(name, email, password)
-          
-       self.write(result)
+        result = self.dg.add_player(name, email, password)
+            
+        self.write(result)
 
-class CreateGameHandler(BaseJSONHandler):
+class CreateGameHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        players = tornado.escape.json_decode(self.get_argument('players'))
+        map_width = int(self.get_argument('map_width'))
+        map_height = int(self.get_argument('map_width'))
+        planet_percentage = int(self.get_argument('planet_percentage'))
+        mean_uranium = int(self.get_argument('mean_uranium'))
+        starting_uranium = int(self.get_argument('starting_uranium'))
+        mean_planet_lifetime = int(self.get_argument('mean_planet_lifetime'))
+
+        result = self.dg.create_game(players, starting_uranium, map_width, map_height, 
+                    planet_percentage, mean_uranium, mean_planet_lifetime, current_user)
+
+        self.write(result)
+
+
+class LoadGameHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_get(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        result = self.dg.get_game(game_id, current_user);
+
+        self.write(result)
+
+class GetMyGamesHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_get(self):
+        current_user = self.get_current_user()
+        result = self.dg.get_my_games(current_user);
+
+        self.write(result)
+
+
+class GetStatusHandler(AuthenticatedBaseJSONHandler):
+    # A routine for checking if it is the current users' turn in this game.
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_get(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        result = self.dg.get_status(game_id, current_user);
+
+        self.write(result)
+
+class InviteUserToGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
         pass
 
-class InviteUserToGameHandler(BaseJSONHandler):
+# for now, the game starts when create game is called.
+class StartGameHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
         pass
 
-class StartGameHandler(BaseJSONHandler):
+class BuyPlanetHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        pass
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        planet_id = int(self.get_argument('planet_id'))
 
-class BuyPlanetHandler(BaseJSONHandler):
+        result = self.dg.buy_planet(game_id, planet_id, current_user)
+
+        self.write(result)
+
+class MoveHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        pass
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+        new_x = int(self.get_argument('new_x'))
+        new_y = int(self.get_argument('new_y'))
 
-class EndTurnHandler(BaseJSONHandler):
+        cost_to_move = 1 # XXX move this to somewhere better than here
+
+        result = self.dg.move_player(game_id, new_x, new_y, cost_to_move, current_user)
+
+        self.write(result)
+
+class StartTurnHandler(AuthenticatedBaseJSONHandler):
     def initialize (self, dg):
         self.dg = dg
 
     def safe_post(self):
-        pass
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+
+        result = self.dg.start_turn(game_id, current_user)
+
+        self.write(result)
+
+class EndTurnHandler(AuthenticatedBaseJSONHandler):
+    def initialize (self, dg):
+        self.dg = dg
+
+    def safe_post(self):
+        current_user = self.get_current_user()
+        game_id = int(self.get_argument('game_id'))
+
+        result = self.dg.end_turn(game_id, current_user)
+
+        self.write(result)

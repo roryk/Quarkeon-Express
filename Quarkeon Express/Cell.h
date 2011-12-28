@@ -39,6 +39,11 @@
 @property (readwrite, retain) UIImage *defaultpicture;
 @property (nonatomic, retain) NSMutableArray *exitnames;
 
+@property (readwrite, assign) int x;
+@property (readwrite, assign) int y;
+
+
+
 - (bool) hasLane:(NSString *)dir;
 - (void) addPlanet:(Planet *)newplanet;
 - (void) delPlanet;

@@ -30,6 +30,8 @@
 @synthesize clones, bucks, uranium;
 @synthesize currLocation;
 @synthesize planetsOwned;
+@synthesize emailAddress;
+@synthesize pid;
 
 - (id)init
 {
@@ -41,6 +43,11 @@
         self.name = nil;
         self.ship = nil;
         self.planetsOwned = 0;
+        self.xLocation = -1;
+        self.yLocation = -1;
+        self.pid = -1;
+        self.emailAddress = nil;
+        
     }
     
     return self;
