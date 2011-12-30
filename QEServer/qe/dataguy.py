@@ -578,7 +578,7 @@ class DataGuy (object):
             player_ids.append(player_id)
 
             cur.execute("INSERT INTO player_in_game (uranium, player, xLocation, yLocation, game, round) VALUES (?, ?, ?, ?, ?, ?)", 
-                            (starting_uranium, player_id, random.randint(1, width), random.randint(1, height), game_id, 0))
+                            (starting_uranium, player_id, random.randint(0, width-1), random.randint(0, height-1), game_id, 0))
             self.dbcon.commit()
 
        
