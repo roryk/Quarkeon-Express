@@ -2,10 +2,19 @@
 //  PassGameVC.m
 //  Quarkeon Express
 //
-//  Created by Rory Kirchner on 10/24/11.
-//  Copyright 2011 MIT. All rights reserved.
+//   Copyright 2011 Rory Kirchner
 //
-
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
 #import "PassGameVC.h"
 #import "Quarkeon_ExpressAppDelegate.h"
 #import "GameState.h"
@@ -56,7 +65,7 @@
 
 - (IBAction)startTurn:(id)sender {
     GameState *gs = appDelegate.gameState;
-    [gs startTurn];
+    [gs setupTurn];
     if([gs didCurrentPlayerWin]) {
         appDelegate.winScreenVC = [[WinScreenVC alloc] init];
         [appDelegate.passGameVC.view removeFromSuperview];
@@ -68,11 +77,13 @@
         //appDelegate.window.rootViewController = (UIViewController *) appDelegate.viewController;
         //[appDelegate.window makeKeyAndVisible];
         //[UIWindow addSubview:self.viewController];
+//        [gs startTurn];
         [appDelegate.passGameVC.view removeFromSuperview];
         //[appDelegate.passGameVC release];
         [appDelegate.playGameVC updateGameScreen];
         [appDelegate.window addSubview:appDelegate.playGameVC.view];
 //        [appDelegate.viewController updateGameScreen];
+        [gs startTurn];
         
     }
     
