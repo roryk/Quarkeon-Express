@@ -42,7 +42,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "167"
          endingLineNumber = "167"
-         landmarkName = "-application:didFinishLaunchingWithOptions:"
+         landmarkName = "-addPlayerToGame:isAI:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -70,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "128"
          endingLineNumber = "128"
-         landmarkName = "-makeFixedMapWithPlanets:height:planets:"
+         landmarkName = "-loadPlanets"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
