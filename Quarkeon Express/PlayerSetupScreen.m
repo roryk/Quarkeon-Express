@@ -10,6 +10,7 @@
 #import "Quarkeon_ExpressAppDelegate.h"
 #import "GameSetupScreen.h"
 #import "Quarkeon_ExpressViewController.h"
+#import "PickMultiplayerGameViewController.h"
 
 
 @implementation PlayerSetupScreen
@@ -110,6 +111,8 @@
 - (IBAction)startGame:(id)sender
 {
 
+
+
     [appDelegate addPlayerToGame:player1Name.text isAI:isPlayer1AI];
     [appDelegate addPlayerToGame:player2Name.text isAI:isPlayer2AI];
 
@@ -125,10 +128,21 @@
     
     [appDelegate startGame];
 
+
+ 
     
     // XXX gather up all the game state data and pass it to the startGame in the delegateß
     [appDelegate.playerSetupVC.view removeFromSuperview];
-    [appDelegate.window addSubview:appDelegate.playGameVC.view];
+    
+    if (appDelegate.gameState.isMultiplayer) {
+        if ([appDelegate.gameState.currPlayer.emailAddress isEqualToString:appDelegate.gameState.myEmailAddress]) {
+            [appDelegate.window addSubview:appDelegate.playerSetupVC.view];
+        } else {
+            [appDelegate.window addSubview:appDelegate.pickMPGameVC.view];
+        }
+    } else {
+        [appDelegate.window addSubview:appDelegate.playGameVC.view];
+    }
     
 }
 

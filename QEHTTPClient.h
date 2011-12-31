@@ -29,8 +29,12 @@
               startingUranium:(int)startingU status:(int *)status;
 
 -(NSMutableDictionary *)loadGame:(int)gameId status:(int *)status;
+-(NSMutableDictionary *)endTurn:(int)gameId status:(int *)status;
+-(NSMutableDictionary *)startTurn:(int)gameId status:(int *)status;
 
 
-- (NSMutableDictionary *)parseLoadedGame:(NSMutableDictionary *)game;
+-(NSMutableDictionary *)parseLoadedGame:(NSMutableDictionary *)game;
+
+
 
 @end

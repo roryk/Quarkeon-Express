@@ -402,4 +402,47 @@ params = {'players': tornado.escape.json_encode(players),
     return [self parseLoadedGame:[content JSONValue]];
 }
 
+-(NSMutableDictionary *)endTurn:(int)gameId status:(int *)status
+{
+	QEHTTPClientResponse *qeResponse = [self doQEPostRequest:@"endturn" postFields:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber alloc] initWithInt:gameId], @"game_id", nil]];
+    
+    NSString *content = qeResponse.content;
+	*status = qeResponse.statusCode;
+    // XXX - find a better way to check this all the time
+    // I wonder if objective C has decorators? 
+    // 403 means we need to log in. 
+    if (*status == 403) {
+        self.isLoggedIn = false;
+    }
+    if (*status != 200) {
+        return nil;
+    }
+    
+    self.isLoggedIn = true;
+    
+    return [content JSONValue];
+}
+
+-(NSMutableDictionary *)startTurn:(int)gameId status:(int *)status
+{
+	QEHTTPClientResponse *qeResponse = [self doQEPostRequest:@"endturn" postFields:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber alloc] initWithInt:gameId], @"game_id", nil]];
+    
+    NSString *content = qeResponse.content;
+	*status = qeResponse.statusCode;
+    // XXX - find a better way to check this all the time
+    // I wonder if objective C has decorators? 
+    // 403 means we need to log in. 
+    if (*status == 403) {
+        self.isLoggedIn = false;
+    }
+    if (*status != 200) {
+        return nil;
+    }
+    
+    self.isLoggedIn = true;
+    
+    return [content JSONValue];
+}
+
+
 @end

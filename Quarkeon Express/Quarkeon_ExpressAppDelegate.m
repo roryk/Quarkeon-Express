@@ -51,22 +51,17 @@
     
 }
 
-- (void) loadMultiplayerGame:(int)gameId
+- (void) setupMultiplayerGameData:(NSMutableDictionary *)multiplayerGame
 {
-    int requestStatus;
-    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
     GameCreator *gc = self.gameCreator;
-    multiplayerGame = [QEClient loadGame:gameId status:&requestStatus];
-    // XXX we should check to see if we need to login here. 
-    // XXX also, the views should be in a stack, so we can push the login, then
-    // pop back to the active one.
-    
+
     NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
     NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
     NSMutableArray *players = [multiplayerGame objectForKey:@"players"];
     [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
                          height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
     NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
+    
     
     for (Player *player in players) {
         if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
@@ -79,11 +74,21 @@
             
         }
     }
+    
+}
+- (void) loadMultiplayerGame:(int)gameId
+{
+    int requestStatus;
+    NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
+    multiplayerGame = [QEClient loadGame:gameId status:&requestStatus];
+    [self setupMultiplayerGameData:multiplayerGame];
 }
 
 - (void) startGame
 {
     int requestStatus;
+    GameCreator *gc = self.gameCreator;
+
 
     NSMutableArray *playerEmailAddresses = [[NSMutableArray alloc] init];
     NSMutableDictionary *multiplayerGame = [[NSMutableDictionary alloc] init];
@@ -92,7 +97,6 @@
     }
     
     if (self.gameState.isMultiplayer) {
-        GameCreator *gc = self.gameCreator;
         if ([self.gameState.mapSize isEqualToString:@"Small"]) {
             
             multiplayerGame = [QEClient createGame:playerEmailAddresses width:gc.smallMapSize height:gc.smallMapSize 
@@ -100,27 +104,11 @@
                                 meanPlanetLifetime:gc.smallMapMeanPlanetLifetime startingUranium:gc.smallMapStartingU 
                           status:&requestStatus];
             
-            NSDictionary *gameMap = [multiplayerGame objectForKey:@"map"];
-            NSMutableArray *planets = [multiplayerGame objectForKey:@"planets"];
-            [gc makeFixedMapWithPlanets:[[gameMap objectForKey:@"width"] intValue] 
-                                 height:[[gameMap objectForKey:@"height"] intValue] planets:planets];
-
-            
         } else if ([self.gameState.mapSize isEqualToString:@"Medium"]) {
         } else {
         }
-        NSDictionary *gameDict = [multiplayerGame objectForKey:@"game"];
         
-        for (Player *player in [multiplayerGame objectForKey:@"players"]) {
-            if (player.pid == [[gameDict objectForKey:@"whose_turn"] intValue]) {
-                
-                self.gameState.currCell = [[self.gameState.cells objectAtIndex:player.xLocation] objectAtIndex:player.yLocation];
-                self.gameState.currPlayer = player;
-                
-                break;
-                
-            }
-        }
+        [self setupMultiplayerGameData:multiplayerGame];
         
     } else {
         [self.gameState setupTurnOrder];
